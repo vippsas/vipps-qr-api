@@ -1,14 +1,14 @@
 openapi: 3.0.0
 info:
-  title: qr-api
-  version: '1.0'
-  description: Api to generate qr code for a vipps payment
+  title: Vipps QR API
+  version: '1.0.1'
+  description: API to generate QR codes for a Vipps payment
   contact:
-    name: Team ecom
+    name: Team eCom
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
 servers:
   - url: 'https://api.vipps.no/qr'
-    description: vipps qr api
+    description: Vipps QR API
 paths:
   /v1:
     parameters: []
@@ -69,7 +69,7 @@ paths:
         - schema:
             type: string
           in: header
-          name: Ocp-Apim-Subscription-Key
+          name: Ocp-APIm-Subscription-Key
           description: Subscription Key
           required: true
       tags:
@@ -82,7 +82,7 @@ components:
       properties:
         url:
           type: string
-          description: 'Url to the Vipps landing page, obtained from ecom/recurring apis'
+          description: 'URL to the Vipps landing page, obtained from ecom/recurring apis'
           example: '   url: ''https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'''
           pattern: 'https?:\/\/'
       required:
