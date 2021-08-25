@@ -6,6 +6,13 @@ The Vipps QR API lets merchants generate Vipps QR codes that can be used to pay 
 
 The QR code, when scanned and opened, will redirect the user to the Vipps landing page which on the phone will automatically trigger a switch to the Vipps app where they can pay the merchant.
 
+# Basic flow
+
+- Initiate Vipps eCom payment
+- Recieve Payment URL as response
+- Post Payment URL to QR-API
+- Recieve QR-code i png - format
+
 # Getting Started
 
 ## Before you begin
