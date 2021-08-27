@@ -14,6 +14,16 @@ API version: 1.0.0.
 
 Document version 1.0.1.
 
+# Table of contents
+
+- [Basic flow](#basic-flow)
+- [Getting Started](#getting-started)
+  * [Before you begin](#before-you-begin)
+  * [Get an access token](#get-an-access-token)
+  * [Generate the QR code](#generate-the-qr-code)
+- [API summary](#api-summary)
+- [Questions?](#questions-)
+
 # Basic flow
 
 1. Initiate a Vipps eCom payment
@@ -32,38 +42,34 @@ retrieved your API credentials for
 from
 [portal.vipps.no](https://portal.vipps.no).
 
-## 1. Authentication
-```bash
-curl https://apitest.vipps.no/accessToken/get \
--H "client_id: YOUR-CLIENT-ID" \
--H "client_secret: YOUR-CLIENT-SECRET" \
--H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
--X POST
+## Get an access token
+
+All Vipps API requests must include an `Authorization` header with
+a JSON Web Token (JWT), which we call the _access token_.
+The access token is obtained by calling
+[`POST:/accesstoken/get`](https://vippsas.github.io/vipps-ecom-api/#/Authorization_Service/fetchAuthorizationTokenUsingPost)
+and passing the `client_id`, `client_secret` and `Ocp-Apim-Subscription-Key`.
+(We _are_ aware that this is a `POST`, without a body, to an endpoint with
+`get` in the URL, and hope to fix it in a later version of the API. Sorry.)
+
+Request (including the recommended `Vipps-*` HTTP headers):
+
+```
+POST https://apitest.vipps.no/accesstoken/get
+client_id: fb492b5e-7907-4d83-ba20-c7fb60ca35de
+client_secret: Y8Kteew6GE2ZmeycEt6egg==
+Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
 ```
 
-In response you will get a body with the following schema.
-The property `access_token` should be used for all other API requests in the
-`Authorization` header as the Bearer token.
-
-```json
-{
-  "token_type": "Bearer",
-  "expires_in": "3599",
-  "ext_expires_in": "3599",
-  "expires_on": "1614116654",
-  "not_before": "1614112754",
-  "resource": "00000002-0000-0000-c000-000000000000",
-  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Im5PbzNaRH <snip>"
-  }
-}
-```
+In response you will get a body and `access_token`, which musrt be used for all
+other API requests in the `Authorization` header as the Bearer token.
 
 See more about
 [access token](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#get-an-access-token)
 in the
 [Getting Started guide](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md).
 
-## 2. Creating the QR code
+## Generate the QR code
 
 Before creating the QR code an eCom payment needs to be created as described in the
 [eCom API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#initiate-payment-flow-phone-and-browser).
