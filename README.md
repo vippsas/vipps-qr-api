@@ -17,8 +17,8 @@ For more information:
 * [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md): Information about API keys, product activation.
 
 You can peruse the API reference documentation as:
-* [Swagger](https://vippsas.github.io/vipps-merchant-management-api/)
-* [ReDoc](https://vippsas.github.io/vipps-merchant-management-api/redoc.html)
+* [Swagger UI](https://vippsas.github.io/vipps-qr-api/)
+* [ReDoc](https://vippsas.github.io/vipps-qr-api/redoc.html)
 
 # Questions?
 
