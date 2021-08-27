@@ -49,8 +49,6 @@ a JSON Web Token (JWT), which we call the _access token_.
 The access token is obtained by calling
 [`POST:/accesstoken/get`](https://vippsas.github.io/vipps-ecom-api/#/Authorization_Service/fetchAuthorizationTokenUsingPost)
 and passing the `client_id`, `client_secret` and `Ocp-Apim-Subscription-Key`.
-(We _are_ aware that this is a `POST`, without a body, to an endpoint with
-`get` in the URL, and hope to fix it in a later version of the API. Sorry.)
 
 Request (including the recommended `Vipps-*` HTTP headers):
 
