@@ -67,7 +67,9 @@ The `POST:/ecomm/v2/payments` endpoint will return a response like this:
 ```
 
 The URL is truncated, but the format is correct. Be aware that the URL is only
-valid for a short period of time. Consult the ECOM-api docs for details.
+valid for a short period of time. See the
+[eCom API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md)
+for details.
 
 Afterwards the QR code can be created by using the following endpoint:
 [`POST:qr​/v1/`](https://swagger.io/)
