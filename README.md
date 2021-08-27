@@ -9,7 +9,7 @@ over the counter, without requiring the Vipps user to provide their telephone
 number to the merchant.
 
 The QR code, when scanned and opened, will redirect the user to the Vipps
-landing page which on the phone will automatically trigger a switch to the
+landing page, which on the phone will automatically trigger a switch to the
 Vipps app where they can pay the merchant.
 
 For more information:

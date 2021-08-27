@@ -82,7 +82,7 @@ Be aware that the URL is only valid for a short period of time. See the
 for details.
 
 Afterwards the QR code can be created by using the following endpoint:
-[`POST:qr​/v1/`](https://swagger.io/)
+[`POST:qr​/v1/`](https://vippsas.github.io/vipps-qr-api/#/QR/generateQr)
 
 HTTP Header   | Value
 ------------  | -------------
@@ -107,7 +107,7 @@ is a shortened URL that will redirect to the payment URL that was posted to the 
 
 # API summary
 
-- `POST:/qr/v1`
+- [`POST:/qr/v1`](https://vippsas.github.io/vipps-qr-api/#/QR/generateQr)
 	- Endpoint for creating a new QR code
 - `GET:short.vipps.no/v1/url?id={id}`
 	- Shortened URL that will redirect to the payment URL
