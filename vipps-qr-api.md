@@ -10,12 +10,16 @@ The QR code, when scanned and opened, will redirect the user to the Vipps
 landing page which on the phone will automatically trigger a switch to the
 Vipps app where they can pay the merchant.
 
+API version: 1.0.0.
+
+Document version 1.0.0.
+
 # Basic flow
 
 - Initiate Vipps eCom payment
 - Recieve Payment URL as response
 - Post Payment URL to QR-API
-- Recieve QR-code i png format
+- Recieve QR code i png format
 
 # Getting Started
 
@@ -23,7 +27,8 @@ Vipps app where they can pay the merchant.
 
 This section covers the quick steps for getting started with the Vipps QR API.
 This document assumes you have signed up as a organisation with Vipps and have
-your test credentials from the Merchant Portal.
+your test credentials from
+[portal.vipps.no](https://portal.vipps.no).
 
 ## 1. Authentication
 ```bash
@@ -51,13 +56,20 @@ The property `access_token` should be used for all other API requests in the
 }
 ```
 
+See more about
+[access token](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#get-an-access-token)
+in the
+[Getting Started guide](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md).
+
 ## 2. Creating the QR code
 
 Before creating the QR code an ECOM-payment needs to be created as described
 [here](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#initiate-payment-flow-phone-and-browser).
 
 
-The `POST:/ecomm/v2/payments` endpoint will return a response like this:
+The
+[`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-ecom-api/#/Vipps%20eCom%20API/initiatePaymentV3UsingPOST)
+endpoint will return a response like this (the `url` is truncated, but the format is correct):
 
 ```json
 {
@@ -65,9 +77,7 @@ The `POST:/ecomm/v2/payments` endpoint will return a response like this:
   "url": "https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiOiJqd3RrZXkiLC <snip>"
 }
 ```
-
-The URL is truncated, but the format is correct. Be aware that the URL is only
-valid for a short period of time. See the
+Be aware that the URL is only valid for a short period of time. See the
 [eCom API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md)
 for details.
 
