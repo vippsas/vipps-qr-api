@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Vipps QR API
-  version: '1.0.2'
+  version: 1.0.2
   description: API to generate QR codes for a Vipps payment
   contact:
     name: Team eCom
@@ -17,7 +17,7 @@ paths:
       operationId: generateQr
       responses:
         '200':
-          description: 'OK'
+          description: OK
           content:
             application/json:
               schema:
@@ -25,7 +25,7 @@ paths:
               examples:
                 example-1:
                   value:
-                    url: https://qr.vipps.no/generate/qr.png?....
+                    url: 'https://qr.vipps.no/generate/qr.png?....'
                     expiresIn: 544
         '400':
           description: Bad Request
@@ -54,9 +54,7 @@ paths:
             schema:
               $ref: '#/components/schemas/LandingPageUrl'
         description: ''
-      description: >-
-        Endpoint for generating a Vipps QR code for a merchant payment.
-        Given a valid vippsLandingPageUrl this endpoint will return a QR code for that payment.
+      description: Endpoint for generating a Vipps QR code for a merchant payment. Given a valid vippsLandingPageUrl this endpoint will return a QR code for that payment.
       parameters:
         - schema:
             type: string
@@ -64,6 +62,7 @@ paths:
             enum:
               - image/png
               - image/*
+              - text/targetUrl
           in: header
           name: Accept
           required: true
