@@ -109,10 +109,15 @@ Which will generate a response like this:
   "url":"https://qr.vipps.no/generate/qr.png?uri=https://short.vipps.no/v1/url?id=01660693bd8f4311a47ffe4c823fb42a&qr-only=true","expiresIn":60
 }
 ```
+# QR formats
+For the most normal usecase, `qr.vipps.no/generate/qr.png` endpoint will generate a QR code and return a URL with a link to an image. It is also possible to only get the targetUrl of the QR if you want to generate the QR yourselves by using the appropriate accept header. This will however require an approval from us before it is used, so we can validate the styling of the QR.
+The targetUrl that points to `short.vipps.no` is a shortened URL that will redirect to the payment URL that was posted to the API.
 
-The `qr.vipps.no/generate/qr.png` endpoint will generate the QR code as a PNG file with a `short.vipps.no` URL.
-The `short.vipps.no` URL is a shortened URL that will redirect to the payment URL that was posted to the API.
-
+Accept Headers   | Return type  | Example
+------------   | ------------- | --------
+image/png      | Will return a url to an png image | qr.vipps.no/generate/qr.png
+image/*        | Will return a url to an png image | qr.vipps.no/generate/qr.png
+text/targetUrl | Will return the target URL        | short.vipps.no/url/v1?id=Ab4c7
 # API summary
 
 - [`POST:/qr/v1`](https://vippsas.github.io/vipps-qr-api/#/QR/generateQr)
