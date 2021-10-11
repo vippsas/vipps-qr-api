@@ -12,7 +12,7 @@ Vipps app where they can pay the merchant.
 
 API version: 1.0.0.
 
-Document version 1.0.1.
+Document version 1.0.2.
 
 # Table of contents
 
@@ -115,8 +115,8 @@ The targetUrl that points to `short.vipps.no` is a shortened URL that will redir
 
 Accept Headers   | Return type  | Example
 ------------   | ------------- | --------
-image/png      | Will return a URl to an png image | qr.vipps.no/generate/qr.png
-image/*        | Will return a URL to an png image | qr.vipps.no/generate/qr.png
+image/png      | Will return a URI to an png image | qr.vipps.no/generate/qr.png
+image/*        | Will return a URI to an png image | qr.vipps.no/generate/qr.png
 text/targetUrl | Will return the target URL        | short.vipps.no/url/v1?id=Ab4c7
 # API summary
 
