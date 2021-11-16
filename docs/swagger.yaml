@@ -1,27 +1,27 @@
 openapi: 3.0.0
 info:
-  title: Vipps QR API
-  version: 1.0.2
-  description: API to generate QR codes for a Vipps payment
+  title: qr-api
+  version: '1.0'
+  description: Api to generate qr code for a vipps payment
   contact:
-    name: Team eCom
+    name: Team ecom
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
 servers:
-  - url: 'https://api.vipps.no/qr'
-    description: Vipps QR API
+  - url: 'https://api.vipps.no'
+    description: vipps qr api
 paths:
-  /v1:
+  /qr/v1:
     parameters: []
     post:
-      summary: Generation of QR code
+      summary: Generation of QR
       operationId: generateQr
       responses:
         '200':
-          description: OK
+          description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QR'
+                $ref: '#/components/schemas/QR_Response'
               examples:
                 example-1:
                   value:
@@ -54,7 +54,7 @@ paths:
             schema:
               $ref: '#/components/schemas/LandingPageUrl'
         description: ''
-      description: Endpoint for generating a Vipps QR code for a merchant payment. Given a valid vippsLandingPageUrl this endpoint will return a QR code for that payment.
+      description: Endpoint for generating a Vipps QR for a merchant payment. Given a valid vippsLandingPageUrl this endpoint will return a QR for that payment.
       parameters:
         - schema:
             type: string
@@ -62,7 +62,7 @@ paths:
             enum:
               - image/png
               - image/*
-              - text/targetUrl
+              - image/jpeg
           in: header
           name: Accept
           required: true
@@ -70,11 +70,13 @@ paths:
         - schema:
             type: string
           in: header
-          name: Ocp-APIm-Subscription-Key
+          name: Ocp-Apim-Subscription-Key
           description: Subscription Key
           required: true
       tags:
         - QR
+      security:
+        - BearerToken: []
 components:
   schemas:
     LandingPageUrl:
@@ -83,21 +85,21 @@ components:
       properties:
         url:
           type: string
-          description: 'URL to the Vipps landing page, obtained from ecom/recurring apis'
+          description: 'Url to the Vipps landing page, obtained from ecom/recurring apis'
           example: '   url: ''https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'''
-          pattern: 'https?:\/\/'
       required:
         - url
-    QR:
-      title: QR
+      description: 'Url must start with https://'
+    QR_Response:
+      title: QR_Response
       type: object
       properties:
         url:
           type: string
-          description: Link to QR code image
+          description: Link to QR image
         expiresIn:
           type: integer
-          description: How many seconds more this QR code will be active
+          description: How many seconds more this QR will be active
     Error:
       title: Error
       type: object
