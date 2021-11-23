@@ -1,13 +1,13 @@
 openapi: 3.0.0
 info:
-  title: qr-api
-  version: '1.0'
+  title: Vipps QR API
+  version: "1.0"
   description: Api to generate qr code for a vipps payment
   contact:
     name: Team ecom
-    url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
+    url: "https://vipps.no/kontakt-oss/bedrift/vipps/"
 servers:
-  - url: 'https://api.vipps.no'
+  - url: "https://api.vipps.no"
     description: vipps qr api
 paths:
   /qr/v1:
@@ -16,23 +16,23 @@ paths:
       summary: Generation of QR
       operationId: generateQr
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QR_Response'
+                $ref: "#/components/schemas/QR_Response"
               examples:
                 example-1:
                   value:
-                    url: 'https://qr.vipps.no/generate/qr.png?....'
+                    url: "https://qr.vipps.no/generate/qr.png?...."
                     expiresIn: 544
-        '400':
+        "400":
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: "#/components/schemas/Error"
               examples:
                 example-1:
                   value:
@@ -44,20 +44,20 @@ paths:
                     title: Order timeout
                     detail: Payment has already timed out
                     instance: 3cff3564-4a14-4481-8dbb-431087753eed
-        '401':
+        "401":
           description: Unauthorized
-        '415':
+        "415":
           description: Unsupported Media Type
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LandingPageUrl'
+              $ref: "#/components/schemas/LandingPageUrl"
             examples:
               example-1:
                 value:
-                  url: '   url: ''https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'''
-        description: ''
+                  url: "   url: 'https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'"
+        description: ""
       description: Endpoint for generating a Vipps QR for a merchant payment. Given a valid vippsLandingPageUrl this endpoint will return a QR for that payment.
       parameters:
         - schema:
@@ -89,14 +89,14 @@ components:
       properties:
         url:
           type: string
-          description: 'Url to the Vipps landing page, obtained from ecom/recurring apis'
-          example: '   url: ''https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'''
+          description: "Url to the Vipps landing page, obtained from ecom/recurring apis"
+          example: "   url: 'https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'"
       required:
         - url
-      description: 'Url must start with https://'
+      description: "Url must start with https://"
       x-examples:
         example-1:
-          url: '   url: ''https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'''
+          url: "   url: 'https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'"
     QR_Response:
       title: QR_Response
       type: object
