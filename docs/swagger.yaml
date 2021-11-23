@@ -53,6 +53,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/LandingPageUrl'
+            examples:
+              example-1:
+                value:
+                  url: '   url: ''https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'''
         description: ''
       description: Endpoint for generating a Vipps QR for a merchant payment. Given a valid vippsLandingPageUrl this endpoint will return a QR for that payment.
       parameters:
@@ -62,7 +66,7 @@ paths:
             enum:
               - image/png
               - image/*
-              - image/jpeg
+              - text/targetUrl
           in: header
           name: Accept
           required: true
@@ -90,6 +94,9 @@ components:
       required:
         - url
       description: 'Url must start with https://'
+      x-examples:
+        example-1:
+          url: '   url: ''https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'''
     QR_Response:
       title: QR_Response
       type: object
