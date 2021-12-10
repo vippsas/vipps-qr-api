@@ -15,7 +15,7 @@ screen in the Vipps app.
 
 API version: 1.0.0.
 
-Document version 1.1.1.
+Document version 1.1.3.
 
 # Table of contents
 
@@ -140,6 +140,10 @@ The `targetUrl` that points to `https://short.vipps.no` is a shortened URL
 that will redirect to the payment URL that was posted to the API.
 Since the `targetUrl` is quite short, the generated QR code is less complex and
 easier to scan efficiently.
+
+If you want to make the QR code on your own: See the
+[design guidelines](https://github.com/vippsas/vipps-design-guidelines#vipps-custom-qr-code)
+for more details about the QR format and design.
 
 ## How to specify the QR format
 
