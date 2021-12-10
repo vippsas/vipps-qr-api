@@ -12,16 +12,19 @@ Vipps app where they can pay the merchant.
 
 API version: 1.0.0.
 
-Document version 1.0.2.
+Document version 1.1.0.
 
 # Table of contents
 
 - [Basic flow](#basic-flow)
-- [Getting Started](#getting-started)
   * [Before you begin](#before-you-begin)
-  * [Get an access token](#get-an-access-token)
-  * [Generate the QR code](#generate-the-qr-code)
-- [API summary](#api-summary)
+  * [Authentication](#authentication)
+- [Initiate a payment with the Vipps eCom API](#initiate-a-payment-with-the-vipps-ecom-api)
+- [Generate the QR code](#generate-the-qr-code)
+  * [Request](#request)
+  * [Response](#response)
+- [QR formats](#qr-formats)
+  * [How to specify the QR format](#how-to-specify-the-qr-format)
 - [Questions?](#questions-)
 
 # Basic flow
@@ -31,46 +34,35 @@ Document version 1.0.2.
 3. Post the payment URL to the QR API
 4. Receive a URL to a QR code i PNG (Portable Network Graphics) format
 
-# Getting Started
-
 ## Before you begin
 
-This section covers the quick steps for getting started with the Vipps QR API.
 This document assumes you have signed up as a organisation with Vipps and have
 retrieved your API credentials for
 [the Vipps test environment](https://github.com/vippsas/vipps-developers/blob/master/vipps-test-environment.md)
 from
 [portal.vipps.no](https://portal.vipps.no).
 
-## Get an access token
+## Authentication
 
-All Vipps API requests must include an `Authorization` header with
-a JSON Web Token (JWT), which we call the _access token_.
-The access token is obtained by calling
-[`POST:/accesstoken/get`](https://vippsas.github.io/vipps-ecom-api/#/Authorization_Service/fetchAuthorizationTokenUsingPost)
-and passing the `client_id`, `client_secret` and `Ocp-Apim-Subscription-Key`.
+All Vipps API calls are authenticated and authorized with an access token
+(JWT bearer token) and an API subscription key:
 
-Request (including the recommended `Vipps-*` HTTP headers):
+| Header Name | Header Value | Description |
+| ----------- | ------------ | ----------- |
+| `Authorization` | `Bearer <JWT access token>` | Type: Authorization token. This obtained as described in [Getting started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md): [Get an access token](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#get-an-access-token) |
+| `Ocp-Apim-Subscription-Key` | Base 64 encoded string | The subscription key for this API. This is available on [portal.vipps.no](https://portal.vipps.no). |
 
-```
-POST https://apitest.vipps.no/accesstoken/get
-client_id: fb492b5e-7907-4d83-ba20-c7fb60ca35de
-client_secret: Y8Kteew6GE2ZmeycEt6egg==
-Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
-```
-
-In response you will get a body and `access_token`, which musrt be used for all
-other API requests in the `Authorization` header as the Bearer token.
-
-See more about
-[access token](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#get-an-access-token)
+For more information about how to obtain an access token and all details around this, please see:
+[Quick overview of how to make an API call](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#quick-overview-of-how-to-make-an-api-call)
 in the
-[Getting Started guide](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md).
+[Getting started guide](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md).
 
-## Generate the QR code
+# Initiate a payment with the Vipps eCom API
 
-Before creating the QR code an eCom payment needs to be created as described in the
+Before creating the QR code you must initiate a payment with the Vipps eCom API as described in the
 [eCom API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#initiate-payment-flow-phone-and-browser).
+
+# Generate the QR code
 
 The
 [`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-ecom-api/#/Vipps%20eCom%20API/initiatePaymentV3UsingPOST)
@@ -84,16 +76,29 @@ endpoint will return a response like this (the `url` is truncated, but the forma
 ```
 
 Be aware that the URL is only valid for a short period of time. See the
-[eCom API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md)
+[eCom API guide: Timeouts](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#timeouts)
 for details.
 
-Afterwards the QR code can be created by using the following endpoint:
+## Request
+
+Now that you have the `url` from the Vipps eCom API you can create a QR code
+using the following endpoint:
+
 [`POST:qr​/v1/`](https://vippsas.github.io/vipps-qr-api/#/QR/generateQr)
 
-HTTP Header   | Value
-------------  | -------------
-Authorization | Bearer `<accesstoken>`
-Accept        | image/png
+Example:
+
+Header:
+```
+POST https://vippsas.github.io/vipps-qr-api/#/QR/generateQr
+client_id: fb492b5e-7907-4d83-ba20-c7fb60ca35de
+client_secret: Y8Kteew6GE2ZmeycEt6egg==
+Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
+Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe
+Vipps-System-Version: 3.1.2
+Vipps-System-Plugin-Name: Point Of Sale Excellence
+Vipps-System-Plugin-Version 4.5.6
+```
 
 Body:
 ```json
@@ -102,28 +107,46 @@ Body:
 }
 ```
 
-Which will generate a response like this:
+## Response
+
+The response will be similar to this:
 
 ```json
 {
-  "url":"https://qr.vipps.no/generate/qr.png?uri=https://short.vipps.no/v1/url?id=01660693bd8f4311a47ffe4c823fb42a&qr-only=true","expiresIn":60
+  "url":"https://qr.vipps.no/generate/qr.png?uri=https://short.vipps.no/v1/url?id=01660693bd8f4311a47ffe4c823fb42a&qr-only=true",
+  "expiresIn":60
 }
 ```
+
+**Please note:** The `expiresIn` value is in seconds.
+
 # QR formats
-For the most normal usecase, `qr.vipps.no/generate/qr.png` endpoint will generate a QR code and return a URL with a link to an image. It is also possible to only get the targetUrl of the QR if you want to generate the QR yourselves by using the appropriate accept header. This will however require an approval from us before it is used, so we can validate the styling of the QR.
-The targetUrl that points to `short.vipps.no` is a shortened URL that will redirect to the payment URL that was posted to the API.
+
+For the most normal usecase, the `qr.vipps.no/generate/qr.png <snip>` URL will
+generate a QR code and return a `https://short.vipps.no` URL with a link to an image.
+
+The QR code image is available at the URL in the response:
+https://short.vipps.no/v1/url?id=01660693bd8f4311a47ffe4c823fb42a&qr-only=true
+
+It is also possible to only get the `targetUrlcode` of the QR if you want to
+generate the QR yourselves by using the appropriate accept header.
+This will require an approval from Vipps before it is used, so we can validate
+the styling of the QR.
+
+The `targetUrl` that points to `https://short.vipps.no` is a shortened URL
+that will redirect to the payment URL that was posted to the API.
+Since the `targetUrl` is quite short, the generated QR code is less complex and
+easier to scan efficiently.
+
+## How to specify the QR format
+
+Use the following HTTP Accept headers:
 
 Accept Headers   | Return type  | Example
 ------------   | ------------- | --------
-image/png      | Will return a URI to an png image | qr.vipps.no/generate/qr.png
-image/*        | Will return a URI to an png image | qr.vipps.no/generate/qr.png
-text/targetUrl | Will return the target URL        | short.vipps.no/url/v1?id=Ab4c7
-# API summary
-
-- [`POST:/qr/v1`](https://vippsas.github.io/vipps-qr-api/#/QR/generateQr)
-	- Endpoint for creating a new QR code
-- `GET:short.vipps.no/v1/url?id={id}`
-	- Shortened URL that will redirect to the payment URL
+`Accept: image/png`      | Will return a URI to an PNG image | https://qr.vipps.no/generate/qr.png
+`Accept: image/*`        | Will return a URI to an PNG image | https://qr.vipps.no/generate/qr.png
+`Accept: text/targetUrl` | Will return the target URL        | https://short.vipps.no/url/v1?id=Ab4c7
 
 # Questions?
 
