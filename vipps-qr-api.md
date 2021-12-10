@@ -6,13 +6,16 @@ The Vipps QR API lets merchants generate Vipps QR codes that can be used to pay
 over the counter, without requiring the Vipps user to provide their telephone
 number to the merchant.
 
-The QR code, when scanned and opened, will redirect the user to the Vipps
-landing page which on the phone will automatically trigger a switch to the
-Vipps app where they can pay the merchant.
+Every Vipps payment needs a unique `orderId`, so it's not possible to make
+one static QR code, like a sticker or a poster. Each payment must have a
+unique QR code. That is what the Vipps QR API is for.
+
+The QR code, when scanned, will take the customer straight to the payment
+screen in the Vipps app.
 
 API version: 1.0.0.
 
-Document version 1.1.0.
+Document version 1.1.1.
 
 # Table of contents
 
