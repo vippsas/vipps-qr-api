@@ -15,7 +15,7 @@ screen in the Vipps app.
 
 API version: 1.0.0.
 
-Document version 1.1.3.
+Document version 1.1.4.
 
 # Table of contents
 
@@ -89,14 +89,15 @@ using the following endpoint:
 
 [`POST:qr​/v1/`](https://vippsas.github.io/vipps-qr-api/#/QR/generateQr)
 
-Example:
+Example of a request for a QR code image using `Accept: image/png`:
 
-Header:
+Headers:
+
 ```
-POST https://vippsas.github.io/vipps-qr-api/#/QR/generateQr
-client_id: fb492b5e-7907-4d83-ba20-c7fb60ca35de
-client_secret: Y8Kteew6GE2ZmeycEt6egg==
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <snip>
 Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
+Accept: image/png
+Merchant-Serial-Number: 123456
 Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe
 Vipps-System-Version: 3.1.2
 Vipps-System-Plugin-Name: Point Of Sale Excellence
@@ -104,6 +105,7 @@ Vipps-System-Plugin-Version 4.5.6
 ```
 
 Body:
+
 ```json
 {
   "url": "https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiOiJqd3RrZXkiLC <snip>"
