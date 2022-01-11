@@ -1,7 +1,6 @@
 # Vipps Vipps QR API v1
 
-💥 DRAFT: This is unfinished work and subject to change. 💥
-
+## One-Time Payment QR 
 This repository contains developer resources for the Vipps QR API.
 
 The Vipps QR API lets merchants generate Vipps QR codes that can be used to pay
@@ -20,6 +19,14 @@ For more information:
 You can peruse the API reference documentation as:
 * [Swagger UI](https://vippsas.github.io/vipps-qr-api/)
 * [ReDoc](https://vippsas.github.io/vipps-qr-api/redoc.html)
+
+💥 DRAFT: This is unfinished work and subject to change. 💥
+## Permanent QR with editable redirect 
+This solution is meant for more permanent usecases such as stickers at the counter, billboards, TV-commercials etc. where you want the customer to be able to buy a product or a service directly from scanning the QR.
+
+![uml diagram](images/uml-for-readme-2.png)
+
+This endpoint will make it possible to generate a vipps-branded QR with the ability to change the url it points to. That is possible because the QR points to a url on the format `qr.vipps.no/r/abc123` and what that url redirects to simply has to be updated in Vipps´ database. 
 
 # Questions?
 
