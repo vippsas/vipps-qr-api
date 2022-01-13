@@ -21,12 +21,12 @@ You can peruse the API reference documentation as:
 * [ReDoc](https://vippsas.github.io/vipps-qr-api/redoc.html)
 
 💥 DRAFT: This is unfinished work and subject to change. 💥
-## Permanent QR with editable redirect 
+## Merchant Redirect QR
 This solution is meant for more permanent usecases such as stickers at the counter, billboards, TV-commercials etc. where you want the customer to be able to buy a product or a service directly from scanning the QR.
 
-![uml diagram](images/uml-for-readme-2.png)
+![uml diagram](images/uml-of-merchant-flow.png)
 
-This endpoint will make it possible to generate a vipps-branded QR with the ability to change the url it points to. That is possible because the QR points to a url on the format `qr.vipps.no/r/abc123` and what that url redirects to simply has to be updated in Vipps´ database. 
+This endpoint will make it possible to generate a vipps-branded QR with the ability to change the url it points to. That is possible because the QR points to a url on the format `qr.vipps.no/r/abc123` and what that url redirects to simply has to be updated in Vipps´ database. These QRs will be scannable from both vipps QR scanner and native camera scanner, and will always redirect the user to the targetUrl that you decided.
 
 # Questions?
 
