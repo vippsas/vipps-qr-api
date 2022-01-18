@@ -71,16 +71,45 @@ paths:
           name: Accept
           required: true
           description: Requested image format
-        - schema:
-            type: string
-          in: header
-          name: Ocp-Apim-Subscription-Key
-          description: Subscription Key
-          required: true
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
       tags:
         - QR
       security:
         - BearerToken: []
+  /v1/webRedirect:
+    post:
+      summary: CreateMerchantRedirectQr
+      operationId: CreateMerchantRedirectQr
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponse'
+              examples:
+                example-1:
+                  value:
+                    id: '{{uniqueId}}'
+                    qrUrl: 'https://qr.vipps.no/generate/qr.png?uri=https://qr-test.vipps.no/c/VFbOmash'
+      description: Generate a QR qith custom target url
+      tags:
+        - MerchantRedirect
+      parameters:
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantRedirectQrRequest'
+            examples:
+              example-1:
+                value:
+                  id: '{{UniqueId}}'
+                  targetUrl: 'https://example.com/myProduct'
+        description: ''
+    parameters: []
 components:
   schemas:
     LandingPageUrl:
@@ -120,11 +149,59 @@ components:
         instance:
           type: string
           description: UUID for the request
+    MerchantRedirectQrRequest:
+      title: MerchantRedirectQrRequest
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        targetUrl:
+          type: string
+          format: uri
+          nullable: true
+      required:
+        - id
+        - targetUrl
+    MerchantRedirectQrResponse:
+      title: MerchantRedirectQrResponse
+      type: object
+      properties:
+        id:
+          type: string
+        qrUrl:
+          type: string
+      required:
+        - id
+        - qrUrl
   securitySchemes:
     BearerToken:
       type: http
       scheme: bearer
+  parameters:
+    Ocp-Apim-Subscription-Key:
+      name: Ocp-Apim-Subscription-Key
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Subscription Key
+    Authorization:
+      name: Authorization
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Bearer <access_token>
+    Merchant-Serial-Number:
+      name: Merchant-Serial-Number
+      in: header
+      required: false
+      schema:
+        type: string
+      description: ':)'
 tags:
+  - name: MerchantRedirect
   - name: QR
 security:
   - BearerToken: []
