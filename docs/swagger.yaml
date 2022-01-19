@@ -76,7 +76,7 @@ paths:
         - QR
       security:
         - BearerToken: []
-  /v1/webRedirect:
+  /v1/merchantRedirect:
     post:
       summary: CreateMerchantRedirectQr
       operationId: CreateMerchantRedirectQr
