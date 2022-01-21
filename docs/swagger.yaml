@@ -13,7 +13,7 @@ paths:
   /v1:
     parameters: []
     post:
-      summary: Generation of QR
+      summary: Generation of One Time Payment QR
       operationId: generateQr
       responses:
         '200':
@@ -60,44 +60,40 @@ paths:
         description: ''
       description: Endpoint for generating a Vipps QR for a merchant payment. Given a valid vippsLandingPageUrl this endpoint will return a QR for that payment.
       parameters:
-        - schema:
-            type: string
-            example: image/png
-            enum:
-              - image/png
-              - image/*
-              - text/targetUrl
-          in: header
-          name: Accept
-          required: true
-          description: Requested image format
+        - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Authorization'
       tags:
-        - QR
-      security:
-        - BearerToken: []
+        - One time payment QR
   /v1/merchantRedirect:
     post:
-      summary: CreateMerchantRedirectQr
+      summary: Create merchant redirect QR
       operationId: CreateMerchantRedirectQr
       responses:
-        '201':
-          description: Created
+        '200':
+          description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MerchantRedirectQrResponse'
               examples:
-                example-1:
+                'example-1 ':
                   value:
-                    id: '{{uniqueId}}'
-                    qrUrl: 'https://qr.vipps.no/generate/qr.png?uri=https://qr-test.vipps.no/c/VFbOmash'
+                    id: billboard_1
+                    url: 'https://qr.vipps.no/generate/qr.png?qr-only=true&uri=https://qr-test.vipps.no/c/VFbOmash'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '409':
+          description: Conflict
+        '415':
+          description: Unsupported Media Type
       description: Generate a QR qith custom target url
-      tags:
-        - MerchantRedirect
       parameters:
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Accept'
       requestBody:
         content:
           application/json:
@@ -106,26 +102,28 @@ paths:
             examples:
               example-1:
                 value:
-                  id: '{{UniqueId}}'
-                  targetUrl: 'https://example.com/myProduct'
+                  id: billboard_1
+                  url: 'https://example.com/myProduct'
         description: ''
+      tags:
+        - Merchant redirect QR
     parameters: []
 components:
   schemas:
     LandingPageUrl:
       title: LandingPageUrl
       type: object
+      description: 'Url must start with https://'
+      x-examples:
+        example-1:
+          url: 'https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'
       properties:
         url:
           type: string
           description: 'Url to the Vipps landing page, obtained from ecom/recurring apis'
-          example: '   url: ''https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'''
+          example: '   https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'
       required:
         - url
-      description: 'Url must start with https://'
-      x-examples:
-        example-1:
-          url: '   url: ''https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'''
     QR_Response:
       title: QR_Response
       type: object
@@ -156,24 +154,27 @@ components:
         id:
           type: string
           nullable: true
-        targetUrl:
+        url:
           type: string
           format: uri
           nullable: true
       required:
         - id
-        - targetUrl
+        - url
     MerchantRedirectQrResponse:
       title: MerchantRedirectQrResponse
       type: object
       properties:
         id:
           type: string
-        qrUrl:
+          minLength: 1
+        url:
           type: string
+          minLength: 1
+          format: uri
       required:
         - id
-        - qrUrl
+        - url
   securitySchemes:
     BearerToken:
       type: http
@@ -193,15 +194,15 @@ components:
       schema:
         type: string
       description: Bearer <access_token>
-    Merchant-Serial-Number:
-      name: Merchant-Serial-Number
+    Accept:
+      name: Accept
       in: header
-      required: false
+      required: true
       schema:
         type: string
-      description: ':)'
+      description: Requested image format
 tags:
-  - name: MerchantRedirect
-  - name: QR
+  - name: Merchant redirect QR
+  - name: One time payment QR
 security:
   - BearerToken: []
