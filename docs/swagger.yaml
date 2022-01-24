@@ -2,48 +2,32 @@ openapi: 3.0.0
 info:
   title: Vipps QR API
   version: '1.0'
-  description: Api to generate qr code for a vipps payment
+  description: Api to generate QR codes for a Vipps payment and Merchant Redirects
   contact:
-    name: Team ecom
+    name: Team Payment Experience
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
 servers:
   - url: 'https://api.vipps.no/qr'
-    description: vipps qr api
+    description: Vipps QR api
 paths:
   /v1:
     parameters: []
     post:
-      summary: Generation of One Time Payment QR
-      operationId: generateQr
+      summary: Create One Time Payment QR
+      operationId: generateOtpQr
       responses:
         '200':
-          description: ''
+          description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QR_Response'
-              examples:
-                example-1:
-                  value:
-                    url: 'https://qr.vipps.no/generate/qr.png?....'
-                    expiresIn: 544
+                $ref: '#/components/schemas/OneTimePaymentQrResponse'
         '400':
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
-              examples:
-                example-1:
-                  value:
-                    title: Validation error
-                    detail: Supplied landing page token is not valid
-                    instance: 3cff3564-4a14-4481-8dbb-431087753eed
-                example-2:
-                  value:
-                    title: Order timeout
-                    detail: Payment has already timed out
-                    instance: 3cff3564-4a14-4481-8dbb-431087753eed
+                $ref: '#/components/schemas/QrErrorResponse'
         '401':
           description: Unauthorized
         '415':
@@ -52,17 +36,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LandingPageUrl'
-            examples:
-              example-1:
-                value:
-                  url: '   url: ''https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'''
+              $ref: '#/components/schemas/OneTimePaymentQrRequest'
         description: ''
       description: Endpoint for generating a Vipps QR for a merchant payment. Given a valid vippsLandingPageUrl this endpoint will return a QR for that payment.
       parameters:
         - $ref: '#/components/parameters/Accept'
-        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
       tags:
         - One time payment QR
   /v1/merchantRedirect:
@@ -76,44 +56,38 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MerchantRedirectQrResponse'
-              examples:
-                'example-1 ':
-                  value:
-                    id: billboard_1
-                    url: 'https://qr.vipps.no/generate/qr.png?qr-only=true&uri=https://qr-test.vipps.no/c/VFbOmash'
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QrErrorResponse'
         '401':
           description: Unauthorized
         '409':
           description: Conflict
         '415':
           description: Unsupported Media Type
-      description: Generate a QR qith custom target url
+      description: Generate a QR that works as a redirect back to the merchant
       parameters:
-        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
-        - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/MerchantRedirectQrRequest'
-            examples:
-              example-1:
-                value:
-                  id: billboard_1
-                  url: 'https://example.com/myProduct'
         description: ''
       tags:
         - Merchant redirect QR
     parameters: []
 components:
   schemas:
-    LandingPageUrl:
-      title: LandingPageUrl
+    OneTimePaymentQrRequest:
+      title: OneTimePaymentQrRequest
       type: object
-      description: 'Url must start with https://'
+      description: ''
       x-examples:
         example-1:
           url: 'https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'
@@ -124,54 +98,86 @@ components:
           example: '   https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'
       required:
         - url
-    QR_Response:
-      title: QR_Response
+    OneTimePaymentQrResponse:
+      title: OneTimePaymentQrResponse
       type: object
+      x-examples: {}
+      description: ''
       properties:
         url:
           type: string
           description: Link to QR image
+          example: 'https://qr.vipps.no/generate/qr.png?...'
         expiresIn:
           type: integer
           description: How many seconds more this QR will be active
-    Error:
-      title: Error
+          example: 544
+      required:
+        - url
+        - expiresIn
+    QrErrorResponse:
+      title: QrErrorResponse
       type: object
+      x-examples:
+        example-1:
+          title: Order timeout
+          detail: Payment has already timed out
+          instance: 3cff3564-4a14-4481-8dbb-431087753eed
+        example-2:
+          title: Validation error
+          detail: Supplied landing page token is not valid
+          instance: 3cff3564-4a14-4481-8dbb-431087753eed
+        example-3:
+          title: Validation error
+          detail: Merchant supplied id is not valid
+          instance: 3cff3564-4a14-4481-8dbb-431087753eed
       properties:
         title:
           type: string
           description: Title for the error
+          example: Validation error
         detail:
           type: string
           description: Detailed description of the error
+          example: Supplied landing page token is not valid
         instance:
           type: string
           description: UUID for the request
+          example: 3cff3564-4a14-4481-8dbb-431087753eed
     MerchantRedirectQrRequest:
       title: MerchantRedirectQrRequest
       type: object
+      x-examples: {}
       properties:
         id:
           type: string
+          description: Merchant supplied Id for QR
+          example: billboard_1
           nullable: true
-        url:
+        redirectUrl:
           type: string
           format: uri
+          description: The target url of the QR (redirect destination)
+          pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
+          example: 'https://www.example.com/myProduct'
           nullable: true
       required:
         - id
-        - url
+        - redirectUrl
     MerchantRedirectQrResponse:
       title: MerchantRedirectQrResponse
       type: object
+      x-examples: {}
       properties:
         id:
           type: string
-          minLength: 1
+          description: Merchant supplied Id for QR
+          example: billboard_1
         url:
           type: string
-          minLength: 1
           format: uri
+          description: Link to QR image
+          example: 'https://qr.vipps.no/generate/qr.png?...'
       required:
         - id
         - url
