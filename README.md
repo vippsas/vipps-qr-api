@@ -29,7 +29,6 @@ This solution is meant for more permanent usecases such as stickers at the count
 
 This endpoint will make it possible to generate a vipps-branded QR with the ability to change the url it points to. That is possible because the QR points to a url on the format `qr.vipps.no/r/abc123` and what that url redirects to simply has to be updated in Vipps´ database. These QRs will be scannable from both vipps QR scanner and native camera scanner, and will always redirect the user to the targetUrl that you decided.
 
-In the future, this solution will be compatible with express checkout, or "vipps hurtigkasse". Such that the user will be able to buy the product directly from scanning the QR. But as of now, this solution will only redirect to the product page that you choose.
 # Questions?
 
 We're always happy to help with code or other questions you might have!
