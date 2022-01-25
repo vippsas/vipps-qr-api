@@ -88,6 +88,14 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponseGetAll'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
       description: Get all QRs created for one saleunit
   '/v1/merchantRedirect/{id}':
     put:
@@ -225,6 +233,12 @@ components:
       required:
         - id
         - url
+    MerchantRedirectQrResponseGetAll:
+      title: MerchantRedirectQrResponseGetAll
+      x-examples: {}
+      type: array
+      items:
+        $ref: '#/components/schemas/MerchantRedirectQrResponse'
   securitySchemes:
     BearerToken:
       type: http
