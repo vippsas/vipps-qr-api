@@ -108,6 +108,50 @@ paths:
       tags:
         - Merchant redirect QR
     parameters: []
+    get:
+      summary: Get all QRs
+      operationId: get-v1-merchantRedirect
+      responses:
+        '200':
+          description: OK
+      description: Get all QRs created for one saleunit
+  '/v1/merchantRedirect/{id}':
+    put:
+      summary: ''
+      operationId: put-v1-merchantRedirect
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponse'
+      description: Update redirectUrl
+    delete:
+      summary: ''
+      operationId: delete-v1-merchantRedirect
+      responses:
+        '200':
+          description: OK
+      description: Delete QR
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: id for QR
+    get:
+      summary: ''
+      operationId: get-v1-merchantRedirect-id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponse'
+      description: Get QR from id
 components:
   schemas:
     LandingPageUrl:
