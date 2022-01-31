@@ -127,11 +127,19 @@ components:
           title: Validation error
           detail: Supplied landing page token is not valid
           instance: 3cff3564-4a14-4481-8dbb-431087753eed
-        example-3:
-          title: Validation error
-          detail: Merchant supplied id is not valid
-          instance: 3cff3564-4a14-4481-8dbb-431087753eed
+        Validation error:
+          type: 'https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1'
+          title: One or more validation errors occurred.
+          detail: BadRequest
+          instance: 00-616e415f5af7584eb4d9369d0fe8d7cc-48b90041faff204c-00
+          invalidParams:
+            - name: RedirectUrl
+              reason: 'The field RedirectUrl must match the regular expression ''^https://[\w\.]+([\w#!:.?+=&%@\-/]+)?$''.'
       properties:
+        type:
+          type: string
+          description: The rfc documentation of the response
+          example: Validation error
         title:
           type: string
           description: Title for the error
@@ -144,6 +152,24 @@ components:
           type: string
           description: UUID for the request
           example: 3cff3564-4a14-4481-8dbb-431087753eed
+        invalidParams:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The name of the fields not validating
+              reason:
+                type: string
+                description: The reason for not validating
+            required:
+              - name
+              - reason
+      required:
+        - title
+        - detail
+        - instance
     MerchantRedirectQrRequest:
       title: MerchantRedirectQrRequest
       type: object
