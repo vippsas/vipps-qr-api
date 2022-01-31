@@ -109,7 +109,7 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
-      description: Update redirectUrl
+      description: Update the redirect url (target destination) of the QR
       tags:
         - Merchant redirect QR
       requestBody:
@@ -145,7 +145,7 @@ paths:
         required: true
         description: id for QR
     get:
-      summary: Get all saleunit QRs
+      summary: Get Merchant Redirect QR by id
       operationId: GetMerchantRedirectQrById
       responses:
         '200':
