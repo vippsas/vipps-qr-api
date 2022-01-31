@@ -23,15 +23,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/OneTimePaymentQrResponse'
         '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/QrErrorResponse'
+          $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
         '415':
-          description: Unsupported Media Type
+          $ref: '#/components/responses/415UnsupportedMediaType'
       requestBody:
         content:
           application/json:
@@ -57,17 +53,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/MerchantRedirectQrResponse'
         '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/QrErrorResponse'
+          $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
         '409':
-          description: Conflict
+          $ref: '#/components/responses/409Conflict'
         '415':
-          description: Unsupported Media Type
+          $ref: '#/components/responses/415UnsupportedMediaType'
       description: Generate a QR that works as a redirect back to the merchant
       parameters:
         - $ref: '#/components/parameters/Accept'
@@ -138,20 +130,16 @@ components:
       properties:
         type:
           type: string
-          description: The rfc documentation of the response
-          example: Validation error
+          minLength: 1
         title:
           type: string
-          description: Title for the error
-          example: Validation error
+          minLength: 1
         detail:
           type: string
-          description: Detailed description of the error
-          example: Supplied landing page token is not valid
+          minLength: 1
         instance:
           type: string
-          description: UUID for the request
-          example: 3cff3564-4a14-4481-8dbb-431087753eed
+          minLength: 1
         invalidParams:
           type: array
           items:
@@ -159,10 +147,10 @@ components:
             properties:
               name:
                 type: string
-                description: The name of the fields not validating
+                minLength: 1
               reason:
                 type: string
-                description: The reason for not validating
+                minLength: 1
             required:
               - name
               - reason
@@ -233,6 +221,27 @@ components:
       schema:
         type: string
       description: Requested image format
+  responses:
+    415UnsupportedMediaType:
+      description: Unsupported Media Type
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrErrorResponse'
+    400BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrErrorResponse'
+    409Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
 tags:
   - name: Merchant redirect QR
   - name: One time payment QR
