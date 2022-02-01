@@ -74,6 +74,98 @@ paths:
       tags:
         - Merchant redirect QR
     parameters: []
+    get:
+      summary: Get all QRs
+      operationId: GetAllMerchantRedirectQrs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponseGetAll'
+        '401':
+          description: Unauthorized
+      description: Get all QRs created for one saleunit
+      tags:
+        - Merchant redirect QR
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+  '/v1/merchantRedirect/{id}':
+    put:
+      summary: Update QR redirectUrl
+      operationId: UpdateMerchantRedirectUrl
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponse'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '415':
+          $ref: '#/components/responses/415UnsupportedMediaType'
+      description: Update the redirect url (target destination) of the QR
+      tags:
+        - Merchant redirect QR
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantRedirectQrUpdateRequest'
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+    delete:
+      summary: Delete QR
+      operationId: DeleteMerchantRedirectQr
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      description: Delete QR
+      tags:
+        - Merchant redirect QR
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: id for QR
+    get:
+      summary: Get Merchant Redirect QR by id
+      operationId: GetMerchantRedirectQrById
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      description: Get QR from id
+      tags:
+        - Merchant redirect QR
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
 components:
   schemas:
     OneTimePaymentQrRequest:
@@ -195,6 +287,24 @@ components:
       required:
         - id
         - url
+    MerchantRedirectQrResponseGetAll:
+      title: MerchantRedirectQrResponseGetAll
+      x-examples: {}
+      type: array
+      items:
+        $ref: '#/components/schemas/MerchantRedirectQrResponse'
+    MerchantRedirectQrUpdateRequest:
+      title: MerchantRedirectQrUpdateRequest
+      type: object
+      description: Model for put-requests
+      properties:
+        redirectUrl:
+          type: string
+          format: uri
+          pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
+          example: 'https://example.com/myProduct'
+      required:
+        - redirectUrl
   securitySchemes:
     BearerToken:
       type: http
@@ -242,6 +352,12 @@ components:
             properties:
               id:
                 type: string
+    404NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrErrorResponse'
 tags:
   - name: Merchant redirect QR
   - name: One time payment QR
