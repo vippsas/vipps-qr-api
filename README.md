@@ -20,8 +20,9 @@ You can peruse the API reference documentation as:
 * [Swagger UI](https://vippsas.github.io/vipps-qr-api/)
 * [ReDoc](https://vippsas.github.io/vipps-qr-api/redoc.html)
 
-💥 DRAFT: This is unfinished work and subject to change. 💥
 ## Merchant Redirect QR
+💥 DRAFT: This is unfinished work and subject to change. 💥  
+
 Merchant Redirect QRs will be a product where merchants can make QRs that simply point to their own websites.
 This solution is meant for more permanent usecases such as stickers at the counter, billboards, TV-commercials etc. where you want the customer to be able to be redirected at a product page directly from scanning the QR.
 
