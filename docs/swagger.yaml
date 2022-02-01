@@ -84,8 +84,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MerchantRedirectQrResponseGetAll'
-        '400':
-          description: Bad Request
         '401':
           description: Unauthorized
       description: Get all QRs created for one saleunit
@@ -105,10 +103,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MerchantRedirectQrResponse'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
         '404':
-          description: Not Found
+          $ref: '#/components/responses/404NotFound'
+        '415':
+          $ref: '#/components/responses/415UnsupportedMediaType'
       description: Update the redirect url (target destination) of the QR
       tags:
         - Merchant redirect QR
@@ -130,7 +132,7 @@ paths:
         '401':
           description: Unauthorized
         '404':
-          description: Not Found
+          $ref: '#/components/responses/404NotFound'
       description: Delete QR
       tags:
         - Merchant redirect QR
@@ -157,7 +159,7 @@ paths:
         '401':
           description: Unauthorized
         '404':
-          description: Not Found
+          $ref: '#/components/responses/404NotFound'
       description: Get QR from id
       tags:
         - Merchant redirect QR
@@ -350,6 +352,12 @@ components:
             properties:
               id:
                 type: string
+    404NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrErrorResponse'
 tags:
   - name: Merchant redirect QR
   - name: One time payment QR
