@@ -1,5 +1,9 @@
 # Vipps Vipps QR API v1
 
+There are two ways to use the Vipps QR API:
+* [One-Time Payment QR](#one-time-payment-qr)
+* [Merchant Redirect QR](merchant-redirect-qr) 
+
 ## One-Time Payment QR 
 This repository contains developer resources for the Vipps QR API.
 
