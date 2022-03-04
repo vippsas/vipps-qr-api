@@ -30,20 +30,26 @@ You can peruse the API reference documentation as:
 💥 DRAFT: This is unfinished work and subject to change. 💥  
 
 Merchant redirect QR codes will be a product where merchants can make static QR
-codes that simply contain the URL to the merchant's website.
+codes that simply contain the URL to the merchant's website, product page, etc.
 
-This solution is meant for more permanent use cases such as stickers at the counter,
-billboards, TV-commercials, etc. where you want the customer to be able to scan a
-Vipps-branded QR code and be sent directly to a product page.
+This solution is meant for more permanent use cases such as stickers,
+billboards, TV-commercials, magazine ads, etc. for the customer to be able to scan a
+Vipps-branded QR code and be sent directly to a product page or similar.
 
 ![uml diagram](images/uml-of-merchant-flow.png)
 
 This API endpoint will make it possible to generate a Vipps-branded QR code with the
-ability to change the URL it points to. That is possible because the QR code points
-to a URL on the format `qr.vipps.no/r/abc123` and what that URL redirects to
-simply has to be updated in Vipps´ database. These QR codes will be scannable from
-both the Vipps QR scanner and the native camera scanner, and will always redirect the
-user to the `targetUrl` that you decided.
+ability to change the URL the user ends up visiting.
+
+The QR code contains a URL on the format `qr.vipps.no/r/abc123`, which will
+redirect to the URL that the merchant has configured.
+
+This means that the final URL can be changed without changing the QR code.
+All stickers, etc. will "point" to the new URL when the new URL is configured
+by the merchant using the API.
+
+The QR codes will be scannable from both the Vipps QR scanner and the native
+camera app, and will always redirect the user to the configured `targetUrl`.
 
 # Questions?
 
