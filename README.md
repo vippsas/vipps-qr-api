@@ -17,7 +17,8 @@ landing page, which on the phone will automatically trigger a switch to the
 Vipps app where they can pay the merchant.
 
 For more information:
-* [API Guide](vipps-qr-api.md)
+* [API Guide](vipps-qr-api.md): The Vipps QR API guide
+* [API FAQ](vipps-qr-api-faq.md): The Vipps QR API FAQ
 * [Vipps Developers](https://github.com/vippsas/vipps-developers): The starting point for Vipps developers.
 * [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md): Information about API keys, product activation.
 
