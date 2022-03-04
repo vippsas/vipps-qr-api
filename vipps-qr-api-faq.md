@@ -9,7 +9,7 @@ Document version 0.0.1.
 ## Table of Contents
 
 * [See the Vipps eCom API FAQ](#see-the-vipps-ecom-api-faq)
-* [Can we make our own AR code based on the Vipps deeplink URL?](#can-we-make-our-own-ar-code-based-on-the-vipps-deeplink-url)
+* [Can we make our own QR code based on the Vipps deeplink URL?](#can-we-make-our-own-qr-code-based-on-the-vipps-deeplink-url)
 * [Why are there extra API calls to retrieve the QR code?](#why-are-there-extra-api-calls-to-retrieve-the-qr-code)
 * [Questions?](#questions)
 
@@ -18,7 +18,7 @@ Document version 0.0.1.
 It contains answers to all(?) common questions about Vipps payments:
 [Vipps eCom API FAQ](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-faq.md).
 
-## Can we make our own AR code based on the Vipps deeplink URL?
+## Can we make our own QR code based on the Vipps deeplink URL?
 
 Technically: Yes.
 
@@ -37,7 +37,7 @@ own QR code hacks as part of the Vipps payment process.
 The Vipps QR API is an addition to the
 [Vipps eCom API](https://github.com/vippsas/vipps-ecom-api).
 Merchants can integrate with the Vipps eCom API for many different use cases.
-The Vipps QR API adds "just" the QR functionality.
+The Vipps QR API adds "just" the QR code functionality.
 
 Yes, there will be some extra API calls, but the overhead is minimal.
 With current HTTP technology, the user will not notice any delay.
