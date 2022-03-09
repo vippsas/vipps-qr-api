@@ -28,17 +28,12 @@ You can peruse the API reference documentation as:
 
 ## Merchant Redirect QR
 
-💥 DRAFT: This is unfinished work and subject to change. 💥  
-
-Merchant redirect QR codes will be a product where merchants can make static QR
-codes that simply contain the URL to the merchant's website, product page, etc.
-
-The QR code contains a URL on the format `qr.vipps.no/r/abc123`, which will
-redirect to the URL that the merchant has configured (and can change).
+Merchant redirect QR codes is a product where merchants can make printable QR
+codes that redirects the user back to the merchants webpage. 
 
 This solution is meant for more permanent use cases such as stickers,
-billboards, TV-commercials, magazine ads, etc. for the customer to be able to scan a
-Vipps-branded QR code and be sent directly to a product page or similar.
+billboards, TV-commercials, magazine ads, etc. The customer will then be able 
+to scan a Vipps branded QR code that sends the user directly to a product page.
 
 ![uml diagram](images/uml-of-merchant-flow.png)
 
