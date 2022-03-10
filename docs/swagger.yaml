@@ -168,6 +168,11 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Accept'
+        - schema:
+            type: string
+          in: header
+          name: Size
+          description: 'Eks: 200. Then 200x200 px is set at dimension for Qr'
 components:
   schemas:
     OneTimePaymentQrRequest:
