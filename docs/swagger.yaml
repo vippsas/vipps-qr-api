@@ -337,7 +337,7 @@ components:
       required: true
       schema:
         type: string
-      description: Requested image format
+      description: 'Requested image format. Supported values: {image/*,image/png, image/svg+xml, text/targetUrl} '
   responses:
     415UnsupportedMediaType:
       description: Unsupported Media Type
