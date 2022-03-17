@@ -1,20 +1,7 @@
-# Vipps Vipps QR API v1
-
-There are two ways to use the Vipps QR API:
-* [One-Time Payment QR](#one-time-payment-qr)
-* [Merchant Redirect QR](merchant-redirect-qr)
-
-## One-Time Payment QR
-
-This repository contains developer resources for the Vipps QR API.
-
-The Vipps QR API lets merchants generate Vipps QR codes that can be used to pay
-over the counter, without requiring the Vipps user to provide their telephone
-number to the merchant.
-
-The QR code, when scanned and opened, will redirect the user to the Vipps
-landing page, which on the phone will automatically trigger a switch to the
-Vipps app where they can pay the merchant.
+# Vipps QR API v1
+This repository contains developer resources for the Vipps QR API. The Vipps QR API can be used to create the following types of QR:
+* [One Time Payment QR](#one-time-payment-qr)
+* [Merchant Redirect QR](#merchant-redirect-qr)
 
 For more information:
 * [API Guide](vipps-qr-api.md): The Vipps QR API guide
@@ -26,31 +13,30 @@ You can peruse the API reference documentation as:
 * [Swagger UI](https://vippsas.github.io/vipps-qr-api/)
 * [ReDoc](https://vippsas.github.io/vipps-qr-api/redoc.html)
 
-## Merchant Redirect QR
+# One Time Payment QR
+The Vipps QR API lets merchants generate Vipps QR codes that can be used to pay
+over the counter, without requiring the Vipps user to provide their telephone
+number to the merchant. These QRs are called one-time-payment QRs, and will need to be generated for each unique payment.
 
-💥 DRAFT: This is unfinished work and subject to change. 💥  
+<p align="center">
+  <img src="images/OneTimePaymentQr.svg" alt="OneTimePayment QR Flow">
+</p>
 
-Merchant redirect QR codes will be a product where merchants can make static QR
-codes that simply contain the URL to the merchant's website, product page, etc.
+The QR code, when scanned from either native camera or the Vipps app, will automatically open a ecom or recurring payment in the Vipps app where the payment can be completed.
 
-The QR code contains a URL on the format `qr.vipps.no/r/abc123`, which will
-redirect to the URL that the merchant has configured (and can change).
 
-This solution is meant for more permanent use cases such as stickers,
-billboards, TV-commercials, magazine ads, etc. for the customer to be able to scan a
-Vipps-branded QR code and be sent directly to a product page or similar.
+# Merchant Redirect QR
 
-![uml diagram](images/uml-of-merchant-flow.png)
+Merchant redirect QR codes is a product where merchants can make printable QR
+codes that redirects the user back to the merchants webpage. This solution can be used for one-offs as tv-commercials, and permanent use cases such as stickers, billboards, magazine ads, etc.
 
-This API endpoint will make it possible to generate a Vipps-branded QR code with the
-ability to change the URL the user ends up visiting.
+<p align="center">
+  <img src="images/MerchantRedirectQr.svg" alt="MerchantRedirect QR Flow">
+</p>
 
-This means that the final URL can be changed without changing the QR code.
-All stickers, etc. will "point" to the new URL when the new URL is configured
-by the merchant using the API.
+The QR codes will always be scannable from both the Vipps QR scanner and the native
+camera app, and will redirect the user to the `redirectUrl` configured by the merchant. The redirectUrl is changable trough the api, so the url the user is redirected to can be changed by the merchant after they are printed out.
 
-The QR codes will be scannable from both the Vipps QR scanner and the native
-camera app, and will always redirect the user to the configured `targetUrl`.
 
 # Questions?
 
