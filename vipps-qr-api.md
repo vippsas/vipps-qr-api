@@ -50,11 +50,11 @@ in the
 
 ## QR formats
 
-The QR code image will be returned as a URL in the response for both otp- and mr-QRs. Opening this url will return the image in the format (and resolution) set in the accept header. The URL to the image will look like this:
+The QR code image will be returned as a URL in the response for both otp- and mr-QRs. Opening this URL will return the image in the format (and resolution) set in the accept header. The URL to the image will look like this:
 ```json
 "url":"https://qr-generator-prod-app-service.azurewebsites.net/qr-generator/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
 ```
-The URL to the images does not require any authentication, and can be shown wherever you want. Note that oneTimePayment QRs eventually will time out - trying to open the url to the otp-QR image after its expiry while will return a 404. Merchant redirect QRs can be openened forever.
+The URL to the images does not require any authentication, and can be shown wherever you want. Note that oneTimePayment QRs eventually will time out - trying to open the URL to the otp-QR image after its expiry while will return a 404. Merchant redirect QRs can be opened forever.
 
 Below is an example merchant Redirect QR to showcase the design. The URL returned from the QR api for this QR can be opened 
 [here](https://qr-generator-prod-app-service.azurewebsites.net/qr-generator/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb3JtYXQiOiJpbWFnZS9zdmcreG1sIiwidXJsIjoiaHR0cHM6Ly9zaG9ydC52aXBwcy5uby9yLzk0V1BwQWZYIiwiaXNzIjoiUXItQXBpIiwibmJmIjoxNjQ3NTMxODY2LCJleHAiOjE2NDc1MzU0NjYsImlhdCI6MTY0NzUzMTg2Nn0.1PydxyBWFsCTU8BrPLOawap8F7D5DcQAeOGisxB_Oho).
@@ -65,10 +65,10 @@ Below is an example merchant Redirect QR to showcase the design. The URL returne
 ### Accept Headers:
 | Header Name | Header Value | Description |
 | ----------- | ------------ | ----------- |
-| `Accept` | `image/*` | Returns a url pointing to a svg+xml image |
-| `Accept` | `image/svg+xml` | Returns a url pointing to a svg+xml image |
-| `Accept` | `image/png` | Returns a url pointing to a png image with 800x800 size |
-| `Accept` | `text/targetUrl` | Returns the target url of the QR *|
+| `Accept` | `image/*` | Returns a URL pointing to a svg+xml image |
+| `Accept` | `image/svg+xml` | Returns a URL pointing to a svg+xml image |
+| `Accept` | `image/png` | Returns a URL pointing to a png image with 800x800 size |
+| `Accept` | `text/targetUrl` | Returns the target URL of the QR *|
 
 \* It is possible to get the `targetUrl` of the QR if you need to
 generate the QR yourselves. This will require an approval from Vipps before it is used, so we can validate
@@ -82,6 +82,10 @@ If you want to make the QR code on your own: See the
 for more details about the QR format and design.
 
 # One Time Payment QR codes
+<p align="center">
+  <img src="images/OneTimePaymentQr.svg" alt="OneTimePayment QR Flow">
+</p>
+
 * [API Documentation with examples here](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/One-time-payment-QR)
 
 The following section will explain how to generate one-time-payment QR codes. Every Vipps payment needs a unique `orderId`, so it's not possible to print these, as they will only be valid for 5 minutes. The QR must be scanned within 5 minutes, and the user will have 5 minutes to complete the payment once opened in the app.
@@ -89,10 +93,11 @@ The following section will explain how to generate one-time-payment QR codes. Ev
 The QR code, when scanned, will take the customer straight to the payment
 screen in the Vipps app. They are scannable from both native camera and the scanner in the Vipps app.
 ## Basic flow
-
 1. Initiate a Vipps eCom or recurring payment
+    - `POST:/ecomm/v2/payments` 
 2. Receive the payment URL as response
 3. Post the payment URL to the QR API
+    - `POST:/qr/v1` 
 4. Receive a URL to a QR code in desired format (png or svg)
 
 ## Initiate a payment with the Vipps eCom API
@@ -147,7 +152,7 @@ Body:
 ```
 
 
-The response will be similar to this, where the url in the responseBody will be a link to the image as defined in the accept header:
+The response will be similar to this, where the URL in the responseBody will be a link to the image as defined in the accept header:
 
 ```json
 {
@@ -158,6 +163,10 @@ The response will be similar to this, where the url in the responseBody will be 
 **Please note:** The `expiresIn` value is in seconds.
 
 # Merchant Redirect QR codes
+<p align="center">
+  <img src="images/MerchantRedirectQr.svg" alt="MerchantRedirect QR Flow">
+</p>
+
 * [API Documentation with examples here](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR)
 
 The following section will explain how to generate merchant redirect QR codes. The QR api allows for creating, updating, getting and deleting of merchant redirect QRs. These are pretty simple in function - all they do is redirect the user to the webpage provided by the merchant.
@@ -165,7 +174,7 @@ The following section will explain how to generate merchant redirect QR codes. T
 The QR code, when scanned from native camera or the Vipps scanner, will take the customer straight to webpage. These QRs doesnt require the Vipps app to be installed.
 
 ## Creation of merchant redirect QR
-To create a merchantRedirect QR, make a HTTP POST to:
+To create a merchantRedirect QR, make a HTTPS POST to:
 [`POST:/qr/v1/merchantRedirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/CreateMerchantRedirectQr)
 
 An example body like this:
@@ -186,7 +195,7 @@ Will return a response like this:
 The `id` parameter is required, and is defined by the merchant. You can later use this id to update the merchant redirect QRs
 
 ## Updating and Deletion of QRs
-Updating QRs is a very similar procedure to creating them. When a QR is updated, nothing happens to the QR itself. But, when the QR is scanned, the user will be redirected to the new url. The change is instantaneous. To update the QR, make a HTTP PUT to:
+Updating QRs is a very similar procedure to creating them. When a QR is updated, nothing happens to the QR itself. But, when the QR is scanned, the user will be redirected to the new URL. The change is instantaneous. To update the QR, make a HTTPS PUT to:
 [`PUT:/qr/v1/merchantRedirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/UpdateMerchantRedirectUrl)
 and put the new redirectUrl in the requestBody:
 ```json
