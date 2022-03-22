@@ -24,6 +24,7 @@ number to the merchant. These QRs are called one-time-payment QRs, and will need
 
 The QR code, when scanned from either native camera or the Vipps app, will automatically open a ecom or recurring payment in the Vipps app where the payment can be completed.
 
+* [One Time Payment QR Code Api Guide](vipps-qr-api.md#one-time-payment-qr-codes)
 
 # Merchant Redirect QR
 
@@ -35,7 +36,9 @@ codes that redirects the user back to the merchants webpage. This solution can b
 </p>
 
 The QR codes will always be scannable from both the Vipps QR scanner and the native
-camera app, and will redirect the user to the `redirectUrl` configured by the merchant. The redirectUrl is changable trough the api, so the url the user is redirected to can be changed by the merchant after they are printed out.
+camera app, and will redirect the user to the `redirectUrl` configured by the merchant. The redirectUrl is changable trough the api, so the URL the user is redirected to can be changed by the merchant after they are printed out.
+
+* [Merchant Redirect QR Code Api Guide](vipps-qr-api.md#merchant-redirect-qr-codes)
 
 
 # Questions?
