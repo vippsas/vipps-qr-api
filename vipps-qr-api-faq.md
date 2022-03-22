@@ -1,10 +1,8 @@
-# Vipps Vipps QR API v1 FAQ
+# Vipps QR API v1 FAQ
 
-💥 DRAFT: This is unfinished work and subject to change. 💥
+API version: 1.1.0.
 
-API version: 1.0.0.
-
-Document version 0.0.1.
+Document version 1.2.0.
 
 ## Table of Contents
 
@@ -18,19 +16,15 @@ Document version 0.0.1.
 It contains answers to all(?) common questions about Vipps payments:
 [Vipps eCom API FAQ](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-faq.md).
 
-## Can we make our own QR code based on the Vipps deeplink URL?
+## Cant we make our own QRs for payment and redirects?
 
-Technically: Yes.
+Technically, yes. Is it a good idea, and will it work? No.
 
-But: Vipps is an extremely strong brand in Norway, with a very high level of
+Firstly, we have a security aspect. We only allow QRs on the qr.vipps.no domain to be scanned within the Vipps app, to ensure that we have control of everything that is scanned. For payment QRs, using our own domain also means we have full control over universal linking. These two aspect forces us to only allow our own QR codes for payments.
+
+Addition: Vipps is an extremely strong brand in Norway, with a very high level of
 trust. The Vipps-branded QR codes will look familiar to users, and in our
-experience result in a higher completion rate.
-
-The Vipps QR codes contain shorter URLs (less data) and are easier
-and more reliable to scan.
-
-Also: We do _require_ merchants to use the Vipps QR API, and not make their
-own QR code hacks as part of the Vipps payment process.
+experience result in a higher completion rate. The Vipps QR codes also contain very little data, have good contrast and are very reliable to scan.
 
 ## Why are there extra API calls to retrieve the QR code?
 
@@ -39,7 +33,7 @@ The Vipps QR API is an addition to the
 Merchants can integrate with the Vipps eCom API for many different use cases.
 The Vipps QR API adds "just" the QR code functionality.
 
-Yes, there will be some extra API calls, but the overhead is minimal.
+Yes, there is one extra API calls, but the overhead is minimal.
 With current HTTP technology, the user will not notice any delay.
 
 ## Questions?
