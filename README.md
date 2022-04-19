@@ -8,6 +8,7 @@ For more information:
 * [API FAQ](vipps-qr-api-faq.md): The Vipps QR API FAQ
 * [Vipps Developers](https://github.com/vippsas/vipps-developers): The starting point for Vipps developers.
 * [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md): Information about API keys, product activation.
+* [Postman guide](vipps-qr-api-postman.md): Guide for using our Postman collection.
 
 You can peruse the API reference documentation as:
 * [Swagger UI](https://vippsas.github.io/vipps-qr-api/)
