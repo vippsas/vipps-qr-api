@@ -16,12 +16,12 @@ We also have a short [getting started guide to Postman](https://github.com/vipps
 Import the collection by following the steps below:
 
 1. Click `Import` in the upper left corner.
-2. Import the [vipps-qr-api-postman-collection.json](https://raw.githubusercontent.com/vippsas/vipps-qr-api/master/tools/vipps-qr-api-postman-collection.json) file.
+2. Import the [vipps-qr-api-postman-collection.json](https://raw.githubusercontent.com/vippsas/vipps-qr-api/main/tools/vipps-qr-api-postman-collection.json) file.
 
 ### Step 2: Import the Postman Environment
 
 1. Click `Import` in the upper left corner.
-2. Import the [vipps-qr-api-postman-enviroment.json](https://raw.githubusercontent.com/vippsas/vipps-qr-api/master/tools/vipps-qr-api-postman-enviroment.json) file.
+2. Import the [vipps-qr-api-postman-enviroment.json](https://raw.githubusercontent.com/vippsas/vipps-qr-api/main/tools/vipps-qr-api-postman-enviroment.json) file.
 
 ### Step 3: Setup Postman Environment
 
