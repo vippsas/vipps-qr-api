@@ -1,6 +1,6 @@
 {
 	"id": "63dd0914-1f5f-4766-9a41-e09bd8f0406a",
-	"name": "Qr-Api-variables",
+	"name": "vipps-qr-api-postman-enviroment",
 	"values": [
 		{
 			"key": "merchant_client_id",
