@@ -200,7 +200,7 @@
 						"qr",
 						"v1",
 						"merchantRedirect",
-						"vipps-1express3"
+						"{{merchant-id}}"
 					]
 				}
 			},
