@@ -24,7 +24,7 @@
 		},
 		{
 			"key": "url",
-			"value": "api.vipps.no",
+			"value": "apitest.vipps.no",
 			"enabled": true
 		}
 	],
