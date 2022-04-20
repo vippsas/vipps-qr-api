@@ -33,6 +33,10 @@ Import the collection by following the steps below:
    - `merchantSerialNumber`
    - `Ocp-Apim-Subscription-Key`
 
+# NB!
+
+The result from Generate QR provides a url with its own JWT token. This token will expire. If so, get a new token by calling Get QR.
+
 # Questions?
 
 We're always happy to help with code or other questions you might have!
