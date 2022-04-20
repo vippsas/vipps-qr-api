@@ -65,7 +65,17 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"merchant-id\", pm.environment.get('merchant_serial_number') + '-' + (new Date()).getTime())"
+						],
+						"type": "text/javascript"
+					}
 				}
+
 			],
 			"request": {
 				"method": "POST",
@@ -101,7 +111,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"redirectUrl\": \"https://demo.vipps.no/vipps-express\",\n    \"id\": \"vipps-1express32\"\n}",
+					"raw": "{\n    \"redirectUrl\": \"https://demo.vipps.no/vipps-express\",\n    \"id\": \"{{merchant-id}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -181,7 +191,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/qr/v1/merchantRedirect/vipps-1express3",
+					"raw": "https://{{url}}/qr/v1/merchantRedirect/{{merchant-id}}",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
