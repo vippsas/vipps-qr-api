@@ -175,7 +175,7 @@ The QR code, when scanned from native camera or the Vipps scanner, will take the
 
 ## Creation of merchant redirect QR
 To create a merchantRedirect QR, make a HTTPS POST to:
-[`POST:/qr/v1/merchantRedirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/CreateMerchantRedirectQr)
+[`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/CreateMerchantRedirectQr)
 
 An example body like this:
 
@@ -196,7 +196,7 @@ The `id` parameter is required, and is defined by the merchant. You can later us
 
 ## Updating and Deletion of QRs
 Updating QRs is a very similar procedure to creating them. When a QR is updated, nothing happens to the QR itself. But, when the QR is scanned, the user will be redirected to the new URL. The change is instantaneous. To update the QR, make a HTTPS PUT to:
-[`PUT:/qr/v1/merchantRedirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/UpdateMerchantRedirectUrl)
+[`PUT:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/UpdateMerchantRedirectUrl)
 and put the new redirectUrl in the requestBody:
 ```json
 {
@@ -213,7 +213,7 @@ And the response will be exactly the same as for generating the QR the first tim
 ```
 
 The 
-[`DELETE:/qr/v1/merchantRedirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/DeleteMerchantRedirectQr)
+[`DELETE:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/DeleteMerchantRedirectQr)
 does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same id but the already-printed-QR will never work again. 
 
 Tip: If you want the same QR in different formats, do GET calls on the same `id` with different accept headers and test what works best.
