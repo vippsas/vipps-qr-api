@@ -75,7 +75,7 @@ paths:
         - Merchant redirect QR
     parameters: []
     get:
-      summary: Get all QRs
+      summary: Get all merchant redirect QRs
       operationId: GetAllMerchantRedirectQrs
       responses:
         '200':
@@ -86,7 +86,7 @@ paths:
                 $ref: '#/components/schemas/MerchantRedirectQrResponseGetAll'
         '401':
           description: Unauthorized
-      description: Get all QRs created for one saleunit
+      description: Get all merchant redirect QRs for this saleunit
       tags:
         - Merchant redirect QR
       parameters:
@@ -95,7 +95,7 @@ paths:
         - $ref: '#/components/parameters/Accept'
   '/v1/merchant-redirect/{id}':
     put:
-      summary: Update QR redirectUrl
+      summary: Update redirectUrl for merchant redirect QR
       operationId: UpdateMerchantRedirectUrl
       responses:
         '200':
@@ -125,7 +125,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
     delete:
-      summary: Delete QR
+      summary: Delete merchant redirect QR
       operationId: DeleteMerchantRedirectQr
       responses:
         '200':
@@ -134,7 +134,7 @@ paths:
           description: Unauthorized
         '404':
           $ref: '#/components/responses/404NotFound'
-      description: Delete QR
+      description: Delete merchant redirect QR
       tags:
         - Merchant redirect QR
       parameters:
@@ -148,7 +148,7 @@ paths:
         required: true
         description: id for QR
     get:
-      summary: Get Merchant Redirect QR by id
+      summary: Get merchant redirect QR by id
       operationId: GetMerchantRedirectQrById
       responses:
         '200':
@@ -161,7 +161,7 @@ paths:
           description: Unauthorized
         '404':
           $ref: '#/components/responses/404NotFound'
-      description: Get QR from id
+      description: Get merchant redirect QR by id
       tags:
         - Merchant redirect QR
       parameters:
@@ -266,6 +266,7 @@ components:
           type: string
           description: Merchant supplied Id for QR
           example: billboard_1
+          pattern: '^[A-Za-z0-9-_æøåÆØÅ]+$'
           nullable: true
         redirectUrl:
           type: string
@@ -286,14 +287,21 @@ components:
           type: string
           description: Merchant supplied Id for QR
           example: billboard_1
+          pattern: '^[A-Za-z0-9-_æøåÆØÅ]+$'
         url:
           type: string
           format: uri
           description: Link to QR image
           example: 'https://qr.vipps.no/generate/qr.png?...'
+        redirectUrl:
+          type: string
+          description: The target url of the QR (redirect destination)
+          pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
+          example: 'https://www.example.com/myProduct'
       required:
         - id
         - url
+        - redirectUrl
     MerchantRedirectQrResponseGetAll:
       title: MerchantRedirectQrResponseGetAll
       x-examples: {}
