@@ -171,7 +171,7 @@ The response will be similar to this, where the URL in the responseBody will be 
 
 The following section will explain how to generate merchant redirect QR codes. The QR api allows for creating, updating, getting and deleting of merchant redirect QRs. These are pretty simple in function - all they do is redirect the user to the webpage provided by the merchant.
 
-The QR code, when scanned from native camera or the Vipps scanner, will take the customer straight to webpage. These QRs doesnt require the Vipps app to be installed.
+The QR code, when scanned from native camera or the Vipps scanner, will take the customer straight to webpage. These QRs don't require the Vipps app to be installed.
 
 ## Creation of merchant redirect QR
 To create a merchantRedirect QR, make a HTTPS POST to:

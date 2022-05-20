@@ -36,7 +36,7 @@ codes that redirects the user back to the merchants webpage. This solution can b
 </p>
 
 The QR codes will always be scannable from both the Vipps QR scanner and the native
-camera app, and will redirect the user to the `redirectUrl` configured by the merchant. The redirectUrl is changable trough the api, so the URL the user is redirected to can be changed by the merchant after they are printed out.
+camera app, and will redirect the user to the `redirectUrl` configured by the merchant. The redirectUrl is changeable through the api, so the URL the user is redirected to can be changed by the merchant after they are printed out.
 
 * [Merchant Redirect QR Code Api Guide](vipps-qr-api.md#merchant-redirect-qr-codes)
 
