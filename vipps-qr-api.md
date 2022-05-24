@@ -56,10 +56,9 @@ The QR code image will be returned as a URL in the response for both otp- and mr
 ```
 The URL to the images does not require any authentication, and can be shown wherever you want. Note that oneTimePayment QRs eventually will time out - trying to open the URL to the otp-QR image after its expiry while will return a 404. Merchant redirect QRs can be opened forever.
 
-Below is an example merchant Redirect QR to showcase the design. The URL returned from the QR api for this QR can be opened 
-[here](https://qr-generator-prod-app-service.azurewebsites.net/qr-generator/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb3JtYXQiOiJpbWFnZS9zdmcreG1sIiwidXJsIjoiaHR0cHM6Ly9zaG9ydC52aXBwcy5uby9yLzk0V1BwQWZYIiwiaXNzIjoiUXItQXBpIiwibmJmIjoxNjQ3NTMxODY2LCJleHAiOjE2NDc1MzU0NjYsImlhdCI6MTY0NzUzMTg2Nn0.1PydxyBWFsCTU8BrPLOawap8F7D5DcQAeOGisxB_Oho).
+Below is an example merchant Redirect QR to showcase the design.
 <p align="center">
-  <img src="images/demoQr.svg" alt="Demo QR" width="250">
+  <img src="images/demo-qr.svg" alt="Demo QR" width="250">
 </p>
 
 ### Accept Headers:
@@ -82,9 +81,7 @@ If you want to make the QR code on your own: See the
 for more details about the QR format and design.
 
 # One Time Payment QR codes
-<p align="center">
-  <img src="images/OneTimePaymentQr.svg" alt="OneTimePayment QR Flow">
-</p>
+!["OneTimePayment QR Flow](images/one-time-payment-qr-flow.svg)
 
 * [API Documentation with examples here](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/One-time-payment-QR)
 
@@ -163,9 +160,8 @@ The response will be similar to this, where the URL in the responseBody will be 
 **Please note:** The `expiresIn` value is in seconds.
 
 # Merchant Redirect QR codes
-<p align="center">
-  <img src="images/MerchantRedirectQr.svg" alt="MerchantRedirect QR Flow">
-</p>
+!["MerchantRedirect QR Flow"](images/merchant-redirect-qr-flow.svg)
+
 
 * [API Documentation with examples here](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR)
 
