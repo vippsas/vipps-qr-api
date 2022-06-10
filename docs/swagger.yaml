@@ -39,6 +39,7 @@ paths:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
       tags:
         - One time payment QR
   /v1/merchant-redirect:
@@ -65,6 +66,7 @@ paths:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
       requestBody:
         content:
           application/json:
@@ -92,6 +94,8 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+
         - $ref: '#/components/parameters/Accept'
   '/v1/merchant-redirect/{id}':
     put:
@@ -124,6 +128,7 @@ paths:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
     delete:
       summary: Delete merchant redirect QR
       operationId: DeleteMerchantRedirectQr
@@ -140,6 +145,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
     parameters:
       - schema:
           type: string
@@ -167,6 +173,7 @@ paths:
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - schema:
             type: string
@@ -325,6 +332,16 @@ components:
       type: http
       scheme: bearer
   parameters:
+    Merchant-Serial-Number:
+      name: Merchant-Serial-Number
+      in: header
+      required: false
+      description: >-
+        The merchant serial number (MSN) for the sale unit.
+        Partners must always send the Merchant-Serial-Number header, and we
+        recommend that everyone sends it, also when using the merchant's own
+        API keys. The Merchant-Serial-Number header can be used with all API
+        keys, and can speed up any trouble-shooting of API problems quite a bit.
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
