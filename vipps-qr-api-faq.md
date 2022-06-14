@@ -37,7 +37,7 @@ Yes, there is one extra API call, but the overhead is minimal.
 With current HTTP technology, the user will not notice any delay.
 
 ## What happens with the user after the payment?
-Currently, the user will be redirected to a fallback url after the payment is completed. The recommendation is to set `fallBack` paramater in the ecom/recurring initiate body to `https://www.vipps.no/thankyoupage/`. 
+Currently, the user will be redirected to a fallback url after the payment is completed. The recommendation is to set `fallBack` parameter in the ecom/recurring initiate body to `https://www.vipps.no/thankyoupage/`. 
 
 We are working on a flow where the user will end up on the receipt in the Vipps after the payment is complete. Work is expected to be done by May 2022.
 

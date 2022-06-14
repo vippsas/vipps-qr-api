@@ -39,9 +39,10 @@ paths:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
       tags:
         - One time payment QR
-  /v1/merchantRedirect:
+  /v1/merchant-redirect:
     post:
       summary: Create merchant redirect QR
       operationId: CreateMerchantRedirectQr
@@ -65,6 +66,7 @@ paths:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
       requestBody:
         content:
           application/json:
@@ -75,7 +77,7 @@ paths:
         - Merchant redirect QR
     parameters: []
     get:
-      summary: Get all QRs
+      summary: Get all merchant redirect QRs
       operationId: GetAllMerchantRedirectQrs
       responses:
         '200':
@@ -86,16 +88,18 @@ paths:
                 $ref: '#/components/schemas/MerchantRedirectQrResponseGetAll'
         '401':
           description: Unauthorized
-      description: Get all QRs created for one saleunit
+      description: Get all merchant redirect QRs for this saleunit
       tags:
         - Merchant redirect QR
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+
         - $ref: '#/components/parameters/Accept'
-  '/v1/merchantRedirect/{id}':
+  '/v1/merchant-redirect/{id}':
     put:
-      summary: Update QR redirectUrl
+      summary: Update redirectUrl for merchant redirect QR
       operationId: UpdateMerchantRedirectUrl
       responses:
         '200':
@@ -124,8 +128,9 @@ paths:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
     delete:
-      summary: Delete QR
+      summary: Delete merchant redirect QR
       operationId: DeleteMerchantRedirectQr
       responses:
         '200':
@@ -134,12 +139,13 @@ paths:
           description: Unauthorized
         '404':
           $ref: '#/components/responses/404NotFound'
-      description: Delete QR
+      description: Delete merchant redirect QR
       tags:
         - Merchant redirect QR
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
     parameters:
       - schema:
           type: string
@@ -148,7 +154,7 @@ paths:
         required: true
         description: id for QR
     get:
-      summary: Get Merchant Redirect QR by id
+      summary: Get merchant redirect QR by id
       operationId: GetMerchantRedirectQrById
       responses:
         '200':
@@ -161,12 +167,13 @@ paths:
           description: Unauthorized
         '404':
           $ref: '#/components/responses/404NotFound'
-      description: Get QR from id
+      description: Get merchant redirect QR by id
       tags:
         - Merchant redirect QR
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - schema:
             type: string
@@ -266,6 +273,7 @@ components:
           type: string
           description: Merchant supplied Id for QR
           example: billboard_1
+          pattern: '^[A-Za-z0-9-_æøåÆØÅ]+$'
           nullable: true
         redirectUrl:
           type: string
@@ -286,14 +294,21 @@ components:
           type: string
           description: Merchant supplied Id for QR
           example: billboard_1
+          pattern: '^[A-Za-z0-9-_æøåÆØÅ]+$'
         url:
           type: string
           format: uri
           description: Link to QR image
           example: 'https://qr.vipps.no/generate/qr.png?...'
+        redirectUrl:
+          type: string
+          description: The target url of the QR (redirect destination)
+          pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
+          example: 'https://www.example.com/myProduct'
       required:
         - id
         - url
+        - redirectUrl
     MerchantRedirectQrResponseGetAll:
       title: MerchantRedirectQrResponseGetAll
       x-examples: {}
@@ -317,6 +332,16 @@ components:
       type: http
       scheme: bearer
   parameters:
+    Merchant-Serial-Number:
+      name: Merchant-Serial-Number
+      in: header
+      required: false
+      description: >-
+        The merchant serial number (MSN) for the sale unit.
+        Partners must always send the Merchant-Serial-Number header, and we
+        recommend that everyone sends it, also when using the merchant's own
+        API keys. The Merchant-Serial-Number header can be used with all API
+        keys, and can speed up any trouble-shooting of API problems quite a bit.
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
