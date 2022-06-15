@@ -119,7 +119,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/qr/v1/merchantRedirect",
+					"raw": "https://{{url}}/qr/v1/merchant-redirect",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
@@ -127,7 +127,7 @@
 					"path": [
 						"qr",
 						"v1",
-						"merchantRedirect"
+						"merchant-redirect"
 					]
 				}
 			},
@@ -191,7 +191,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/qr/v1/merchantRedirect/{{merchant-id}}",
+					"raw": "https://{{url}}/qr/v1/merchant-redirect/{{merchant-id}}",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
@@ -199,7 +199,7 @@
 					"path": [
 						"qr",
 						"v1",
-						"merchantRedirect",
+						"merchant-redirect",
 						"{{merchant-id}}"
 					]
 				}
