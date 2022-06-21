@@ -1,0 +1,210 @@
+{
+	"info": {
+		"_postman_id": "30bb4c57-2cc6-4d65-a5bd-f9b1de707e86",
+		"name": "vipps-qr-api-postman-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. GetAccessToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\",jsonData.access_token);",
+							"console.log(jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{merchant_client_id}}"
+					},
+					{
+						"key": "client_secret",
+						"value": "{{merchant_client_secret}}"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{url}}/accessToken/get",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"accessToken",
+						"get"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Generate QR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"merchant-id\", pm.environment.get('merchant_serial_number') + '-' + (new Date()).getTime())"
+						],
+						"type": "text/javascript"
+					}
+				}
+
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchant_serial_number}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "image/svg+xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"redirectUrl\": \"https://demo.vipps.no/vipps-express\",\n    \"id\": \"{{merchant-id}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/qr/v1/merchant-redirect",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"qr",
+						"v1",
+						"merchant-redirect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Get QR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{Ocp-Apim-Subscription-Key}}"
+					},
+					{
+						"key": "Merchant-Serial-Number",
+						"value": "{{merchant_serial_number}}",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "image/png",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{url}}/qr/v1/merchant-redirect/{{merchant-id}}",
+					"protocol": "https",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"qr",
+						"v1",
+						"merchant-redirect",
+						"{{merchant-id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
