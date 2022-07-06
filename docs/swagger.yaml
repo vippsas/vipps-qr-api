@@ -273,7 +273,7 @@ components:
           type: string
           description: Merchant supplied Id for QR
           example: billboard_1
-          pattern: '^[A-Za-z0-9-_æøåÆØÅ]+$'
+          pattern: '^[A-Za-z0-9-_æøåÆØÅ\%\#\&\! \(\)\+\.]+$'
           nullable: true
         redirectUrl:
           type: string
@@ -294,7 +294,7 @@ components:
           type: string
           description: Merchant supplied Id for QR
           example: billboard_1
-          pattern: '^[A-Za-z0-9-_æøåÆØÅ]+$'
+          pattern: '^[A-Za-z0-9-_æøåÆØÅ\%\#\&\! \(\)\+\.]+$'
         url:
           type: string
           format: uri
