@@ -95,7 +95,6 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
-
         - $ref: '#/components/parameters/Accept'
   '/v1/merchant-redirect/{id}':
     put:
@@ -336,12 +335,9 @@ components:
       name: Merchant-Serial-Number
       in: header
       required: false
-      description: >-
-        The merchant serial number (MSN) for the sale unit.
-        Partners must always send the Merchant-Serial-Number header, and we
-        recommend that everyone sends it, also when using the merchant's own
-        API keys. The Merchant-Serial-Number header can be used with all API
-        keys, and can speed up any trouble-shooting of API problems quite a bit.
+      schema:
+        type: string
+      description: 'The merchant serial number (MSN) for the sale unit. Partners must always send the Merchant-Serial-Number header, and we recommend that everyone sends it, also when using the merchant''s own API keys. The Merchant-Serial-Number header can be used with all API keys, and can speed up any trouble-shooting of API problems quite a bit.'
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
