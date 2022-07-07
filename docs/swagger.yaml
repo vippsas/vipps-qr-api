@@ -272,7 +272,7 @@ components:
           type: string
           description: Merchant supplied Id for QR
           example: billboard_1
-          pattern: '^[A-Za-z0-9-_æøåÆØÅ\%\#\&\! \(\)\+\.]+$'
+          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
           nullable: true
         redirectUrl:
           type: string
@@ -293,7 +293,7 @@ components:
           type: string
           description: Merchant supplied Id for QR
           example: billboard_1
-          pattern: '^[A-Za-z0-9-_æøåÆØÅ\%\#\&\! \(\)\+\.]+$'
+          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
         url:
           type: string
           format: uri
@@ -301,6 +301,7 @@ components:
           example: 'https://qr.vipps.no/generate/qr.png?...'
         redirectUrl:
           type: string
+          format: uri
           description: The target url of the QR (redirect destination)
           pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
           example: 'https://www.example.com/myProduct'
