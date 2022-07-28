@@ -1,7 +1,7 @@
 # Vipps QR API v1
 
 
-The Vipps QR API lets merchant generate one-time-payments QRs and merchant-redirect QRs. One-time-payment QRs (otp-QR) allows users to pay over the counter, without requiring the Vipps user to provide their telephone number to the merchant. Merchant-redirect QRs (mr-QR) will redirect the user to the merchant website. 
+The Vipps QR API lets merchant generate one-time-payments QRs and merchant-redirect QRs. One-time-payment QRs (otp-QR) allows users to pay over the counter, without requiring the Vipps user to provide their telephone number to the merchant. Merchant-redirect QRs (mr-QR) will redirect the user to the merchant website.
 
 Both QR products share the same authentication and overall design, but have slight difference in behaviour and how they are made.
 
@@ -13,6 +13,8 @@ Document version 1.2.0.
 # Table of contents
 
 - [Before you begin](#before-you-begin)
+  * [Vipps HTTP headers](#vipps-http-headers)
+    - [Example headers](#example-headers)
   * [Authentication](#authentication)
   * [QR formats](#qr-formats)
 - [One Time Payment QR Codes](#one-time-payment-qr-codes)
@@ -33,7 +35,47 @@ retrieved your API credentials for
 from
 [portal.vipps.no](https://portal.vipps.no).
 
+## Vipps HTTP headers
+
+We recommend using the following (optional) HTTP headers for all requests to the
+Vipps eCom API. These headers provide useful metadata about the merchant's system,
+which help Vipps improve our services, and also help in investigating problems.
+
+These headers are **required for plugins and partners** and sent by the recent versions of
+[the official Vipps plugins](https://github.com/vippsas/vipps-developers#plugins)
+and we recommend all customers with direct integration with the API to also do so.
+
+Partners must always send the `Merchant-Serial-Number` header, and we recommend that
+everyone sends it too. It can speed up any trouble-shooting quite a bit.
+
+| Header                        | Description                                  | Example value       |
+| ----------------------------- | -------------------------------------------- | ------------------- |
+| `Merchant-Serial-Number`      | The MSN for the sale unit                    | `123456`            |
+| `Vipps-System-Name`           | The name of the ecommerce solution           | `woocommerce`       |
+| `Vipps-System-Version`        | The version number of the ecommerce solution | `5.4`               |
+| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin             | `vipps-woocommerce` |
+| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin   | `1.4.1`             |
+
+### Example headers
+
+If the vendor's name is "Acme AS", and the vendor offers two different systems
+one for point of sale (POS) integrations and one for web shops,
+the headers should be:
+
+| Header                        | Example value for POS | Example value for webshop | Example value for Vending machines |
+| ----------------------------- | --------------------- | ------------------- | ------------------- |
+| `Merchant-Serial-Number`      | `123456`              | `123456`            | `123456`            |
+| `Vipps-System-Name`           | `acme`                | `acme`              | `acme`              |
+| `Vipps-System-Version`        | `1.7`                 | `2.6`               | `2.6`               |
+| `Vipps-System-Plugin-Name`    | `acme-pos`            | `acme-webshop`      | `acme-vending`      |
+| `Vipps-System-Plugin-Version` | `3.2`                 | `4.3`               | `4.3`               |
+
+**Important:** Please use self-explanatory, human readable and reasonably short
+values that uniquely identify the system (and plugin).
+
+
 ## Authentication
+
 
 All Vipps API calls are authenticated and authorized with an access token
 (JWT bearer token) and an API subscription key:
@@ -91,10 +133,10 @@ The QR code, when scanned, will take the customer straight to the payment
 screen in the Vipps app. They are scannable from both native camera and the scanner in the Vipps app.
 ## Basic flow
 1. Initiate a Vipps eCom or recurring payment
-    - `POST:/ecomm/v2/payments` 
+    - `POST:/ecomm/v2/payments`
 2. Receive the payment URL as response
 3. Post the payment URL to the QR API
-    - `POST:/qr/v1` 
+    - `POST:/qr/v1`
 4. Receive a URL to a QR code in desired format (png or svg)
 
 ## Initiate a payment with the Vipps eCom API
@@ -208,9 +250,9 @@ And the response will be exactly the same as for generating the QR the first tim
 }
 ```
 
-The 
+The
 [`DELETE:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/DeleteMerchantRedirectQr)
-does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same id but the already-printed-QR will never work again. 
+does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same id but the already-printed-QR will never work again.
 
 Tip: If you want the same QR in different formats, do GET calls on the same `id` with different accept headers and test what works best.
 # Questions?
