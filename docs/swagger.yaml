@@ -273,6 +273,8 @@ components:
           description: Merchant supplied Id for QR
           example: billboard_1
           pattern: '^[-_+%æøåÆØÅ\w\s]*$'
+          maxLength: 128
+          minLength: 1
           nullable: true
         redirectUrl:
           type: string
