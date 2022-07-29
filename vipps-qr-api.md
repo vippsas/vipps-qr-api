@@ -13,6 +13,8 @@ Document version 1.2.1.
 # Table of contents
 
 - [Before you begin](#before-you-begin)
+  * [Vipps HTTP headers](#vipps-http-headers)
+    - [Example headers](#example-headers)
   * [Authentication](#authentication)
   * [QR formats](#qr-formats)
 - [One Time Payment QR Codes](#one-time-payment-qr-codes)
@@ -33,7 +35,47 @@ retrieved your API credentials for
 from
 [portal.vipps.no](https://portal.vipps.no).
 
+## Vipps HTTP headers
+
+We recommend using the following (optional) HTTP headers for all requests to the
+Vipps eCom API. These headers provide useful metadata about the merchant's system,
+which help Vipps improve our services, and also help in investigating problems.
+
+These headers are **required for plugins and partners** and sent by the recent versions of
+[the official Vipps plugins](https://github.com/vippsas/vipps-developers#plugins)
+and we recommend all customers with direct integration with the API to also do so.
+
+Partners must always send the `Merchant-Serial-Number` header, and we recommend that
+everyone sends it too. It can speed up any trouble-shooting quite a bit.
+
+| Header                        | Description                                  | Example value       |
+| ----------------------------- | -------------------------------------------- | ------------------- |
+| `Merchant-Serial-Number`      | The MSN for the sale unit                    | `123456`            |
+| `Vipps-System-Name`           | The name of the ecommerce solution           | `woocommerce`       |
+| `Vipps-System-Version`        | The version number of the ecommerce solution | `5.4`               |
+| `Vipps-System-Plugin-Name`    | The name of the ecommerce plugin             | `vipps-woocommerce` |
+| `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin   | `1.4.1`             |
+
+### Example headers
+
+If the vendor's name is "Acme AS", and the vendor offers two different systems
+one for point of sale (POS) integrations and one for web shops,
+the headers should be:
+
+| Header                        | Example value for POS | Example value for webshop | Example value for Vending machines |
+| ----------------------------- | --------------------- | ------------------- | ------------------- |
+| `Merchant-Serial-Number`      | `123456`              | `123456`            | `123456`            |
+| `Vipps-System-Name`           | `acme`                | `acme`              | `acme`              |
+| `Vipps-System-Version`        | `1.7`                 | `2.6`               | `2.6`               |
+| `Vipps-System-Plugin-Name`    | `acme-pos`            | `acme-webshop`      | `acme-vending`      |
+| `Vipps-System-Plugin-Version` | `3.2`                 | `4.3`               | `4.3`               |
+
+**Important:** Please use self-explanatory, human readable and reasonably short
+values that uniquely identify the system (and plugin).
+
+
 ## Authentication
+
 
 All Vipps API calls are authenticated and authorized with an access token
 (JWT bearer token) and an API subscription key:
