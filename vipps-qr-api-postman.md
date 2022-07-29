@@ -34,32 +34,64 @@ Import the collection by following the steps below:
    - `Ocp-Apim-Subscription-Key`
 
 
-### Step 4: Run Merchant Redirect QR Tests
+### Step 4: Run Merchant Redirect QR Examples
 
-0. Send request `GetAccessToken`. This provides you with access to the API.
+0. Send request `Get Access Token`. This provides you with access to the API.
 
-1. Send request `Generate QR`. This creates a QR that works as a redirect back to the merchant. The website is specified as the `redirectUrl` in the [`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/CreateMerchantRedirectQr) request.
+Under the *Merchant Redirect QR* folder:
+
+1. Send request `Generate QR`.
+
+   This creates a QR that works as a redirect back to the merchant. The website is specified as the `redirectUrl` in the [`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/CreateMerchantRedirectQr) request.
+
+   The `qr-id` variable is now set in the environment for use with subsequent calls.
 
    Ctrl+click the link to see the QR code. Scanning the QR should open the website on your phone.
 
    **Please note:** The result from Generate QR provides a url with its own JWT token. This token will expire. If so, get a new token by calling `Get QR`.
 
-1. Send request `Get QR`. This gets the QR for the specified `qr-id` by using
-[`https://{{url}}/qr/v1/merchant-redirect/{{merchant-id}}`](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/GetMerchantRedirectQrById).
+2. Send request `Get QR by id`.
 
-   In this example, the `qr-id` is set when you generated the QR.
+   This gets the QR for the specified `qr-id` in
+[`GET:/qr/v1/merchant-redirect/{{qr-id}}`](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/GetMerchantRedirectQrById).
 
-   Ctrl+click the link to see the QR code. When you scan it, it will take you to the URL specified in the `Generate QR` request.
+   Ctrl+click the link to see the QR code. When you scan it, it will take you to the specified URL.
+
+3. Send request `Update redirectUrl by id`.
+
+   This changes the URL for the QR code with the specified `qr-id` in
+[`PUT:/qr/v1/merchant-redirect/{{qr-id}}`](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/UpdateMerchantRedirectUrl).
+
+4. Send request `Delete QR by id`.
+
+   This deletes the QR code with the specified `qr-id` in
+[`DEL:/qr/v1/merchant-redirect/{{qr-id}}`](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/DeleteMerchantRedirectQr).
+
+
+5. Send request `Get all QRs`.
+
+   This gets all the QRs by calling [`GET:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/GetAllMerchantRedirectQrs) request.
+
 
 See the [QR API Specifications](https://vippsas.github.io/vipps-qr-api/redoc.html) for details about the calls.
 
+### Step 5: Run One Time Payment QR Examples
 
-### Step 5: Run One Time Payment QR Tests
+0. Send request `Get Access Token`.
 
-To be provided.
+Under the *One Time Payment QR* folder:
 
-For now, you can test out how to generate QR codes for one-time payments from the eCom API postman collection.
-See the [eCom postman guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-postman.md) for details.
+1. Send request `Initiate Payment`.
+
+   This uses [`POST:/v3/psppayments/init/`](https://vippsas.github.io/vipps-ecom-api/#/Vipps%20eCom%20API/initiatePaymentV3UsingPOST)
+   from the [Vipps eComm API](https://github.com/vippsas/vipps-ecom-api).
+
+   The `orderId` and `vippsLandingPageUrl` variables are now in the environment of this Postman example
+
+1. Send request `Generate OTP QR`. This supplies `vippsLandingPageUrl` to
+ [`POST:/qr/v1`](https://vippsas.github.io/vipps-qr-api/#/One%20time%20payment%20QR/generateOtpQr) to provide a url that can be used to show a QR code.
+
+   Ctrl+click the link to see the QR code. Scanning the QR should open the test app on your phone and allow you to complete the one-time purchase.
 
 
 ## Questions?
