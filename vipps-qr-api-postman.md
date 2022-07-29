@@ -36,20 +36,20 @@ Import the collection by following the steps below:
 
 ### Step 4: Run Merchant Redirect QR Tests
 
-1. Send request `GetAccessToken`. This provides you with access to the API.
+0. Send request `GetAccessToken`. This provides you with access to the API.
 
-2. Send request `Generate QR`. This creates a QR that works as a redirect back to the merchant. The website is specified as the `redirectUrl` in the [`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/CreateMerchantRedirectQr) request.
+1. Send request `Generate QR`. This creates a QR that works as a redirect back to the merchant. The website is specified as the `redirectUrl` in the [`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/CreateMerchantRedirectQr) request.
 
    Ctrl+click the link to see the QR code. Scanning the QR should open the website on your phone.
 
    **Please note:** The result from Generate QR provides a url with its own JWT token. This token will expire. If so, get a new token by calling `Get QR`.
 
-3. Send request `Get QR`. This gets the QR for the specified merchant-id by using
-[https://{{url}}/qr/v1/merchant-redirect/{{merchant-id}}](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/GetMerchantRedirectQrById) request.
+1. Send request `Get QR`. This gets the QR for the specified `qr-id` by using
+[`https://{{url}}/qr/v1/merchant-redirect/{{merchant-id}}`](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR/operation/GetMerchantRedirectQrById).
 
-   In this example, the `merchant-id` is set to the `merchantSerialNumber` in step 2.
+   In this example, the `qr-id` is set when you generated the QR.
 
-   Ctrl+click the link to see the QR code.
+   Ctrl+click the link to see the QR code. When you scan it, it will take you to the URL specified in the `Generate QR` request.
 
 See the [QR API Specifications](https://vippsas.github.io/vipps-qr-api/redoc.html) for details about the calls.
 
@@ -62,7 +62,7 @@ For now, you can test out how to generate QR codes for one-time payments from th
 See the [eCom postman guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-postman.md) for details.
 
 
-# Questions?
+## Questions?
 
 We're always happy to help with code or other questions you might have!
 Please create an [issue](https://github.com/vippsas/vipps-qr-api/issues),

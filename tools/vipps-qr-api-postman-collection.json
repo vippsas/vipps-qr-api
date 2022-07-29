@@ -95,7 +95,7 @@
 					"listen": "prerequest",
 					"script": {
 						"exec": [
-							"pm.environment.set(\"merchant-id\", pm.environment.get('merchantSerialNumber') + '-' + (new Date()).getTime())"
+							"pm.environment.set(\"qr-id\", pm.environment.get('merchantSerialNumber') + '-' + (new Date()).getTime())"
 						],
 						"type": "text/javascript"
 					}
@@ -156,7 +156,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"redirectUrl\": \"https://demo.vipps.no/vipps-express\",\n    \"id\": \"{{merchant-id}}\"\n}",
+					"raw": "{\n    \"redirectUrl\": \"https://demo.vipps.no/vipps-express\",\n    \"id\": \"{{qr-id}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -256,7 +256,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://{{url}}/qr/v1/merchant-redirect/{{merchant-id}}",
+					"raw": "https://{{url}}/qr/v1/merchant-redirect/{{qr-id}}",
 					"protocol": "https",
 					"host": [
 						"{{url}}"
@@ -265,7 +265,7 @@
 						"qr",
 						"v1",
 						"merchant-redirect",
-						"{{merchant-id}}"
+						"{{qr-id}}"
 					]
 				}
 			},
