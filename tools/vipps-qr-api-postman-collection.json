@@ -6,7 +6,10 @@
 	},
 	"item": [
 		{
-			"name": "1. GetAccessToken",
+			"name": "Merchant Redirect QR",
+			"item": [
+				{
+					"name": "1. Get Access Token",
 			"event": [
 				{
 					"listen": "test",
@@ -100,7 +103,6 @@
 						"type": "text/javascript"
 					}
 				}
-
 			],
 			"request": {
 				"method": "POST",
@@ -270,6 +272,8 @@
 				}
 			},
 			"response": []
+				}
+			]
 		}
 	]
 }
