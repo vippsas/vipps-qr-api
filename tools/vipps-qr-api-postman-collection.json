@@ -465,7 +465,7 @@
 			]
 		},
 		{
-			"name": "One Time Payment QR",
+			"name": "One-Time Payment QR",
 			"item": [
 				{
 					"name": "1. Initiate Payment",

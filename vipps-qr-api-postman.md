@@ -75,11 +75,11 @@ Under the *Merchant Redirect QR* folder:
 
 See the [QR API Specifications](https://vippsas.github.io/vipps-qr-api/redoc.html) for details about the calls.
 
-### Step 5: Run One Time Payment QR Examples
+### Step 5: Run One-Time Payment QR Examples
 
 0. Send request `Get Access Token`.
 
-Under the *One Time Payment QR* folder:
+Under the *One-Time Payment QR* folder:
 
 1. Send request `Initiate Payment`.
 

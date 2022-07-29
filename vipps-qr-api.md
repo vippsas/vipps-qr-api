@@ -1,7 +1,6 @@
 # Vipps QR API v1
 
-
-The Vipps QR API lets merchant generate one-time-payments QRs and merchant-redirect QRs. One-time-payment QRs (otp-QR) allows users to pay over the counter, without requiring the Vipps user to provide their telephone number to the merchant. Merchant-redirect QRs (mr-QR) will redirect the user to the merchant website.
+The Vipps QR API lets you generate QR codes for one-time payments QRs and merchant-redirect QRs. One-time-payment QRs (otp-QR) allows users to pay over the counter, without requiring the Vipps user to provide their telephone number to the merchant. Merchant-redirect QRs (mr-QR) will redirect the user to the merchant website.
 
 Both QR products share the same authentication and overall design, but have slight difference in behaviour and how they are made.
 
@@ -17,10 +16,10 @@ Document version 1.2.1.
     - [Example headers](#example-headers)
   * [Authentication](#authentication)
   * [QR formats](#qr-formats)
-- [One Time Payment QR Codes](#one-time-payment-qr-codes)
+- [One-Time Payment QR Codes](#one-time-payment-qr-codes)
   * [Basic flow](#basic-flow)
   * [Initiate a payment with the Vipps eCom API](#initiate-a-payment-with-the-vipps-ecom-api)
-  * [Creation of One Time Payment QR](#creation-of-one-time-payment-qr)
+  * [Creation of One-Time Payment QR](#creation-of-one-time-payment-qr)
 - [Merchant Redirect QR Codes](#merchant-redirect-qr-codes)
   * [Creation of merchant redirect QR](#creation-of-merchant-redirect-qr)
   * [Updating and Deletion of QRs](#updating-and-deletion-of-qrs)
@@ -122,7 +121,7 @@ If you want to make the QR code on your own: See the
 [design guidelines](https://github.com/vippsas/vipps-design-guidelines#vipps-custom-qr-code)
 for more details about the QR format and design.
 
-# One Time Payment QR codes
+# One-Time Payment QR codes
 
 The Vipps QR API lets merchants generate Vipps QR codes that can be used to pay
 over the counter, without requiring the Vipps user to provide their telephone
@@ -139,7 +138,7 @@ The following section will explain how to generate one-time-payment QR codes. Ev
 The QR code, when scanned, will take the customer straight to the payment
 screen in the Vipps app. They are scannable from both native camera and the scanner in the Vipps app.
 
-The API Spec is found here: [One Time Payment QR](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/One-time-payment-QR).
+The API Spec is found here: [One-Time Payment QR](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/One-time-payment-QR).
 
 ## Basic flow
 
@@ -170,7 +169,7 @@ Be aware that the URL is only valid for a short period of time. See the
 [eCom API guide: Timeouts](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#timeouts)
 for details.
 
-## Creation of One Time Payment QR
+## Creation of One-Time Payment QR
 
 
 Now that you have the `url` from the Vipps eCom API you can create a QR code
