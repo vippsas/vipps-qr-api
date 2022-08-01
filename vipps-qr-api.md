@@ -1,14 +1,14 @@
 # Vipps QR API v1
 
+The Vipps QR API provides you with tools for generating these types of QR codes:
+   - Merchant redirect - Generate QRs that redirect the user to your website.
+   - One-time payment - Generate QRs that open the user's Vipps app on their phone and provides the payment suggestion for approval. This allows you to initiate a Vipps payment without needing to ask for the customer's telephone number.
 
-The Vipps QR API lets merchant generate one-time-payments QRs and merchant-redirect QRs. One-time-payment QRs (otp-QR) allows users to pay over the counter, without requiring the Vipps user to provide their telephone number to the merchant. Merchant-redirect QRs (mr-QR) will redirect the user to the merchant website.
-
-Both QR products share the same authentication and overall design, but have slight difference in behaviour and how they are made.
-
+Both types of QRs share the same authentication and overall design, but have slight difference in behaviour and how they are made.
 
 API version: 1.1.0.
 
-Document version 1.2.0.
+Document version 1.2.1.
 
 # Table of contents
 
@@ -122,24 +122,27 @@ If you want to make the QR code on your own: See the
 [design guidelines](https://github.com/vippsas/vipps-design-guidelines#vipps-custom-qr-code)
 for more details about the QR format and design.
 
-# One Time Payment QR codes
-!["OneTimePayment QR Flow](images/one-time-payment-qr-flow.svg)
+# One-Time Payment QR codes
 
-* [API Documentation with examples here](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/One-time-payment-QR)
+The Vipps QR API lets merchants generate Vipps QR codes that can be used to pay
+over the counter, without requiring the Vipps user to provide their telephone
+number to the merchant. These QRs are called one-time-payment QRs, and will need to be generated for each unique payment.
 
-The following section will explain how to generate one-time-payment QR codes. Every Vipps payment needs a unique `orderId`, so it's not possible to print these, as they will only be valid for 5 minutes. The QR must be scanned within 5 minutes, and the user will have 5 minutes to complete the payment once opened in the app.
+![One-time payment QR Flow](images/one-time-payment-qr-flow.svg)
 
-The QR code, when scanned, will take the customer straight to the payment
-screen in the Vipps app. They are scannable from both native camera and the scanner in the Vipps app.
-## Basic flow
+The QR code, when scanned from either camera or the Vipps app, will automatically open a payment in the Vipps app, where the payment can be completed. See a detailed example of [how it works](how-it-works/one-time-payment-qr.md).
+
+Every Vipps payment needs a unique `orderId`. The purchase will time out after 5 minutes, so it's not possible to print these QRs. The QR must be scanned within 5 minutes, and the user will have 5 minutes to complete the payment once opened in the app.
+
+
+## Basic flow for One-Time Payment QR
+
 1. Initiate a Vipps eCom or recurring payment
-    - `POST:/ecomm/v2/payments`
 2. Receive the payment URL as response
 3. Post the payment URL to the QR API
-    - `POST:/qr/v1`
 4. Receive a URL to a QR code in desired format (png or svg)
 
-## Initiate a payment with the Vipps eCom API
+See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of generating QR codes.
 
 Before creating the QR code you must initiate a payment with the Vipps eCom API as is described in depth in the
 [eCom API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#initiate-payment-flow-phone-and-browser).
@@ -202,10 +205,20 @@ The response will be similar to this, where the URL in the responseBody will be 
 **Please note:** The `expiresIn` value is in seconds.
 
 # Merchant Redirect QR codes
+
+Merchant redirect QR codes allows you to make printable QR
+codes that redirect the user to your webpage. This can be used for one-offs, such as tv-commercials; as well as for permanent use cases, such as stickers, billboards, and magazine ads.
+
 !["MerchantRedirect QR Flow"](images/merchant-redirect-qr-flow.svg)
 
 
-* [API Documentation with examples here](https://vippsas.github.io/vipps-qr-api/redoc.html#tag/Merchant-redirect-QR)
+The QR code, when scanned from camera or the Vipps scanner, will take the customer straight to the web page.
+See a detailed example of [how it works](how-it-works/merchant-redirect-qr.md) with examples of what the user will encounter.
+
+Merchant redirect QRs do not time out and they don't require the Vipps app to be installed.
+
+The QR API allows for creating, updating, getting and deleting of merchant redirect QRs.
+You can later change the URL through the API without generating a new QR code.
 
 The following section will explain how to generate merchant redirect QR codes. The QR api allows for creating, updating, getting and deleting of merchant redirect QRs. These are pretty simple in function - all they do is redirect the user to the webpage provided by the merchant.
 
