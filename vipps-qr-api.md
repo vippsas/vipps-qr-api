@@ -17,10 +17,10 @@ Document version 1.2.1.
     - [Example headers](#example-headers)
   * [Authentication](#authentication)
   * [QR formats](#qr-formats)
-- [One Time Payment QR Codes](#one-time-payment-qr-codes)
-  * [Basic flow](#basic-flow)
-  * [Initiate a payment with the Vipps eCom API](#initiate-a-payment-with-the-vipps-ecom-api)
-  * [Creation of One Time Payment QR](#creation-of-one-time-payment-qr)
+- [One-Time Payment QR Codes](#one-time-payment-qr-codes)
+  * [Basic flow for One-Time Payment QR](#basic-flow-for-one-time-payment-qr)
+    - [Initiate a payment with the Vipps eCom API](#initiate-a-payment-with-the-vipps-ecom-api)
+    - [Creation of One-Time Payment QR](#creation-of-one-time-payment-qr)
 - [Merchant Redirect QR Codes](#merchant-redirect-qr-codes)
   * [Basic flow for Merchant Redirect QR](#basic-flow-for-merchant-redirect-qr)
     - [Creation of Merchant Redirect QR](#creation-of-merchant-redirect-qr)
@@ -136,6 +136,8 @@ Every Vipps payment needs a unique `orderId`. The purchase will time out after 5
 
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of generating QR codes.
 
+### Initiate a payment with the Vipps eCom API
+
 Before creating the QR code you must initiate a payment with the Vipps eCom API as is described in depth in the
 [eCom API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#initiate-payment-flow-phone-and-browser).
 
@@ -154,7 +156,9 @@ Be aware that the URL is only valid for a short period of time. See the
 [eCom API guide: Timeouts](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#timeouts)
 for details.
 
-## Creation of One Time Payment QR
+See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
+
+### Creation of One-Time Payment QR
 
 
 Now that you have the `url` from the Vipps eCom API you can create a QR code
@@ -196,6 +200,7 @@ The response will be similar to this, where the URL in the responseBody will be 
 ```
 **Please note:** The `expiresIn` value is in seconds.
 
+See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
 # Merchant Redirect QR codes
 
 Merchant redirect QR codes allows you to make printable QR
