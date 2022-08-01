@@ -84,13 +84,13 @@ in the
 
 ## QR formats
 
-The QR code image will be returned as a URL in the response for both otp- and mr-QRs. Opening this URL will return the image in the format (and resolution) set in the accept header. The URL to the image will look like this:
+The QR code image will be returned as a URL in the response for both one-time payment QRs and merchant redirect QRs. Opening this URL will return the image in the format and resolution set in the accept header. The URL to the image will look like this:
 ```json
 "url":"https://qr-generator-prod-app-service.azurewebsites.net/qr-generator/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
 ```
-The URL to the images does not require any authentication, and can be shown wherever you want. Note that oneTimePayment QRs eventually will time out - trying to open the URL to the otp-QR image after its expiry while will return a 404. Merchant redirect QRs can be opened forever.
+The URL to the image does not require any authentication and can be shown wherever you want. Note that one-time payment QRs eventually will time out - trying to open the URL to the otp-QR image after its expiry while will return a 404. Merchant redirect QRs can be opened forever.
 
-Below is an example merchant Redirect QR to showcase the design.
+Below is an example merchant redirect QR:
 <p align="center">
   <img src="images/demo-qr.svg" alt="Demo QR" width="250">
 </p>
