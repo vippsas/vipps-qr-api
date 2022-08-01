@@ -103,14 +103,14 @@ Below is an example merchant Redirect QR to showcase the design.
 | `Accept` | `image/png` | Returns a URL pointing to a png image with 800x800 size |
 | `Accept` | `text/targetUrl` | Returns the target URL of the QR *|
 
+The `targetUrl` that points to `https://qr.vipps.no` is a shortened URL
+that will be recognized and opened in the Vipps app when scanned from camera.
+
 \* It is possible to get the `targetUrl` of the QR if you need to
 generate the QR yourselves. This will require an approval from Vipps before it is used, so we can validate
 the styling and design of the QR.
 
-The `targetUrl` that points to `https://qr.vipps.no` is a shortened URL
-that will be recognized and opened in the Vipps app when scanned from native camera.
-
-If you want to make the QR code on your own: See the
+If you want to create the QR code on your own, see the
 [design guidelines](https://github.com/vippsas/vipps-design-guidelines#vipps-custom-qr-code)
 for more details about the QR format and design.
 
