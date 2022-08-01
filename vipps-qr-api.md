@@ -22,8 +22,9 @@ Document version 1.2.1.
   * [Initiate a payment with the Vipps eCom API](#initiate-a-payment-with-the-vipps-ecom-api)
   * [Creation of One Time Payment QR](#creation-of-one-time-payment-qr)
 - [Merchant Redirect QR Codes](#merchant-redirect-qr-codes)
-  * [Creation of merchant redirect QR](#creation-of-merchant-redirect-qr)
-  * [Updating and Deletion of QRs](#updating-and-deletion-of-qrs)
+  * [Basic flow for Merchant Redirect QR](#basic-flow-for-merchant-redirect-qr)
+    - [Creation of Merchant Redirect QR](#creation-of-merchant-redirect-qr)
+    - [Updating and Deletion of QRs](#updating-and-deletion-of-qrs)
 - [Questions?](#questions-)
 
 
@@ -211,12 +212,22 @@ Merchant redirect QRs do not time out and they don't require the Vipps app to be
 The QR API allows for creating, updating, getting and deleting of merchant redirect QRs.
 You can later change the URL through the API without generating a new QR code.
 
-The following section will explain how to generate merchant redirect QR codes. The QR api allows for creating, updating, getting and deleting of merchant redirect QRs. These are pretty simple in function - all they do is redirect the user to the webpage provided by the merchant.
+## Basic flow for Merchant Redirect QR
 
-The QR code, when scanned from native camera or the Vipps scanner, will take the customer straight to webpage. These QRs don't require the Vipps app to be installed.
+1. Create a merchant redirect QR
+2. Later, if needed, you can:
 
-## Creation of merchant redirect QR
-To create a merchantRedirect QR, make a HTTPS POST to:
+    a. Get the QR by id
+
+    b. Update the URL to the QR
+
+    c. Delete the QR
+
+See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of generating merchant redirect QR codes.
+
+### Creation of Merchant Redirect QR
+
+To create a merchant redirect QR, make a HTTPS POST to:
 [`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/CreateMerchantRedirectQr)
 
 An example body like this:
@@ -236,7 +247,10 @@ Will return a response like this:
 ```
 The `id` parameter is required, and is defined by the merchant. You can later use this id to update the merchant redirect QRs
 
-## Updating and Deletion of QRs
+
+See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
+
+### Updating and Deletion of QRs
 Updating QRs is a very similar procedure to creating them. When a QR is updated, nothing happens to the QR itself. But, when the QR is scanned, the user will be redirected to the new URL. The change is instantaneous. To update the QR, make a HTTPS PUT to:
 [`PUT:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/UpdateMerchantRedirectUrl)
 and put the new redirectUrl in the requestBody:
@@ -258,7 +272,9 @@ The
 [`DELETE:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/DeleteMerchantRedirectQr)
 does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same id but the already-printed-QR will never work again.
 
-Tip: If you want the same QR in different formats, do GET calls on the same `id` with different accept headers and test what works best.
+Tip: If you want the same QR in different formats, perform `GET` calls on the same `id` with different `accept` headers and test what works best.
+
+See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of updating and deleting QRs.
 # Questions?
 
 We're always happy to help with code or other questions you might have!
