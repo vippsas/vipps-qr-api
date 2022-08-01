@@ -104,7 +104,7 @@ Below is an example merchant redirect QR:
 | `Accept` | `text/targetUrl` | Returns the target URL of the QR *|
 
 The `targetUrl` that points to `https://qr.vipps.no` is a shortened URL
-that will be recognized and opened in the Vipps app when scanned from camera.
+that will be recognized and opened in the Vipps app when scanned from native camera.
 
 \* It is possible to get the `targetUrl` of the QR if you need to
 generate the QR yourselves. This will require an approval from Vipps before it is used, so we can validate
@@ -122,7 +122,7 @@ number to the merchant. These QRs are called one-time-payment QRs, and will need
 
 ![One-time payment QR Flow](images/one-time-payment-qr-flow.svg)
 
-The QR code, when scanned from either camera or the Vipps app, will automatically open a payment in the Vipps app, where the payment can be completed. See a detailed example of [how it works](how-it-works/one-time-payment-qr.md).
+The QR code, when scanned from either the native camera or the Vipps app, will automatically open an ecom or recurring payment in the Vipps app, where the payment can be completed. See a detailed example of [how it works](how-it-works/one-time-payment-qr.md).
 
 Every Vipps payment needs a unique `orderId`. The purchase will time out after 5 minutes, so it's not possible to print these QRs. The QR must be scanned within 5 minutes, and the user will have 5 minutes to complete the payment once opened in the app.
 
@@ -209,7 +209,7 @@ codes that redirect the user to your webpage. This can be used for one-offs, suc
 !["MerchantRedirect QR Flow"](images/merchant-redirect-qr-flow.svg)
 
 
-The QR code, when scanned from camera or the Vipps scanner, will take the customer straight to the web page.
+The QR code, when scanned from the native camera or the Vipps scanner, will take the customer straight to the web page.
 See a detailed example of [how it works](how-it-works/merchant-redirect-qr.md) with examples of what the user will encounter.
 
 Merchant redirect QRs do not time out and they don't require the Vipps app to be installed.
