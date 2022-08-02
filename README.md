@@ -1,4 +1,4 @@
-# Vipps QR API v1
+# Vipps QR API version 2
 
 ## Getting started
 
