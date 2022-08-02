@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "6c25aff3-dc4f-46a3-b952-40dbdc853c70",
-		"name": "QR API - Collection",
+		"name": "QR API v2 - Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
