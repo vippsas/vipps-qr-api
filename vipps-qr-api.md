@@ -92,7 +92,7 @@ The URL to the image does not require any authentication and can be shown wherev
 
 Below is an example merchant redirect QR:
 <p align="center">
-  <img src="images/demo-qr.svg" alt="Demo QR" width="250">
+  <img src="images/demo-qr.svg" alt="Demo QR" width="250"/>
 </p>
 
 ### Accept Headers:
