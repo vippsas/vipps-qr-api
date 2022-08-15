@@ -283,6 +283,14 @@ components:
           pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
           example: 'https://www.example.com/myProduct'
           nullable: true
+        ttl:
+          type: integer
+          description: Time To Live in seconds (default is -1, which is infinate)
+          example: 600
+          minimum: 300
+          exclusiveMinimum: false
+          maximum: 2147483647
+          nullable: true
       required:
         - id
         - redirectUrl
@@ -307,6 +315,8 @@ components:
           description: The target url of the QR (redirect destination)
           pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
           example: 'https://www.example.com/myProduct'
+        expiresIn:
+          type: integer
       required:
         - id
         - url
