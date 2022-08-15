@@ -317,6 +317,8 @@ components:
           example: 'https://www.example.com/myProduct'
         expiresIn:
           type: integer
+          description: Time in seconds until expiration
+          example: '598'
       required:
         - id
         - url
