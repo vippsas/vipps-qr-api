@@ -285,10 +285,9 @@ components:
           nullable: true
         ttl:
           type: integer
-          description: Time To Live in seconds (default is -1, which is infinate)
+          description: Time To Live in seconds (default is infinate)
           example: 600
           minimum: 300
-          exclusiveMinimum: false
           maximum: 2147483647
           nullable: true
       required:
