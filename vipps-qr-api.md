@@ -1,4 +1,4 @@
-# Vipps QR API version 2
+# Vipps QR API version 1
 
 The Vipps QR API provides you with tools for generating these types of QR codes:
    - Merchant redirect - Generate QRs that redirect the user to your website.
