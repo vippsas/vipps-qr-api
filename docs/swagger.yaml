@@ -285,7 +285,7 @@ components:
           nullable: true
         ttl:
           type: integer
-          description: Time To Live in seconds (default is infinate)
+          description: Optional time-to-live field, given in seconds
           example: 600
           minimum: 300
           maximum: 2147483647
@@ -316,7 +316,7 @@ components:
           example: 'https://www.example.com/myProduct'
         expiresIn:
           type: integer
-          description: Time in seconds until expiration
+          description: Time in seconds until expiration. -1 means no expiration (infinite QR code) 
           example: '598'
       required:
         - id
