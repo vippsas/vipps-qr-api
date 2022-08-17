@@ -1,8 +1,8 @@
 # Vipps QR API v1 FAQ
 
-API version: 1.1.0.
+API version: 1.1.1.
 
-Document version 1.2.0.
+Document version 1.2.1.
 
 ## Table of Contents
 

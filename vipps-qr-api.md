@@ -1,4 +1,4 @@
-# Vipps QR API version 2
+# Vipps QR API version 1
 
 The Vipps QR API provides you with tools for generating these types of QR codes:
    - Merchant redirect - Generate QRs that redirect the user to your website.
@@ -276,6 +276,8 @@ And the response will be exactly the same as for generating the QR the first tim
 The
 [`DELETE:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/DeleteMerchantRedirectQr)
 does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same id but the already-printed-QR will never work again.
+
+In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribute in the original `POST`-request. This attribute sets how many seconds the QR will live, before it is deleted permanently. 
 
 Tip: If you want the same QR in different formats, perform `GET` calls on the same `id` with different `accept` headers and test what works best.
 
