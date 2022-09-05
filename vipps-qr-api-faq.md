@@ -1,8 +1,17 @@
+<!-- START_METADATA
+---
+title: FAQ
+sidebar_position: 35
+---
+END_METADATA -->
+
 # Vipps QR API v1 FAQ
 
 API version: 1.1.1.
 
 Document version 1.2.1.
+
+<!-- START_TOC -->
 
 ## Table of Contents
 
@@ -10,6 +19,8 @@ Document version 1.2.1.
 * [Can we make our own QR code based on the Vipps deeplink URL?](#can-we-make-our-own-qr-code-based-on-the-vipps-deeplink-url)
 * [Why are there extra API calls to retrieve the QR code?](#why-are-there-extra-api-calls-to-retrieve-the-qr-code)
 * [Questions?](#questions)
+
+<!-- END_TOC -->
 
 ## See the Vipps eCom API FAQ
 
