@@ -1,3 +1,10 @@
+<!-- START_METADATA
+---
+title: API Guide
+sidebar_position: 20
+---
+END_METADATA -->
+
 # Vipps QR API version 1
 
 The Vipps QR API provides you with tools for generating these types of QR codes:
@@ -9,6 +16,8 @@ Both types of QRs share the same authentication and overall design, but have sli
 API version: 1.2.0.
 
 Document version 1.2.1.
+
+<!-- START_TOC -->
 
 # Table of contents
 
@@ -26,6 +35,8 @@ Document version 1.2.1.
     - [Creation of Merchant Redirect QR](#creation-of-merchant-redirect-qr)
     - [Updating and Deletion of QRs](#updating-and-deletion-of-qrs)
 - [Questions?](#questions-)
+
+<!-- END_TOC -->
 
 
 # Before you begin

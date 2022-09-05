@@ -1,3 +1,10 @@
+<!-- START_METADATA
+---
+title: Introduction
+sidebar_position: 1
+---
+END_METADATA -->
+
 # Vipps QR API version 2
 
 ## Getting started
