@@ -8,18 +8,20 @@ END_METADATA -->
 # Vipps QR API version 1
 
 The Vipps QR API provides you with tools for generating these types of QR codes:
-   - Merchant redirect - Generate QRs that redirect the user to your website.
-   - One-time payment - Generate QRs that open the user's Vipps app on their phone and provides the payment suggestion for approval. This allows you to initiate a Vipps payment without needing to ask for the customer's telephone number.
+
+- Merchant redirect - Generate QRs that redirect the user to your website.
+- One-time payment - Generate QRs that open the user's Vipps app on their phone and provides the payment suggestion for approval.
+  This allows you to initiate a Vipps payment without needing to ask for the customer's telephone number.
 
 Both types of QRs share the same authentication and overall design, but have slight difference in behaviour and how they are made.
 
 API version: 1.2.0.
 
-Document version 1.2.1.
+Document version 1.2.2.
 
 <!-- START_TOC -->
 
-# Table of contents
+## Table of contents
 
 - [Before you begin](#before-you-begin)
   * [Vipps HTTP headers](#vipps-http-headers)
@@ -34,12 +36,11 @@ Document version 1.2.1.
   * [Basic flow for Merchant Redirect QR](#basic-flow-for-merchant-redirect-qr)
     - [Creation of Merchant Redirect QR](#creation-of-merchant-redirect-qr)
     - [Updating and Deletion of QRs](#updating-and-deletion-of-qrs)
-- [Questions?](#questions-)
+- [Questions](#questions)
 
 <!-- END_TOC -->
 
-
-# Before you begin
+## Before you begin
 
 This document assumes you have signed up as a organisation with Vipps and have
 retrieved your API credentials for
@@ -47,7 +48,7 @@ retrieved your API credentials for
 from
 [portal.vipps.no](https://portal.vipps.no).
 
-## Vipps HTTP headers
+### Vipps HTTP headers
 
 We recommend using the following (optional) HTTP headers for all requests to the
 Vipps eCom API. These headers provide useful metadata about the merchant's system,
@@ -62,7 +63,7 @@ that _everyone_ sends it, also when using the merchant's own API keys.
 The `Merchant-Serial-Number` header can be used with all API keys, and can
 speed up any trouble-shooting of API problems quite a bit.
 
-**Important:** Please use self-explanatory, human readable and reasonably short
+**Please note:** Please use self-explanatory, human readable and reasonably short
 values that uniquely identify the system (and plugin).
 
 For example, if the vendor's name is "Acme AS" and the vendor offers two different systems,
@@ -77,8 +78,7 @@ the headers should be:
 | `Vipps-System-Plugin-Name` | The name of the ecommerce plugin | `acme-pos` | `acme-webshop` | `acme-vending` |
 | `Vipps-System-Plugin-Version` | The version number of the ecommerce plugin   | `3.2` | `4.3` | `4.3` |
 
-## Authentication
-
+### Authentication
 
 All Vipps API calls are authenticated and authorized with an access token
 (JWT bearer token) and an API subscription key:
@@ -93,20 +93,23 @@ For more information about how to obtain an access token and all details around 
 in the
 [Getting started guide](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md).
 
-## QR formats
+### QR formats
 
 The QR code image will be returned as a URL in the response for both one-time payment QRs and merchant redirect QRs. Opening this URL will return the image in the format and resolution set in the accept header. The URL to the image will look like this:
+
 ```json
 "url":"https://qr-generator-prod-app-service.azurewebsites.net/qr-generator/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
 ```
+
 The URL to the image does not require any authentication and can be shown wherever you want. Note that one-time payment QRs eventually will time out - trying to open the URL to the otp-QR image after its expiry while will return a 404. Merchant redirect QRs can be opened forever.
 
 Below is an example merchant redirect QR:
-<p align="center">
-  <img src="images/demo-qr.svg" alt="Demo QR" width="250"/>
-</p>
 
-### Accept Headers:
+
+!["Demo "](images/demo-qr.png)
+
+#### Accept Headers
+
 | Header Name | Header Value | Description |
 | ----------- | ------------ | ----------- |
 | `Accept` | `image/*` | Returns a URL pointing to a svg+xml image |
@@ -125,7 +128,7 @@ If you want to create the QR code on your own, see the
 [design guidelines](https://github.com/vippsas/vipps-design-guidelines#vipps-custom-qr-code)
 for more details about the QR format and design.
 
-# One-Time Payment QR codes
+## One-Time Payment QR codes
 
 The Vipps QR API lets merchants generate Vipps QR codes that can be used to pay
 over the counter, without requiring the Vipps user to provide their telephone
@@ -137,8 +140,7 @@ The QR code, when scanned from either the native camera or the Vipps app, will a
 
 Every Vipps payment needs a unique `orderId`. The purchase will time out after 5 minutes, so it's not possible to print these QRs. The QR must be scanned within 5 minutes, and the user will have 5 minutes to complete the payment once opened in the app.
 
-
-## Basic flow for One-Time Payment QR
+### Basic flow for One-Time Payment QR
 
 1. Initiate a Vipps eCom or recurring payment
 2. Receive the payment URL as response
@@ -147,7 +149,7 @@ Every Vipps payment needs a unique `orderId`. The purchase will time out after 5
 
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of generating QR codes.
 
-### Initiate a payment with the Vipps eCom API
+#### Initiate a payment with the Vipps eCom API
 
 Before creating the QR code you must initiate a payment with the Vipps eCom API as is described in depth in the
 [eCom API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#initiate-payment-flow-phone-and-browser).
@@ -169,8 +171,7 @@ for details.
 
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
 
-### Creation of One-Time Payment QR
-
+#### Creation of One-Time Payment QR
 
 Now that you have the `url` from the Vipps eCom API you can create a QR code
 using the following endpoint:
@@ -181,7 +182,7 @@ Example of a request for a QR code image using `Accept: image/png`:
 
 Headers:
 
-```
+```text
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <snip>
 Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
 Accept: image/png
@@ -200,7 +201,6 @@ Body:
 }
 ```
 
-
 The response will be similar to this, where the URL in the responseBody will be a link to the image as defined in the accept header:
 
 ```json
@@ -209,16 +209,16 @@ The response will be similar to this, where the URL in the responseBody will be 
   "expiresIn": 247
 }
 ```
+
 **Please note:** The `expiresIn` value is in seconds.
 
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
-# Merchant Redirect QR codes
+## Merchant Redirect QR codes
 
 Merchant redirect QR codes allows you to make printable QR
 codes that redirect the user to your webpage. This can be used for one-offs, such as tv-commercials; as well as for permanent use cases, such as stickers, billboards, and magazine ads.
 
 !["MerchantRedirect QR Flow"](images/merchant-redirect-qr-flow.svg)
-
 
 The QR code, when scanned from the native camera or the Vipps scanner, will take the customer straight to the web page.
 See a detailed example of [how it works](how-it-works/merchant-redirect-qr.md) with examples of what the user will encounter.
@@ -228,7 +228,7 @@ Merchant redirect QRs do not time out and they don't require the Vipps app to be
 The QR API allows for creating, updating, getting and deleting of merchant redirect QRs.
 You can later change the URL through the API without generating a new QR code.
 
-## Basic flow for Merchant Redirect QR
+### Basic flow for Merchant Redirect QR
 
 1. Create a merchant redirect QR
 2. Later, if needed, you can:
@@ -241,7 +241,7 @@ You can later change the URL through the API without generating a new QR code.
 
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of generating merchant redirect QR codes.
 
-### Creation of Merchant Redirect QR
+#### Creation of Merchant Redirect QR
 
 To create a merchant redirect QR, make a HTTPS POST to:
 [`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/CreateMerchantRedirectQr)
@@ -254,29 +254,34 @@ An example body like this:
   "redirectUrl": "https://www.example.com/myProduct"
 }
 ```
+
 Will return a response like this:
+
 ```json
 {
   "id": "billboard_1",
   "url":"https://qr-generator-prod-app-service.azurewebsites.net/qr-generator/v1?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
 }
 ```
-The `id` parameter is required, and is defined by the merchant. You can later use this id to update the merchant redirect QRs
 
+The `id` parameter is required, and is defined by the merchant. You can later use this id to update the merchant redirect QRs
 
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
 
-### Updating and Deletion of QRs
+#### Updating and Deletion of QRs
 Updating QRs is a very similar procedure to creating them. When a QR is updated, nothing happens to the QR itself. But, when the QR is scanned, the user will be redirected to the new URL. The change is instantaneous. To update the QR, make a HTTPS PUT to:
 [`PUT:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/UpdateMerchantRedirectUrl)
 and put the new redirectUrl in the requestBody:
+
 ```json
 {
   "id": "billboard_1",
   "redirectUrl": "https://www.example.com/completelyDifferentProductThanBefore"
 }
 ```
+
 And the response will be exactly the same as for generating the QR the first time - and it will still point to the same image.
+
 ```json
 {
   "id": "billboard_1",
@@ -293,7 +298,8 @@ In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribu
 Tip: If you want the same QR in different formats, perform `GET` calls on the same `id` with different `accept` headers and test what works best.
 
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of updating and deleting QRs.
-# Questions?
+
+## Questions
 
 We're always happy to help with code or other questions you might have!
 Please create an [issue](https://github.com/vippsas/vipps-ecom-api/issues),
