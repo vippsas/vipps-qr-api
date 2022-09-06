@@ -182,7 +182,7 @@ Example of a request for a QR code image using `Accept: image/png`:
 
 Headers:
 
-```json
+```text
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <snip>
 Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
 Accept: image/png
