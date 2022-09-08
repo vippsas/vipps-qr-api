@@ -11,6 +11,9 @@ END_METADATA -->
 
 Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md) pages for information about API keys, product activation, contact information, contribution guidelines, etc.
 
+💥 Preview the new documentation pages here: https://vippsas.github.io/vipps-developer-docs/
+See the disclaimer: https://vippsas.github.io/vipps-developer-docs/docs/examples/
+
 ## QR API
 
 * [Vipps QR API Guide](vipps-qr-api.md): Developer guide for the Vipps QR API.
