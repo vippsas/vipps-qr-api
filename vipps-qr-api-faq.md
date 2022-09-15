@@ -16,7 +16,7 @@ Document version 1.2.1.
 ## Table of Contents
 
 * [See the Vipps eCom API FAQ](#see-the-vipps-ecom-api-faq)
-* [Can we make our own QR code based on the Vipps deeplink URL?](#can-we-make-our-own-qr-code-based-on-the-vipps-deeplink-url)
+* [Can we make our own QRs for payment and redirects?](#can-we-make-our-own-qrs-for-payment-and-redirects)
 * [Why are there extra API calls to retrieve the QR code?](#why-are-there-extra-api-calls-to-retrieve-the-qr-code)
 * [Questions?](#questions)
 
@@ -48,10 +48,10 @@ Yes, there is one extra API call, but the overhead is minimal.
 With current HTTP technology, the user will not notice any delay.
 
 ## What happens with the user after the payment?
-Currently, the user will be redirected to a fallback url after the payment is completed. The recommendation is to set `fallBack` parameter in the ecom/recurring initiate body to `https://www.vipps.no/thankyoupage/`. 
 
-We are working on a flow where the user will end up on the receipt in the Vipps after the payment is complete. Work is expected to be done by May 2022.
+Currently, the user will be redirected to a fallback url after the payment is completed. The recommendation is to set `fallBack` parameter in the ecom/recurring initiate body to `https://www.vipps.no/thankyoupage/`.
 
+We are working on a flow where the user will end up on the receipt in the Vipps app after the payment is complete. Work is expected to be done by May 2022.
 
 ## Questions?
 

@@ -25,7 +25,6 @@ Document version 1.2.2.
 
 - [Before you begin](#before-you-begin)
   * [Vipps HTTP headers](#vipps-http-headers)
-    - [Example headers](#example-headers)
   * [Authentication](#authentication)
   * [QR formats](#qr-formats)
 - [One-Time Payment QR Codes](#one-time-payment-qr-codes)
@@ -104,7 +103,6 @@ The QR code image will be returned as a URL in the response for both one-time pa
 The URL to the image does not require any authentication and can be shown wherever you want. Note that one-time payment QRs eventually will time out - trying to open the URL to the otp-QR image after its expiry while will return a 404. Merchant redirect QRs can be opened forever.
 
 Below is an example merchant redirect QR:
-
 
 !["Demo "](images/demo-qr.png)
 
@@ -213,6 +211,7 @@ The response will be similar to this, where the URL in the responseBody will be 
 **Please note:** The `expiresIn` value is in seconds.
 
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
+
 ## Merchant Redirect QR codes
 
 Merchant redirect QR codes allows you to make printable QR
@@ -269,6 +268,7 @@ The `id` parameter is required, and is defined by the merchant. You can later us
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
 
 #### Updating and Deletion of QRs
+
 Updating QRs is a very similar procedure to creating them. When a QR is updated, nothing happens to the QR itself. But, when the QR is scanned, the user will be redirected to the new URL. The change is instantaneous. To update the QR, make a HTTPS PUT to:
 [`PUT:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-developer-docs/api/qr#operation/UpdateMerchantRedirectUrl)
 and put the new redirectUrl in the requestBody:
@@ -293,7 +293,7 @@ The
 [`DELETE:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-developer-docs/api/qr#operation/DeleteMerchantRedirectQr)
 does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same id but the already-printed-QR will never work again.
 
-In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribute in the original `POST`-request. This attribute sets how many seconds the QR will live, before it is deleted permanently. 
+In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribute in the original `POST`-request. This attribute sets how many seconds the QR will live, before it is deleted permanently.
 
 Tip: If you want the same QR in different formats, perform `GET` calls on the same `id` with different `accept` headers and test what works best.
 

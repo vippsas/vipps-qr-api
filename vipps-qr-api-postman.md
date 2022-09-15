@@ -41,12 +41,14 @@ Import the collection by following the steps below:
    - `Ocp-Apim-Subscription-Key`
 
 ### Step 4: Run tests
+
 #### 1. Get access token
 
 Send request `Get Access Token`. This provides you with access to the API.
 
 The access token is valid for 1 hour in the test environment
 and 24 hours in the production environment.
+
 #### 2. Run Merchant Redirect QR Examples
 
 Under the *Merchant Redirect QR* folder:
