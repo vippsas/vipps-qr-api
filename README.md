@@ -5,7 +5,7 @@ sidebar_position: 1
 ---
 END_METADATA -->
 
-# Vipps QR API version 2
+# Vipps QR API
 
 <!-- START_COMMENT -->
 
@@ -20,8 +20,8 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 ## QR API
 
-* [Vipps QR API Guide](vipps-qr-api.md): Developer guide for the Vipps QR API.
-* [Swagger](https://vippsas.github.io/vipps-qr-api/) or [ReDoc](https://vippsas.github.io/vipps-developer-docs/api/qr): QR API Reference Specifications.
+* [API Guide](vipps-qr-api.md): Developer guide for the Vipps QR API.
+* [API Reference](https://vippsas.github.io/vipps-developer-docs/api/qr): QR API Reference Specifications.
 
 ## Examples
 

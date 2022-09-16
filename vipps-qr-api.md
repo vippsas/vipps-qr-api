@@ -25,7 +25,6 @@ Document version 1.2.2.
 
 - [Before you begin](#before-you-begin)
   * [Vipps HTTP headers](#vipps-http-headers)
-    - [Example headers](#example-headers)
   * [Authentication](#authentication)
   * [QR formats](#qr-formats)
 - [One-Time Payment QR Codes](#one-time-payment-qr-codes)
@@ -105,7 +104,6 @@ The URL to the image does not require any authentication and can be shown wherev
 
 Below is an example merchant redirect QR:
 
-
 !["Demo "](images/demo-qr.png)
 
 #### Accept Headers
@@ -155,7 +153,7 @@ Before creating the QR code you must initiate a payment with the Vipps eCom API 
 [eCom API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#initiate-payment-flow-phone-and-browser).
 
 The request to the ecom initiate endpoint
-[`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-ecom-api/#/Vipps%20eCom%20API/initiatePaymentV3UsingPOST)
+[`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST)
  will return a response like this (the `url` is truncated, but the format is correct):
 
 ```json
@@ -176,7 +174,7 @@ See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
 Now that you have the `url` from the Vipps eCom API you can create a QR code
 using the following endpoint:
 
-[`POST:qr​/v1/`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/generateOtpQr)
+[`POST:qr​/v1/`](https://vippsas.github.io/vipps-developer-docs/api/qr#operation/generateOtpQr)
 
 Example of a request for a QR code image using `Accept: image/png`:
 
@@ -213,6 +211,7 @@ The response will be similar to this, where the URL in the responseBody will be 
 **Please note:** The `expiresIn` value is in seconds.
 
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
+
 ## Merchant Redirect QR codes
 
 Merchant redirect QR codes allows you to make printable QR
@@ -244,7 +243,7 @@ See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of ge
 #### Creation of Merchant Redirect QR
 
 To create a merchant redirect QR, make a HTTPS POST to:
-[`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/CreateMerchantRedirectQr)
+[`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-developer-docs/api/qr#operation/CreateMerchantRedirectQr)
 
 An example body like this:
 
@@ -269,8 +268,9 @@ The `id` parameter is required, and is defined by the merchant. You can later us
 See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
 
 #### Updating and Deletion of QRs
+
 Updating QRs is a very similar procedure to creating them. When a QR is updated, nothing happens to the QR itself. But, when the QR is scanned, the user will be redirected to the new URL. The change is instantaneous. To update the QR, make a HTTPS PUT to:
-[`PUT:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/UpdateMerchantRedirectUrl)
+[`PUT:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-developer-docs/api/qr#operation/UpdateMerchantRedirectUrl)
 and put the new redirectUrl in the requestBody:
 
 ```json
@@ -290,10 +290,10 @@ And the response will be exactly the same as for generating the QR the first tim
 ```
 
 The
-[`DELETE:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-qr-api/redoc.html#operation/DeleteMerchantRedirectQr)
+[`DELETE:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-developer-docs/api/qr#operation/DeleteMerchantRedirectQr)
 does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same id but the already-printed-QR will never work again.
 
-In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribute in the original `POST`-request. This attribute sets how many seconds the QR will live, before it is deleted permanently. 
+In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribute in the original `POST`-request. This attribute sets how many seconds the QR will live, before it is deleted permanently.
 
 Tip: If you want the same QR in different formats, perform `GET` calls on the same `id` with different `accept` headers and test what works best.
 
