@@ -51,7 +51,7 @@ With current HTTP technology, the user will not notice any delay.
 
 In the One-Time Payment QR flow, the user will be sent to the receipt view in the Vipps app once the payment is complete.
 
-In the Merchant Redirect flow, the user will be redirected to a fallback url after the payment is completed. The recommendation is to set `fallBack` parameter in the ecom/recurring initiate body to `https://www.vipps.no/thankyoupage/`. 
+In the Merchant Redirect flow, the user will be redirected to a fallback URL after the payment is completed. The recommendation is to set `fallBack` parameter in the ecom/recurring initiate body to `https://www.vipps.no/thankyoupage/`. 
 
 We are working on updating the Merchant Redirect flow so the user will end up on the receipt view after the payment is complete. Work is expected to be done by December 2022.
 
