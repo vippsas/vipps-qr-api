@@ -39,12 +39,12 @@ endpoints, and see the full `request` and `response` for each call.
 Import the collection by following the steps below:
 
 1. Click `Import` in the upper-left corner.
-2. Import the [vipps-qr-api-postman-collection.json](./tools/vipps-qr-api-quick-start-collection.json) file.
+2. Import the [vipps-qr-api-postman-collection.json](./tools/vipps-qr-api-postman-collection.json) file.
 
 ### Step 2: Import the Postman environment
 
 1. Click `Import` in the upper-left corner.
-2. Import the [vipps-qr-api-postman-environment.json](./tools/vipps-qr-api-quick-start-environment.json) file.
+2. Import the [vipps-qr-api-postman-environment.json](./tools/vipps-qr-api-postman-environment.json) file.
 
 ### Step 3: Set up your Postman environment
 
