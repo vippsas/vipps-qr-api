@@ -145,7 +145,7 @@ Every Vipps payment needs a unique `orderId`. The purchase will time out after 5
 3. Post the payment URL to the QR API
 4. Receive a URL to a QR code in desired format (png or svg)
 
-See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of generating QR codes.
+See the [step-by-step postman guide](vipps-qr-api-quick-start.md) for examples of generating QR codes.
 
 #### Initiate a payment with the Vipps eCom API
 
@@ -167,7 +167,7 @@ Be aware that the URL is only valid for a short period of time. See the
 [eCom API guide: Timeouts](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#timeouts)
 for details.
 
-See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
+See the [step-by-step postman guide](vipps-qr-api-quick-start.md) for an example.
 
 #### Creation of One-Time Payment QR
 
@@ -210,7 +210,7 @@ The response will be similar to this, where the URL in the responseBody will be 
 
 **Please note:** The `expiresIn` value is in seconds.
 
-See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
+See the [step-by-step postman guide](vipps-qr-api-quick-start.md) for an example.
 
 ## Merchant Redirect QR codes
 
@@ -238,7 +238,7 @@ You can later change the URL through the API without generating a new QR code.
 
     c. Delete the QR
 
-See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of generating merchant redirect QR codes.
+See the [step-by-step postman guide](vipps-qr-api-quick-start.md) for examples of generating merchant redirect QR codes.
 
 #### Creation of Merchant Redirect QR
 
@@ -265,7 +265,7 @@ Will return a response like this:
 
 The `id` parameter is required, and is defined by the merchant. You can later use this id to update the merchant redirect QRs
 
-See the [step-by-step postman guide](vipps-qr-api-postman.md) for an example.
+See the [step-by-step postman guide](vipps-qr-api-quick-start.md) for an example.
 
 #### Updating and Deletion of QRs
 
@@ -297,7 +297,7 @@ In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribu
 
 Tip: If you want the same QR in different formats, perform `GET` calls on the same `id` with different `accept` headers and test what works best.
 
-See the [step-by-step postman guide](vipps-qr-api-postman.md) for examples of updating and deleting QRs.
+See the [step-by-step postman guide](vipps-qr-api-quick-start.md) for examples of updating and deleting QRs.
 
 ## Questions
 
