@@ -20,12 +20,9 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 ## QR API
 
+* [API Quick Start](vipps-qr-api-quick-start.md): Quick Start.
 * [API Guide](vipps-qr-api.md): Developer guide for the Vipps QR API.
 * [API Reference](https://vippsas.github.io/vipps-developer-docs/api/qr): QR API Reference Specifications.
-
-## Examples
-
-* [Postman guide](vipps-qr-api-quick-start.md):  Step-by-step guide for using the QR API Postman collection of examples.
 
 ## Questions?
 
