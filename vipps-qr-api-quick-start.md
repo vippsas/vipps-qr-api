@@ -16,8 +16,8 @@ END_METADATA -->
   * [Step 2: Import the Postman environment](#step-2-import-the-postman-environment)
   * [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
 * [Make API calls](#make-api-calls)
-    * [A Merchant redirect QR](#a-merchant-redirect-qr)
-    * [One-Time Payments](#one-time-payments)
+  * [A Merchant redirect QR](#a-merchant-redirect-qr)
+  * [One-Time Payments](#one-time-payments)
 * [Questions?](#questions)
 
 <!-- END_TOC -->
