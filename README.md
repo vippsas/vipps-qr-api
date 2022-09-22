@@ -25,7 +25,7 @@ Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/ma
 
 ## Examples
 
-* [Postman guide](vipps-qr-api-postman.md):  Step-by-step guide for using the QR API Postman collection of examples.
+* [Postman guide](vipps-qr-api-quick-start.md):  Step-by-step guide for using the QR API Postman collection of examples.
 
 ## Questions?
 
