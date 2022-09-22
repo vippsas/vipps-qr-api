@@ -58,10 +58,15 @@ Import the collection by following the steps below:
 
 ## Make API calls
 
-Start by sending the request `Get Access Token`. This provides you with access to the API.
+For all of the following, you will start by sending request `Get Access Token`.
+This provides you with access to the API.
 
    The access token is valid for 1 hour in the test environment
    and 24 hours in the production environment.
+
+See the
+[API reference](https://vippsas.github.io/vipps-developer-docs/api/qr)
+for details about the calls.
 
 ### A Merchant redirect QR
 
