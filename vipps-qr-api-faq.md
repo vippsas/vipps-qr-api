@@ -9,7 +9,7 @@ END_METADATA -->
 
 API version: 1.1.1.
 
-Document version 1.2.1.
+Document version 1.2.2.
 
 <!-- START_TOC -->
 
@@ -49,9 +49,7 @@ With current HTTP technology, the user will not notice any delay.
 
 ## What happens with the user after the payment?
 
-Currently, the user will be redirected to a fallback url after the payment is completed. The recommendation is to set `fallBack` parameter in the ecom/recurring initiate body to `https://www.vipps.no/thankyoupage/`.
-
-We are working on a flow where the user will end up on the receipt in the Vipps app after the payment is complete. Work is expected to be done by May 2022.
+In the One-Time Payment QR flow, the user will be sent to the receipt view in the Vipps app once the payment is complete. The Merchant Redirect flow will redirect the user to the URL that you specify.
 
 ## Questions?
 
