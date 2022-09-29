@@ -22,20 +22,24 @@ Document version 1.2.3.
 <!-- START_TOC -->
 
 ## Table of contents
-
-- [Before you begin](#before-you-begin)
-  * [Vipps HTTP headers](#vipps-http-headers)
-  * [Authentication](#authentication)
-  * [QR formats](#qr-formats)
-- [One-Time Payment QR Codes](#one-time-payment-qr-codes)
-  * [Basic flow for One-Time Payment QR](#basic-flow-for-one-time-payment-qr)
-    - [Initiate a payment with the Vipps eCom API](#initiate-a-payment-with-the-vipps-ecom-api)
-    - [Creation of One-Time Payment QR](#creation-of-one-time-payment-qr)
-- [Merchant Redirect QR Codes](#merchant-redirect-qr-codes)
-  * [Basic flow for Merchant Redirect QR](#basic-flow-for-merchant-redirect-qr)
-    - [Creation of Merchant Redirect QR](#creation-of-merchant-redirect-qr)
-    - [Updating and Deletion of QRs](#updating-and-deletion-of-qrs)
-- [Questions](#questions)
+- [Vipps QR API version 1](#vipps-qr-api-version-1)
+  - [Table of contents](#table-of-contents)
+  - [Before you begin](#before-you-begin)
+    - [Vipps HTTP headers](#vipps-http-headers)
+    - [Authentication](#authentication)
+    - [QR formats](#qr-formats)
+      - [Accept Headers](#accept-headers)
+  - [One-Time Payment QR codes](#one-time-payment-qr-codes)
+    - [Basic flow for One-Time Payment QR](#basic-flow-for-one-time-payment-qr)
+      - [Initiate a payment with the Vipps eCom API](#initiate-a-payment-with-the-vipps-ecom-api)
+      - [Creation of One-Time Payment QR](#creation-of-one-time-payment-qr)
+    - [Polling](#polling)
+    - [Body once the QR has been opened by a user:](#body-once-the-qr-has-been-opened-by-a-user)
+  - [Merchant Redirect QR codes](#merchant-redirect-qr-codes)
+    - [Basic flow for Merchant Redirect QR](#basic-flow-for-merchant-redirect-qr)
+      - [Creation of Merchant Redirect QR](#creation-of-merchant-redirect-qr)
+      - [Updating and Deletion of QRs](#updating-and-deletion-of-qrs)
+  - [Questions](#questions)
 
 <!-- END_TOC -->
 
@@ -208,6 +212,31 @@ The response will be similar to this, where the URL in the responseBody will be 
 ```
 
 **Please note:** The `expiresIn` value is in seconds.
+
+### Polling 
+On OTP QR codes, merchants will need to [poll](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#polling-guidelines) to get the result of the payment. In a physical context, we recommend a polling interval of one second. Once a customer has scanned the QR code, it is possible for merchants to show the customer a "waiting/spinner"-screen while they finish the payment. This will feel comforting for the user as they will get feedback that the payment is underway.
+
+Redirect from the QR-image to a "waiting/spinner"-page has to be done by the merchant and does not happen automatically. Merchants must check the status of the QR code scan by polling the `GET:/ecomm/v2/payments/{orderId}/details:` endpoint. Once the QR code has been opened in the app, the `transactionId` field in `transactionLogHistory` will be set (it will not exist before the QR code has been scanned). Once this field is set, you can safely show a "waiting for user" spinning screen on your POS while the user finish the payment.
+
+### Body once the QR has been opened by a user: 
+
+```json
+{
+    "orderId": "acme-shop-123-order123abc",
+    "transactionLogHistory": [
+      {
+        "amount": 20000,
+        "operation": "INITIATE",
+        "operationSuccess": true
+        "timeStamp": "2018-11-14T15:21:04.697Z",
+        "transactionId": "5001420062",
+        "transactionText": "One pair of Vipps socks",
+      }
+    ]
+}
+```
+
+
 
 ## Merchant Redirect QR codes
 
