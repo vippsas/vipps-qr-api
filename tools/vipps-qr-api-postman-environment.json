@@ -23,8 +23,8 @@
 			"enabled": true
 		},
 		{
-			"key": "url",
-			"value": "apitest.vipps.no",
+			"key": "base_url",
+			"value": "https://apitest.vipps.no",
 			"enabled": true
 		},
 		{

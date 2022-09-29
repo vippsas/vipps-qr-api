@@ -92,10 +92,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{url}}/qr/v1/merchant-redirect",
+							"raw": "{{base_url}}/qr/v1/merchant-redirect",
 							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"qr",
@@ -184,10 +184,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{url}}/qr/v1/merchant-redirect/{{qr-id}}",
+							"raw": "{{base_url}}/qr/v1/merchant-redirect/{{qr-id}}",
 							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"qr",
@@ -274,10 +274,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{url}}/qr/v1/merchant-redirect/{{qr-id}}",
+							"raw": "{{base_url}}/qr/v1/merchant-redirect/{{qr-id}}",
 							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"qr",
@@ -355,10 +355,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{url}}/qr/v1/merchant-redirect/{{qr-id}}",
+							"raw": "{{base_url}}/qr/v1/merchant-redirect/{{qr-id}}",
 							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"qr",
@@ -448,10 +448,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{url}}/qr/v1/merchant-redirect",
+							"raw": "{{base_url}}/qr/v1/merchant-redirect",
 							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"qr",
@@ -538,10 +538,10 @@
 							"raw": "{\n  \"merchantInfo\": {\n    \"merchantSerialNumber\": \"{{merchantSerialNumber}}\",\n    \"callbackPrefix\":\"http://www.example.com\",\n    \"fallBack\": \"http://www.example.com\",\n    \"authToken\": \"{{$guid}}\",\n    \"isApp\":false\n  },\n  \"customerInfo\": {\n    \"mobileNumber\": \"12345678\"\n  },\n  \"transaction\": {\n    \"orderId\": \"{{orderId}}\",\n    \"amount\": 100,\n    \"transactionText\": \"Transaction initiated through Postman\",\n    \"skipLandingPage\": false\n}\n}"
 						},
 						"url": {
-							"raw": "https://{{url}}/ecomm/v2/payments/",
+							"raw": "{{base_url}}/ecomm/v2/payments/",
 							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"ecomm",
@@ -613,10 +613,10 @@
 							}
 						},
 						"url": {
-							"raw": "https://{{url}}/qr/v1",
+							"raw": "{{base_url}}/qr/v1",
 							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"{{base_url}}"
 							],
 							"path": [
 								"qr",
@@ -689,10 +689,10 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://{{url}}/accessToken/get",
+					"raw": "{{base_url}}/accessToken/get",
 					"protocol": "https",
 					"host": [
-						"{{url}}"
+						"{{base_url}}"
 					],
 					"path": [
 						"accessToken",
