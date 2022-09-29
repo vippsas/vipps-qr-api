@@ -2,9 +2,7 @@ openapi: 3.0.0
 info:
   title: Vipps QR API
   version: '1.0'
-  description: >-
-    API to generate QR codes for a Vipps payment and Merchant Redirects.
-    See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api/) for more information.
+  description: 'API to generate QR codes for a Vipps payment and Merchant Redirects. See the [API Guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api/) for more information.'
   contact:
     name: Team Payment Experience
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
@@ -287,7 +285,7 @@ components:
           nullable: true
         ttl:
           type: integer
-          description: Optional time-to-live field, given in seconds
+          description: 'Optional time-to-live field, given in seconds'
           example: 600
           minimum: 300
           maximum: 2147483647
@@ -318,7 +316,7 @@ components:
           example: 'https://www.example.com/myProduct'
         expiresIn:
           type: integer
-          description: Time in seconds until expiration. -1 means no expiration (infinite QR code) 
+          description: Time in seconds until expiration. -1 means no expiration (infinite QR code)
           example: '598'
       required:
         - id
@@ -353,7 +351,7 @@ components:
       required: false
       schema:
         type: string
-      description: 'The merchant serial number (MSN) for the sale unit. Partners must always send the Merchant-Serial-Number header, and we recommend that everyone sends it, also when using the merchant''s own API keys. The Merchant-Serial-Number header can be used with all API keys, and can speed up any trouble-shooting of API problems quite a bit.'
+      description: 'The merchant serial number (MSN) for the sale unit. Partners and PSP merchants must always send the Merchant-Serial-Number header, and we recommend that everyone sends it, also when using the merchant''s own API keys. The Merchant-Serial-Number header can be used with all API keys, and can speed up any trouble-shooting of API problems quite a bit.'
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header

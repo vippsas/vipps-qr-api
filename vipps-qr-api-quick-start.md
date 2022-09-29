@@ -15,14 +15,17 @@ If needed, you can update the redirect URL at a later time.
 
 ## Table of Contents
 
-* [Postman](#postman)
-  * [Step 1: Get the Vipps Postman collection and environment](#step-1-get-the-vipps-postman-collection-and-environment)
-  * [Step 2: Import the Vipps Postman files](#step-2-import-the-vipps-postman-files)
-  * [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
-* [Make API calls](#make-api-calls)
-  * [A Merchant redirect QR](#a-merchant-redirect-qr)
-  * [One-Time Payments](#one-time-payments)
-* [Questions?](#questions)
+- [Quick start](#quick-start)
+  - [Table of Contents](#table-of-contents)
+  - [Postman](#postman)
+    - [Prerequisites](#prerequisites)
+    - [Step 1: Get the Vipps Postman collection and environment](#step-1-get-the-vipps-postman-collection-and-environment)
+    - [Step 2: Import the Vipps Postman files](#step-2-import-the-vipps-postman-files)
+    - [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
+  - [Make API calls](#make-api-calls)
+    - [A Merchant redirect QR](#a-merchant-redirect-qr)
+    - [One-Time Payments](#one-time-payments)
+  - [Questions?](#questions)
 
 <!-- END_TOC -->
 
@@ -112,7 +115,7 @@ Under the *One-Time Payment QR* folder:
 
 1. Send request `Initiate Payment`.
 
-   This uses [`POST:/v3/psppayments/init/`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST)
+   This uses [`POST:/ecomm/v2/payments`](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#initiate) or [`POST:/v3/psppayments/init/`](https://github.com/vippsas/vipps-psp-api/blob/master/vipps-psp-api.md#initiate-payment)
    from the [Vipps eComm API](https://github.com/vippsas/vipps-ecom-api).
 
    The `orderId` and `vippsLandingPageUrl` variables are now in the environment of this Postman example

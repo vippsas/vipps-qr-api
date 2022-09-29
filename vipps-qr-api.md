@@ -75,7 +75,7 @@ the headers should be:
 
 | Header | Description | Example value for POS | Example value for webshop | Example value for Vending machines |
 | ------ | ----------- | --------------------- | ------------------------- | ---------------------------------- |
-| `Merchant-Serial-Number`   | The MSN for the sale unit | `123456` | `123456` | `123456` |
+| `Merchant-Serial-Number`   | The MSN for the sale unit. **Required** for PSP and partner merchants | `123456` | `123456` | `123456` |
 | `Vipps-System-Name`        | The name of the ecommerce solution | `acme` | `acme` | `acme` |
 | `Vipps-System-Version`     | The version number of the ecommerce solution | `1.7` | `2.6` | `2.6` |
 | `Vipps-System-Plugin-Name` | The name of the ecommerce plugin | `acme-pos` | `acme-webshop` | `acme-vending` |
