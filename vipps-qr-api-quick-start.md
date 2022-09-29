@@ -53,10 +53,11 @@ Save the following files to your computer:
 1. Click the down arrow, next to the "eye" icon in the top-right corner, and select the environment you have imported.
 2. Click the "eye" icon and, in the dropdown window, click `Edit` in the top-right corner.
 3. Fill in the `Current Value` for the following fields to get started. For the first three keys, go to *Vipps Portal* > *Utvikler* ->  *Test Keys*.
-   * `client-id`
-   * `client-secret`
-   * `merchantSerialNumber`
-   * `Ocp-Apim-Subscription-Key`
+   * `client_id` - Merchant key is required for getting the access token.
+   * `client_secret` - Merchant key is required for getting the access token.
+   * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
+   * `merchantSerialNumber` - Merchant id.
+   * `mobileNumber` - The mobile number for the test app profile you have received or registered.
 
 ## Make API calls
 

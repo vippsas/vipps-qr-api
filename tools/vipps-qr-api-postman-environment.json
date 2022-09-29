@@ -1,6 +1,6 @@
 {
 	"id": "63dd0914-1f5f-4766-9a41-e09bd8f0406a",
-	"name": "vipps-qr-api-postman-environment",
+	"name": "Vipps QR API Postman Environment",
 	"values": [
 		{
 			"key": "client_id",
@@ -20,6 +20,11 @@
 		{
 			"key": "Ocp-Apim-Subscription-Key",
 			"value": "<Go To Vipps Portal->Select the Developer tab->Select Test or Production Keys->Select 'Show keys'->copy the Vipps-Subscription-Key>",
+			"enabled": true
+		},
+		{
+			"key": "mobileNumber",
+			"value": "<Input the mobile number for the test app profile you have received or registered>",
 			"enabled": true
 		},
 		{

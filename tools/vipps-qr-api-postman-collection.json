@@ -535,7 +535,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"merchantInfo\": {\n    \"merchantSerialNumber\": \"{{merchantSerialNumber}}\",\n    \"callbackPrefix\":\"http://www.example.com\",\n    \"fallBack\": \"http://www.example.com\",\n    \"authToken\": \"{{$guid}}\",\n    \"isApp\":false\n  },\n  \"customerInfo\": {\n    \"mobileNumber\": \"12345678\"\n  },\n  \"transaction\": {\n    \"orderId\": \"{{orderId}}\",\n    \"amount\": 100,\n    \"transactionText\": \"Transaction initiated through Postman\",\n    \"skipLandingPage\": false\n}\n}"
+							"raw": "{\n  \"merchantInfo\": {\n    \"merchantSerialNumber\": \"{{merchantSerialNumber}}\",\n    \"callbackPrefix\":\"http://www.example.com\",\n    \"fallBack\": \"http://www.example.com\",\n    \"authToken\": \"{{$guid}}\",\n    \"isApp\":false\n  },\n  \"customerInfo\": {\n    \"mobileNumber\": \"{{mobileNumber}}\"\n  },\n  \"transaction\": {\n    \"orderId\": \"{{orderId}}\",\n    \"amount\": 100,\n    \"transactionText\": \"Transaction initiated through Postman\",\n    \"skipLandingPage\": false\n}\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/ecomm/v2/payments/",
