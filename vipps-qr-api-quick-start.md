@@ -36,7 +36,7 @@ If needed, you can update the redirect URL at a later time.
 
 <!-- END_TOC -->
 
-Document version 1.1.0.
+Document version 1.1.1.
 
 ## Postman
 
@@ -51,7 +51,7 @@ for information about getting your test environment set up.
 Save the following files to your computer:
 
 * [Vipps QR API Postman collection](tools/vipps-qr-api-postman-collection.json)
-* [Vipps API Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
+* [Vipps API Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Vipps Postman files
 
