@@ -7,6 +7,13 @@ END_METADATA -->
 
 # Vipps QR API v1 FAQ
 
+<!-- START_COMMENT -->
+
+ℹ️ Please use the new documentation:
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+
+<!-- END_COMMENT -->
+
 API version: 1.1.1.
 
 Document version 1.2.2.

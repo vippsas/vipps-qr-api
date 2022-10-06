@@ -7,6 +7,13 @@ END_METADATA -->
 
 # Vipps QR API version 1
 
+<!-- START_COMMENT -->
+
+ℹ️ Please use the new documentation:
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+
+<!-- END_COMMENT -->
+
 The Vipps QR API provides you with tools for generating these types of QR codes:
 
 - Merchant redirect - Generate QRs that redirect the user to your website.
@@ -213,12 +220,12 @@ The response will be similar to this, where the URL in the responseBody will be 
 
 **Please note:** The `expiresIn` value is in seconds.
 
-### Polling 
+### Polling
 On OTP QR codes, merchants will need to [poll](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#polling-guidelines) to get the result of the payment. In a physical context, we recommend a polling interval of one second. Once a customer has scanned the QR code, it is possible for merchants to show the customer a "waiting/spinner"-screen while they finish the payment. This will feel comforting for the user as they will get feedback that the payment is underway.
 
 Redirect from the QR-image to a "waiting/spinner"-page has to be done by the merchant and does not happen automatically. Merchants must check the status of the QR code scan by polling the `GET:/ecomm/v2/payments/{orderId}/details:` endpoint. Once the QR code has been opened in the app, the `transactionId` field in `transactionLogHistory` will be set (it will not exist before the QR code has been scanned). Once this field is set, you can safely show a "waiting for user" spinning screen on your POS while the user finish the payment.
 
-### Body once the QR has been opened by a user: 
+### Body once the QR has been opened by a user:
 
 ```json
 {
