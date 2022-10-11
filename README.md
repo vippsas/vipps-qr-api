@@ -19,7 +19,9 @@ END_METADATA -->
 
 ## Getting started
 
-Review the [Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md) pages for information about API keys, product activation, contact information, contribution guidelines, etc.
+See
+[Getting Started](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md)
+for information about API keys, product activation, how to make API calls, etc.
 
 ## QR API
 
