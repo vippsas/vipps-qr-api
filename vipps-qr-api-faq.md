@@ -63,6 +63,6 @@ In the One-Time Payment QR flow, the user will be sent to the receipt view in th
 We're always happy to help with code or other questions you might have!
 Please create an [issue](https://github.com/vippsas/vipps-qr-api/issues),
 a [pull request](https://github.com/vippsas/vipps-qr-api/pulls),
-or [contact us](https://github.com/vippsas/vipps-developers/blob/master/contact.md).
+or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
 
-Sign up for our [Technical newsletter for developers](https://github.com/vippsas/vipps-developers/tree/master/newsletters).
+Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
