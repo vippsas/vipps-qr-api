@@ -144,9 +144,8 @@ The request to the ecom initiate endpoint
 ```
 
 Be aware that the URL is only valid for a short period of time. See the
-[eCom API guide: Timeouts](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#timeouts)
+[Timeouts](https://github.com/vippsas/vipps-developers/blob/master/common-topics/timeouts.md) in Common topics
 for details.
-
 
 #### Creation of One-Time Payment QR
 

@@ -16,23 +16,23 @@ END_METADATA -->
 
 API version: 1.1.1.
 
-Document version 1.2.2.
+Document version 1.2.3.
 
 <!-- START_TOC -->
 
 ## Table of Contents
 
-* [See the Vipps eCom API FAQ](#see-the-vipps-ecom-api-faq)
+* [See the Vipps FAQs](#see-the-vipps-faqs)
 * [Can we make our own QRs for payment and redirects?](#can-we-make-our-own-qrs-for-payment-and-redirects)
 * [Why are there extra API calls to retrieve the QR code?](#why-are-there-extra-api-calls-to-retrieve-the-qr-code)
 * [Questions?](#questions)
 
 <!-- END_TOC -->
 
-## See the Vipps eCom API FAQ
+## See the Vipps FAQs
 
 It contains answers to all(?) common questions about Vipps payments:
-[Vipps eCom API FAQ](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api-faq.md).
+[Vipps FAQ](https://github.com/vippsas/vipps-developers/tree/master/faqs).
 
 ## Can we make our own QRs for payment and redirects?
 
