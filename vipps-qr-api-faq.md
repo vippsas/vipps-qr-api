@@ -14,9 +14,18 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
+Here are the QR API FAQs.
+See the
+[Vipps QR API guide](vipps-qr-api.md)
+for all the details.
+
+For more common Vipps questions, see:
+
+* [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs/)
+
 API version: 1.1.1.
 
-Document version 1.2.3.
+Document version 1.2.4.
 
 <!-- START_TOC -->
 
