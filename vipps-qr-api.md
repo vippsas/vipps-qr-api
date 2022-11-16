@@ -24,11 +24,12 @@ Both types of QRs share the same authentication and overall design, but have sli
 
 API version: 1.2.0.
 
-Document version 1.3.0.
+Document version 1.3.1.
 
 <!-- START_TOC -->
 
 ## Table of contents
+
 - [Vipps QR API version 1](#vipps-qr-api-version-1)
   - [Table of contents](#table-of-contents)
   - [Before you begin](#before-you-begin)
@@ -54,7 +55,7 @@ Document version 1.3.0.
 
 This document assumes you have signed up as a organisation with Vipps and have
 retrieved your API credentials for
-[the Vipps test environment](https://github.com/vippsas/vipps-developers/blob/master/developer-resources/test-environment.md)
+[the Vipps test environment](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/developer-resources/test-environment)
 from
 [portal.vipps.no](https://portal.vipps.no).
 
@@ -62,14 +63,14 @@ from
 
 We recommend using the standard Vipps HTTP headers for all requests.
 
-See [Vipps HTTP headers](https://github.com/vippsas/vipps-developers/blob/master/common-topics/http-headers.md)
+See [Vipps HTTP headers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers)
 in the Getting started guide, for details.
 
 ### Authentication
 
 All Vipps API calls are authenticated with an access token and an API subscription key.
 See
-[Get an access token](https://github.com/vippsas/vipps-developers/blob/master/vipps-getting-started.md#get-an-access-token)
+[Get an access token](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started#get-an-access-token)
 in the Getting started guide, for details.
 
 ### QR formats
@@ -130,7 +131,7 @@ See the [quick start guide](vipps-qr-api-quick-start.md) for examples of generat
 #### Initiate a payment with the Vipps eCom API
 
 Before creating the QR code you must initiate a payment with the Vipps eCom API as is described in depth in the
-[eCom API guide](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#initiate-payment-flow-phone-and-browser).
+[eCom API guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/vipps-ecom-api#initiate-payment-flow-phone-and-browser).
 
 The request to the ecom initiate endpoint
 [`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST)
@@ -144,7 +145,7 @@ The request to the ecom initiate endpoint
 ```
 
 Be aware that the URL is only valid for a short period of time. See the
-[Timeouts](https://github.com/vippsas/vipps-developers/blob/master/common-topics/timeouts.md) in Common topics
+[Timeouts](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/timeouts) in Common topics
 for details.
 
 #### Creation of One-Time Payment QR
@@ -190,7 +191,7 @@ The response will be similar to this, where the URL in the responseBody will be 
 
 ### Polling
 
-On OTP QR codes, merchants will need to [poll](https://github.com/vippsas/vipps-developers/blob/master/common-topics/polling-guidelines.md) to get the result of the payment.
+On OTP QR codes, merchants will need to [poll](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/polling-guidelines) to get the result of the payment.
 
 In a physical context, we recommend a polling interval of one second. Once a customer has scanned the QR code, it is possible for merchants to show the customer a "waiting/spinner"-screen while they finish the payment. This will feel comforting for the user as they will get feedback that the payment is underway.
 
@@ -305,8 +306,8 @@ Tip: If you want the same QR in different formats, perform `GET` calls on the sa
 ## Questions
 
 We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-ecom-api/issues),
-a [pull request](https://github.com/vippsas/vipps-ecom-api/pulls),
+Please create an [issue](https://github.com/vippsas/vipps-qr-api/issues),
+a [pull request](https://github.com/vippsas/vipps-qr-api/pulls),
 or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
 
 Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
