@@ -36,14 +36,14 @@ If needed, you can update the redirect URL at a later time.
 
 <!-- END_TOC -->
 
-Document version 1.1.1.
+Document version 1.1.2.
 
 ## Postman
 
 ### Prerequisites
 
 Review
-[Vipps quick start guides](https://github.com/vippsas/vipps-developers/blob/master/developer-resources/quick-start-guides.md)
+[Vipps quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/developer-resources/quick-start-guides)
 for information about getting your test environment set up.
 
 ### Step 1: Get the Vipps Postman collection and environment
@@ -124,8 +124,8 @@ Under the *One-Time Payment QR* folder:
 
 1. Send request `Initiate Payment`.
 
-   This uses [`POST:/ecomm/v2/payments`](https://github.com/vippsas/vipps-ecom-api/blob/master/vipps-ecom-api.md#initiate) or [`POST:/v3/psppayments/init/`](https://github.com/vippsas/vipps-psp-api/blob/master/vipps-psp-api.md#initiate-payment)
-   from the [Vipps eComm API](https://github.com/vippsas/vipps-ecom-api).
+   This uses [`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/vipps-ecom-api#initiate) or [`POST:/v3/psppayments/init/`](https://vippsas.github.io/vipps-developer-docs/docs/APIs/psp-api/vipps-psp-api#initiate-payment)
+   from the [Vipps eComm API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/).
 
    The `orderId` and `vippsLandingPageUrl` variables are now in the environment of this Postman example
 
