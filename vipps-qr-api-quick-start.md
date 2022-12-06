@@ -43,7 +43,7 @@ Document version 1.1.2.
 ### Prerequisites
 
 Review
-[Vipps quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/developer-resources/quick-start-guides)
+[Vipps quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/quick-start-guides)
 for information about getting your test environment set up.
 
 ### Step 1: Get the Vipps Postman collection and environment
