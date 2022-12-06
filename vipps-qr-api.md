@@ -158,7 +158,7 @@ The request to the eCom initiate endpoint
 }
 ```
 
-Be aware that the URL is only valid for a5 minutes. See
+Be aware that the URL is only valid for 5 minutes. See
 [Timeouts](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/timeouts)
 for details.
 
