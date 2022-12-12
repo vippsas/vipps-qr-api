@@ -385,7 +385,7 @@ components:
       in: header
       required: false
       schema:
-        type: integer
+        type: string
         minimum: 100
         maximum: 2000
       description: 'Eks: 200. Then 200x200 px is set at dimension for Qr'
