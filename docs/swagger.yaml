@@ -68,6 +68,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Size'
       requestBody:
         content:
           application/json:
@@ -130,6 +131,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Size'
     delete:
       summary: Delete merchant redirect QR
       operationId: DeleteMerchantRedirectQr
@@ -147,6 +149,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Size'
     parameters:
       - schema:
           type: string
