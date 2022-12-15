@@ -40,6 +40,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Size'
       tags:
         - One time payment QR
   /v1/merchant-redirect:
@@ -67,6 +68,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Size'
       requestBody:
         content:
           application/json:
@@ -96,6 +98,7 @@ paths:
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Size'
   '/v1/merchant-redirect/{id}':
     put:
       summary: Update redirectUrl for merchant redirect QR
@@ -128,6 +131,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Size'
     delete:
       summary: Delete merchant redirect QR
       operationId: DeleteMerchantRedirectQr
@@ -145,6 +149,7 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Size'
     parameters:
       - schema:
           type: string
@@ -174,11 +179,7 @@ paths:
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
-        - schema:
-            type: string
-          in: header
-          name: Size
-          description: 'Eks: 200. Then 200x200 px is set at dimension for Qr'
+        - $ref: '#/components/parameters/Size'
 components:
   schemas:
     OneTimePaymentQrRequest:
@@ -378,6 +379,15 @@ components:
           - image/svg+xml
           - text/targetUrl
       description: 'Requested image format. Supported values: {image/*,image/png, image/svg+xml, text/targetUrl}'
+    Size:
+      name: Size
+      in: header
+      required: false
+      schema:
+        type: integer
+        minimum: 100
+        maximum: 2000
+      description: 'Eks: 200. Then 200x200 px is set at dimension for Qr'
   responses:
     415UnsupportedMediaType:
       description: Unsupported Media Type
