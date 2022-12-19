@@ -20,7 +20,7 @@ The Vipps QR API provides you with tools for generating these types of QR codes:
 - One-time payment - Generate QR codes that open the user's Vipps app on their phone and provides the payment suggestion for approval.
   This allows you to initiate a Vipps payment without needing to ask for the customer's telephone number.
 
-Both types of QR codes share the same authentication and overall design, but have slight difference in behaviour and how they are made.
+Both types of QR codes share the same authentication and overall design, but have slight difference in behavior and how they are made.
 
 API version: 1.2.0.
 
