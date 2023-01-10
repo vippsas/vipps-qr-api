@@ -17,6 +17,9 @@ END_METADATA -->
 
 <!-- END_COMMENT -->
 
+The QR API can generate QR codes that redirect the user to a website or to the Vipps app on their phone where the payment suggestion is presented for approval.
+
+
 ## Getting started
 
 See
