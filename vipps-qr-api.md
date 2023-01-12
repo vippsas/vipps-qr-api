@@ -5,28 +5,22 @@ sidebar_position: 30
 ---
 END_METADATA -->
 
-# Vipps QR API version 1
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
-
-<!-- END_COMMENT -->
+# Vipps QR API
 
 The Vipps QR API provides you with tools for generating these types of QR codes:
 
-- Merchant redirect - Generate QR codes that redirect the user to your website.
-- One-time payment - Generate QR codes that open the user's Vipps app on their phone and provides the payment suggestion for approval.
+* Merchant redirect - Generate QR codes that redirect the user to your website.
+* One-time payment - Generate QR codes that open the user's Vipps app on their phone and provides the payment suggestion for approval.
   This allows you to initiate a Vipps payment without needing to ask for the customer's telephone number.
 
 Both types of QR codes share the same authentication and overall design, but have slight difference in behavior and how they are made.
 
 API version: 1.2.0.
 
-Document version 1.3.2.
+<!-- START_COMMENT -->
 
-<!-- START_TOC -->
+ℹ️ Please use the new documentation:
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
 
 ## Table of contents
 
@@ -47,7 +41,7 @@ Document version 1.3.2.
     * [Updating and Deletion of QR codes](#updating-and-deletion-of-qr-codes)
 * [Questions](#questions)
 
-<!-- END_TOC -->
+<!-- END_COMMENT -->
 
 ## Before you begin
 
