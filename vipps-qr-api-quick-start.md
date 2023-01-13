@@ -7,18 +7,14 @@ END_METADATA -->
 
 # Quick start
 
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
-
-<!-- END_COMMENT -->
-
 Use the QR API to generate QR codes that redirect the user back to a URL.
 You can get a list of all QR codes or delete a QR.
 If needed, you can update the redirect URL at a later time.
 
-<!-- START_TOC -->
+<!-- START_COMMENT -->
+
+ℹ️ Please use the new documentation:
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
 
 ## Table of Contents
 
@@ -34,9 +30,7 @@ If needed, you can update the redirect URL at a later time.
     - [One-Time Payments](#one-time-payments)
   - [Questions?](#questions)
 
-<!-- END_TOC -->
-
-Document version 1.1.2.
+<!-- END_COMMENT -->
 
 ## Postman
 

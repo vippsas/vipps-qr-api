@@ -6,17 +6,9 @@ pagination_next: null
 ---
 END_METADATA -->
 
-# Vipps QR API v1 FAQ
+# Vipps QR API FAQ
 
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
-
-<!-- END_COMMENT -->
-
-Here are the QR API FAQs.
-See the
+Here are the QR API FAQs. See the
 [Vipps QR API guide](vipps-qr-api.md)
 for all the details.
 
@@ -26,9 +18,10 @@ For more common Vipps questions, see:
 
 API version: 1.1.1.
 
-Document version 1.2.5.
+<!-- START_COMMENT -->
 
-<!-- START_TOC -->
+ℹ️ Please use the new documentation:
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
 
 ## Table of Contents
 
@@ -37,7 +30,7 @@ Document version 1.2.5.
 * [Why are there extra API calls to retrieve the QR code?](#why-are-there-extra-api-calls-to-retrieve-the-qr-code)
 * [Questions?](#questions)
 
-<!-- END_TOC -->
+<!-- END_COMMENT -->
 
 ## See the Vipps FAQs
 
