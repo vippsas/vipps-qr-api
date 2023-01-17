@@ -119,7 +119,7 @@ Under the *One-Time Payment QR* folder:
 1. Send request `Initiate Payment`.
 
    This uses [`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/vipps-ecom-api#initiate) or [`POST:/v3/psppayments/init/`](https://vippsas.github.io/vipps-developer-docs/docs/APIs/psp-api/vipps-psp-api#initiate-payment)
-   from the [Vipps eComm API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/).
+   from the [Vipps eComm API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api).
 
    The `orderId` and `vippsLandingPageUrl` variables are now in the environment of this Postman example
 
