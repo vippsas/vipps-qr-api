@@ -39,7 +39,6 @@ API version: 1.2.0.
   * [Basic flow for Merchant Redirect QR](#basic-flow-for-merchant-redirect-qr)
     * [Creation of Merchant Redirect QR](#creation-of-merchant-redirect-qr)
     * [Updating and Deletion of QR codes](#updating-and-deletion-of-qr-codes)
-* [Questions](#questions)
 
 <!-- END_COMMENT -->
 
@@ -297,7 +296,6 @@ Will return a response like this:
 The `id` parameter is required, and is defined by the merchant. You can later use this id to update the merchant redirect QR codes
 
 
-
 #### Updating and Deletion of QR codes
 
 Updating QR codes is a very similar procedure to creating them. When a QR code
@@ -330,13 +328,3 @@ does what one might expect, it deletes the QR. Once deleted, merchants can gener
 In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribute in the original `POST`-request. This attribute sets how many seconds the QR will live, before it is deleted permanently.
 
 Tip: If you want the same QR in different formats, perform `GET` calls on the same `id` with different `accept` headers and test what works best.
-
-
-## Questions
-
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-qr-api/issues),
-a [pull request](https://github.com/vippsas/vipps-qr-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
-
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).

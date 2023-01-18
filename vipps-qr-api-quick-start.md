@@ -28,7 +28,6 @@ If needed, you can update the redirect URL at a later time.
   - [Make API calls](#make-api-calls)
     - [A Merchant redirect QR](#a-merchant-redirect-qr)
     - [One-Time Payments](#one-time-payments)
-  - [Questions?](#questions)
 
 <!-- END_COMMENT -->
 
@@ -119,7 +118,7 @@ Under the *One-Time Payment QR* folder:
 1. Send request `Initiate Payment`.
 
    This uses [`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/vipps-ecom-api#initiate) or [`POST:/v3/psppayments/init/`](https://vippsas.github.io/vipps-developer-docs/docs/APIs/psp-api/vipps-psp-api#initiate-payment)
-   from the [Vipps eComm API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/).
+   from the [Vipps eComm API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api).
 
    The `orderId` and `vippsLandingPageUrl` variables are now in the environment of this Postman example
 
@@ -127,12 +126,3 @@ Under the *One-Time Payment QR* folder:
  [`POST:/qr/v1`](https://vippsas.github.io/vipps-developer-docs/api/qr/#tag/One-time-payment-QR/operation/generateOtpQr) to provide a url that can be used to show a QR code.
 
    Ctrl+click the link to see the QR code. Scanning the QR should open the test app on your phone and allow you to complete the one-time purchase.
-
-## Questions?
-
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-qr-api/issues),
-a [pull request](https://github.com/vippsas/vipps-qr-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
-
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).

@@ -31,16 +31,3 @@ for information about API keys, product activation, how to make API calls, etc.
 * [API Quick Start](vipps-qr-api-quick-start.md): Quick Start.
 * [API Guide](vipps-qr-api.md): Developer guide for the Vipps QR API.
 * [API Reference](https://vippsas.github.io/vipps-developer-docs/api/qr): QR API Reference Specifications.
-
-## Questions?
-
-For more information, see:
-
-* [QR API Frequently Asked Questions](vipps-qr-api-faq.md)
-
-We're always happy to help with code or other questions you might have!
-Please create an [issue](https://github.com/vippsas/vipps-qr-api/issues),
-a [pull request](https://github.com/vippsas/vipps-qr-api/pulls),
-or [contact us](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/contact).
-
-Sign up for our [Technical newsletter for developers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/newsletters).
