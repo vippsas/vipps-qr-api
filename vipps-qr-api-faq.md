@@ -21,14 +21,13 @@ API version: 1.1.1.
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
 
 ## Table of Contents
 
 * [See the Vipps FAQs](#see-the-vipps-faqs)
 * [Can we make our own QRs for payment and redirects?](#can-we-make-our-own-qrs-for-payment-and-redirects)
 * [Why are there extra API calls to retrieve the QR code?](#why-are-there-extra-api-calls-to-retrieve-the-qr-code)
-* [Questions?](#questions)
 
 <!-- END_COMMENT -->
 

@@ -1,16 +1,16 @@
 <!-- START_METADATA
 ---
-title: How It Works
+title: How it works with merchant redirect
 sidebar_position: 10
 ---
 END_METADATA -->
 
-# Merchant Redirect QR - How it works
+# How it works with merchant redirect
 
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
 
 <!-- END_COMMENT -->
 
