@@ -5,7 +5,7 @@ sidebar_position: 30
 ---
 END_METADATA -->
 
-# Vipps QR API
+# API guide
 
 The Vipps QR API provides you with tools for generating these types of QR codes:
 
@@ -20,7 +20,7 @@ API version: 1.2.0.
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/).
+[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
 
 ## Table of contents
 
@@ -115,7 +115,7 @@ to be generated for each unique payment.
 The QR code, when scanned from either the native camera or the Vipps app, will
 automatically open an eCom or Recurring payment in the Vipps app, where the
 payment can be completed. See a detailed example of
-[how it works](vipps-qr-one-time-payment-qpi-howitworks.md).
+[how it works](vipps-qr-one-time-payment-api-howitworks.md).
 
 Every Vipps payment needs a unique `orderId`. See
 [orderId recommendations](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid).
