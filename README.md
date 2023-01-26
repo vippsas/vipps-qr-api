@@ -8,7 +8,7 @@ pagination_prev: null
 ---
 END_METADATA -->
 
-# QR API
+# Vipps QR API
 
 <!-- START_COMMENT -->
 
@@ -19,7 +19,7 @@ END_METADATA -->
 
 The QR API can generate QR codes that redirect the user to a website or to the Vipps app on their phone where the payment suggestion is presented for approval.
 
-## Next steps
+## Getting started
 
 See the
 [Vipps Getting started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
