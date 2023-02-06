@@ -1,6 +1,6 @@
 <!-- START_METADATA
 ---
-title: API Guide
+title: API guide
 sidebar_position: 30
 ---
 END_METADATA -->
@@ -22,24 +22,6 @@ API version: 1.2.0.
 ℹ️ Please use the new documentation:
 [Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
 
-## Table of contents
-
-* [Before you begin](#before-you-begin)
-  * [Vipps HTTP headers](#vipps-http-headers)
-  * [Authentication](#authentication)
-  * [QR code formats](#qr-code-formats)
-    * [Accept Headers](#accept-headers)
-* [One-Time Payment QR codes](#one-time-payment-qr-codes)
-  * [Basic flow for One-Time Payment QR code](#basic-flow-for-one-time-payment-qr-code)
-    * [Initiate a payment with the Vipps eCom API](#initiate-a-payment-with-the-vipps-ecom-api)
-    * [Creation of One-Time Payment QR code](#creation-of-one-time-payment-qr-code)
-  * [Polling](#polling)
-  * [Body once the QR has been opened by a user:](#body-once-the-qr-has-been-opened-by-a-user)
-* [Merchant Redirect QR codes](#merchant-redirect-qr-codes)
-  * [Basic flow for Merchant Redirect QR](#basic-flow-for-merchant-redirect-qr)
-    * [Creation of Merchant Redirect QR](#creation-of-merchant-redirect-qr)
-    * [Updating and Deletion of QR codes](#updating-and-deletion-of-qr-codes)
-
 <!-- END_COMMENT -->
 
 ## Before you begin
@@ -60,8 +42,7 @@ for all requests.
 
 All Vipps API calls are authenticated with an access token and an API subscription key.
 See
-[Get an access token](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started#get-an-access-token)
-in the Getting started guide, for details.
+[Get an access token](https://vippsas.github.io/vipps-developer-docs/docs/APIs/access-token-api#get-an-access-token), for details.
 
 ### QR code formats
 
