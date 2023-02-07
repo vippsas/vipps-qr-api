@@ -123,6 +123,6 @@ Under the *One-Time Payment QR* folder:
    The `orderId` and `vippsLandingPageUrl` variables are now in the environment of this Postman example
 
 1. Send request `Generate OTP QR`. This supplies `vippsLandingPageUrl` to
- [`POST:/qr/v1`](https://vippsas.github.io/vipps-developer-docs/api/qr/#tag/One-time-payment-QR/operation/generateOtpQr) to provide a url that can be used to show a QR code.
+ [`POST:/qr/v1`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/One-time-payment-QR/operation/generateOtpQr) to provide a url that can be used to show a QR code.
 
    Ctrl+click the link to see the QR code. Scanning the QR should open the test app on your phone and allow you to complete the one-time purchase.
