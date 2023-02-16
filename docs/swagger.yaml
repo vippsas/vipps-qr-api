@@ -7,10 +7,12 @@ info:
     name: Team Payment Experience
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
 servers:
-  - url: 'https://api.vipps.no/qr'
-    description: Vipps QR api
+  - url: https://api.vipps.no
+    description: Production environment (uses the production API keys, the official app and live data)
+  - url: https://apitest.vipps.no
+    description: Test environment (uses the test API keys, the test app and test data)
 paths:
-  /v1:
+  /qr/v1:
     parameters: []
     post:
       summary: Create One Time Payment QR
@@ -43,7 +45,7 @@ paths:
         - $ref: '#/components/parameters/Size'
       tags:
         - One time payment QR
-  /v1/merchant-redirect:
+  /qr/v1/merchant-redirect:
     post:
       summary: Create merchant redirect QR
       operationId: CreateMerchantRedirectQr
@@ -99,7 +101,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  '/v1/merchant-redirect/{id}':
+  '/qr/v1/merchant-redirect/{id}':
     put:
       summary: Update redirectUrl for merchant redirect QR
       operationId: UpdateMerchantRedirectUrl
