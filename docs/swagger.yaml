@@ -180,6 +180,56 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
+  /v1/merchant-callback:
+    get:
+      summary: Get callback QR codes
+      operationId: get-v1-merchant-callback
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantCallbackGetResponse'
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      description: Returns the list of QR codes created by the Merchant-Serial-Number. The result can be filtered by a merchantQrId.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+        - schema:
+            type: string
+          in: query
+          name: merchantQrId
+          description: The merchant defined identifier for a QR code.
+    post:
+      summary: Create callback QR code
+      operationId: post-v1-merchant-callback
+      description: 'Creates or updates a QR code that encapsulates the provided merchantSerialNumber and merchantQrId. When a Vipps user scans the QR code, a QRScannedEvent will be raised that includes the merchantSerialNumber and the merchantQrId. The merchant needs to register a webhook for this event, so they will get a callback whenever the QR code is scanned by a Vipps user.'
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+        '500':
+          description: Internal Server Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantCallbackPostRequest'
+        description: ''
 components:
   schemas:
     OneTimePaymentQrRequest:
@@ -318,7 +368,7 @@ components:
         expiresIn:
           type: integer
           description: Time in seconds until expiration. -1 means no expiration (infinite QR code)
-          example: '598'
+          example: 598
       required:
         - id
         - url
@@ -341,6 +391,75 @@ components:
           example: 'https://example.com/myProduct'
       required:
         - redirectUrl
+    MerchantCallbackPostRequest:
+      title: MerchantCallbackPostRequest
+      x-stoplight:
+        id: bs090aq43jw2r
+      type: object
+      x-examples:
+        Example 1:
+          merchantQrId: ExampleStoreQR1
+          name: Example store - Kasse 1
+      properties:
+        merchantQrId:
+          type: string
+          description: The merchant defined identifier for a QR code. It will be provided in the callback to the merchant when the QR code has been scanned.
+        imageFormat:
+          $ref: '#/components/schemas/ImageFormat'
+        qrSizeInPx:
+          type: integer
+          description: Size of QR code in pixels. Default is 200 which gives a QR code in 200x200 px. It is only possible to choose size when setting imageFormat to PNG
+        label:
+          type: string
+          description: 'Give the QR code a label for easier identification when printed. For example ''Kasse 1'', ''bakery'' or ''kiosk''. This will not be visible in the acutal QR code but will make it easier to identify the QR code and hence avoid mistakes of choosing a wrong location to stick it.'
+      required:
+        - merchantQrId
+        - imageFormat
+    MerchantCallbackGetResponse:
+      title: MerchantCallbackGetResponse
+      x-stoplight:
+        id: 5276r6f7g3o8w
+      type: array
+      items:
+        $ref: '#/components/schemas/MerchantCallbackQr'
+      x-examples:
+        Example 1:
+          - merchantQrId: ExampleStoreQR1
+            name: Example store - Kasse 1
+            url: 'https://vipps.no/qrs/exampleUrlToQr'
+          - merchantQrId: ExampleStoreQR2
+            name: Example store - Kiosk
+            url: 'https://vipps.no/qrs/exampleUrlToQr2'
+      description: ''
+    MerchantCallbackQr:
+      title: MerchantCallbackQr
+      x-stoplight:
+        id: a8x4nog6fas22
+      type: object
+      description: 'A representation of a QR code. It contains all the three properties that was provided when creating the QR code, in addition to a link pointing to the actual QR code itself.'
+      properties:
+        merchantSerialNumber:
+          type: string
+          description: The merchant serial number (MSN) for the sale unit
+        merchantQrId:
+          type: string
+          description: The merchant defined identifier for a QR code. It will be provided in the callback to the merchant when the QR code has been scanned.
+        label:
+          type: string
+          description: 'A merchant chosen label for easier identification when printed. For example ''Kasse 1'', ''bakery'' or ''kiosk''. This is not visible on the QR code itself, but only provided for convenience.'
+        uri:
+          type: string
+          description: The link to the actual QR code.
+          format: uri
+          example: 'https://qr.vipps.no/generate/qr.png?...'
+    ImageFormat:
+      title: ImageFormat
+      type: string
+      enum:
+        - PNG
+        - SVG
+      description: Valid image formats to represent QR codes.
+      x-examples: {}
   securitySchemes:
     BearerToken:
       type: http
@@ -353,6 +472,13 @@ components:
       schema:
         type: string
       description: 'The merchant serial number (MSN) for the sale unit. Partners and PSP merchants must always send the Merchant-Serial-Number header, and we recommend that everyone sends it, also when using the merchant''s own API keys. The Merchant-Serial-Number header can be used with all API keys, and can speed up any trouble-shooting of API problems quite a bit.'
+    Merchant-Serial-Number-Required:
+      name: Merchant-Serial-Number
+      in: header
+      required: true
+      schema:
+        type: string
+      description: The merchant serial number (MSN) for the sale unit.
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
