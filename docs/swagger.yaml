@@ -207,10 +207,15 @@ paths:
           in: query
           name: merchantQrId
           description: The merchant defined identifier for a QR code.
+      tags:
+        - Merchant callback QR
     post:
       summary: Create callback QR code
       operationId: post-v1-merchant-callback
-      description: 'Creates or updates a QR code that encapsulates the provided merchantSerialNumber and merchantQrId. When a Vipps user scans the QR code, a QRScannedEvent will be raised that includes the merchantSerialNumber and the merchantQrId. The merchant needs to register a webhook for this event, so they will get a callback whenever the QR code is scanned by a Vipps user.'
+      description: |-
+        Creates a QR code that encapsulates the provided merchantSerialNumber and merchantQrId. See [link to webhooks API] to create a webhook that will send callbacks when this QR code is scanned by a Vipps user.
+
+        If the endpoint is called with the same merchantQrId twice or more, it is the last call that defines the imageFormat, size and label. The actual QR code will not be updated on consequtive calls.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
@@ -230,6 +235,8 @@ paths:
             schema:
               $ref: '#/components/schemas/MerchantCallbackPostRequest'
         description: ''
+      tags:
+        - Merchant callback QR
 components:
   schemas:
     OneTimePaymentQrRequest:
@@ -399,7 +406,8 @@ components:
       x-examples:
         Example 1:
           merchantQrId: ExampleStoreQR1
-          name: Example store - Kasse 1
+          imageFormat: SVG
+          label: Example store - Kasse 1
       properties:
         merchantQrId:
           type: string
@@ -456,8 +464,8 @@ components:
       title: ImageFormat
       type: string
       enum:
-        - PNG
         - SVG
+        - PNG
       description: Valid image formats to represent QR codes.
       x-examples: {}
   securitySchemes:
