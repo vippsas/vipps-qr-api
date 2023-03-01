@@ -354,7 +354,7 @@ components:
       required: false
       schema:
         type: string
-      description: 'The merchant serial number (MSN) for the sale unit. Partners and PSP merchants must always send the Merchant-Serial-Number header, and we recommend that everyone sends it, also when using the merchant''s own API keys. The Merchant-Serial-Number header can be used with all API keys, and can speed up any trouble-shooting of API problems quite a bit.'
+      description: 'The merchant serial number (MSN) for the sales unit. Partners and PSP merchants must always send the Merchant-Serial-Number header, and we recommend that everyone sends it, also when using the merchant''s own API keys. The Merchant-Serial-Number header can be used with all API keys, and can speed up any trouble-shooting of API problems quite a bit.'
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
