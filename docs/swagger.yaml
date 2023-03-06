@@ -193,6 +193,13 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/MerchantCallbackQr'
+              examples:
+                Example 1:
+                  value:
+                    - merchantSerialNumber: '12345'
+                      merchantQrId: 27072f82-c4b6-49cd-9838-10f21d87496e
+                      location: Kasse 1
+                      url: 'https://qr.vipps.no/generate/qr.png?...'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -217,6 +224,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MerchantCallbackQr'
+              examples:
+                Example 1:
+                  value:
+                    merchantSerialNumber: '12345'
+                    merchantQrId: 27072f82-c4b6-49cd-9838-10f21d87496e
+                    location: Kasse 1
+                    url: 'https://qr.vipps.no/generate/qr.png?...'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -261,6 +275,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MerchantCallbackPutRequest'
+            examples:
+              Example 1:
+                value:
+                  location: Kasse 1
         description: ''
       tags:
         - Merchant callback QR
@@ -471,8 +489,6 @@ components:
         - redirectUrl
     MerchantCallbackPutRequest:
       title: MerchantCallbackPutRequest
-      x-stoplight:
-        id: 56a28c70438c7
       type: object
       x-examples:
         Example 1:
@@ -495,12 +511,8 @@ components:
           description: 'A description of where the QR code will be located. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
       required:
         - location
-      x-stoplight:
-        id: 574e5e977f056
     MerchantCallbackQr:
       title: MerchantCallbackQr
-      x-stoplight:
-        id: a8x4nog6fas22
       type: object
       description: 'A representation of a QR code. It contains all the three properties that was provided when creating the QR code, in addition to a link pointing to the actual QR code itself.'
       x-examples:
