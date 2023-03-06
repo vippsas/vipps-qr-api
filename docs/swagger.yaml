@@ -236,7 +236,7 @@ paths:
       summary: Create or update callback QR
       operationId: PutMerchantCallbackQr
       description: |-
-        Creates or updates the QR code that encapsulates the provided merchantSerialNumber and merchantQrId. See [link to webhooks API] to create a webhook that will send callbacks when this QR code is scanned by a Vipps user.
+        Creates or updates the QR code that encapsulates the provided merchantSerialNumber and merchantQrId. See [webhooks API](https://github.com/vippsas/webhooks-api) to create a webhook that will send callbacks when this QR code is scanned by a Vipps user.
 
         If the endpoint is called with the same merchantQrId twice or more, it is the last call that defines the imageFormat and size (both provided in the headers) and location. The actual QR code image will not be updated on consecutive calls.
       parameters:
