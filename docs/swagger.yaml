@@ -307,7 +307,7 @@ paths:
         '200':
           description: OK
         '400':
-          description: Bad Request
+          $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
         '500':
@@ -319,6 +319,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/MerchantCallbackMobilePayPutRequest'
+            examples:
+              Example 1:
+                value:
+                  location: Kasse 1
+        description: ''
     parameters:
       - schema:
           type: string
@@ -508,7 +513,7 @@ components:
       properties:
         location:
           type: string
-          description: 'A description of where the QR code will be located. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
+          description: 'A description of where the QR code will be located. This corresponds to the PoS name field from the old MobilePay V10 API. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
       required:
         - location
     MerchantCallbackQr:
