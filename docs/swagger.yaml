@@ -198,8 +198,9 @@ paths:
                   value:
                     - merchantSerialNumber: '12345'
                       merchantQrId: 27072f82-c4b6-49cd-9838-10f21d87496e
-                      location: Kasse 1
-                      url: 'https://qr.vipps.no/generate/qr.png?...'
+                      locationDescription: Kasse 1
+                      qrImageUrl: 'https://qr.vipps.no/generate/qr.png?...'
+                      qrContent: 'https://qr.vipps.no/...'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -211,6 +212,8 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Size'
       tags:
         - Merchant callback QR
   '/v1/merchant-callback/{merchantQrId}':
@@ -229,8 +232,9 @@ paths:
                   value:
                     merchantSerialNumber: '12345'
                     merchantQrId: 27072f82-c4b6-49cd-9838-10f21d87496e
-                    location: Kasse 1
-                    url: 'https://qr.vipps.no/generate/qr.png?...'
+                    locationDescription: Kasse 1
+                    qrImageUrl: 'https://qr.vipps.no/generate/qr.png?...'
+                    qrContent: 'https://qr.vipps.no/...'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -239,11 +243,13 @@ paths:
           description: Not Found
         '500':
           description: Internal Server Error
-      description: Returns the QR code represented by the merchantQrId and Merchant-Serial-Number provided in the path and header respectively.
+      description: Returns the QR code represented by the merchantQrId and Merchant-Serial-Number provided in the path and header respectively. The image format and size of the QR code is defined by the Accept and Size headers respectively.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Size'
       tags:
         - Merchant callback QR
     put:
@@ -252,10 +258,8 @@ paths:
       description: |-
         Creates or updates the QR code that encapsulates the provided merchantSerialNumber and merchantQrId. See [webhooks API](https://github.com/vippsas/webhooks-api) to create a webhook that will send callbacks when this QR code is scanned by a Vipps user.
 
-        If the endpoint is called with the same merchantQrId twice or more, it is the last call that defines the imageFormat and size (both provided in the headers) and location. The actual QR code image will not be updated on consecutive calls.
+        If the endpoint is called with the same merchantQrId twice or more, it is the last call that defines the location property. The actual QR code image will not be updated on consecutive calls.
       parameters:
-        - $ref: '#/components/parameters/Accept'
-        - $ref: '#/components/parameters/Size'
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
@@ -278,7 +282,7 @@ paths:
             examples:
               Example 1:
                 value:
-                  location: Kasse 1
+                  locationDescription: Kasse 1
         description: ''
       tags:
         - Merchant callback QR
@@ -322,8 +326,9 @@ paths:
             examples:
               Example 1:
                 value:
-                  location: Kasse 1
+                  locationDescription: Kasse 1
         description: ''
+      deprecated: true
     parameters:
       - schema:
           type: string
@@ -497,25 +502,25 @@ components:
       type: object
       x-examples:
         Example 1:
-          location: Kasse 1
+          locationDescription: Kasse 1
       properties:
-        location:
+        locationDescription:
           type: string
           description: 'A description of where the QR code will be located. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
       required:
-        - location
+        - locationDescription
     MerchantCallbackMobilePayPutRequest:
       title: MerchantCallbackMobilePayPutRequest
       type: object
       x-examples:
         Example 1:
-          location: Kasse 1
+          locationDescription: Kasse 1
       properties:
-        location:
+        locationDescription:
           type: string
           description: 'A description of where the QR code will be located. This corresponds to the PoS name field from the old MobilePay V10 API. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
       required:
-        - location
+        - locationDescription
     MerchantCallbackQr:
       title: MerchantCallbackQr
       type: object
@@ -524,8 +529,9 @@ components:
         Example 1:
           merchantSerialNumber: '12345'
           merchantQrId: 27072f82-c4b6-49cd-9838-10f21d87496e
-          location: Kasse 1
-          url: 'https://qr.vipps.no/generate/qr.png?...'
+          locationDescription: Kasse 1
+          qrImageUrl: 'https://qr.vipps.no/generate/qr.png?...'
+          qrContent: 'https://qr.vipps.no/...'
       properties:
         merchantSerialNumber:
           type: string
@@ -533,14 +539,17 @@ components:
         merchantQrId:
           type: string
           description: The merchant defined identifier for a QR code. It will be provided in the callback to the merchant when the QR code has been scanned.
-        location:
+        locationDescription:
           type: string
           description: 'A description of where the QR code will be located. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
-        url:
+        qrImageUrl:
           type: string
           description: The link to the actual QR code.
           format: uri
           example: 'https://qr.vipps.no/generate/qr.png?...'
+        qrContent:
+          type: string
+          description: The text that is being encoded by the QR code. This is the actual content of the QR code.
   securitySchemes:
     BearerToken:
       type: http
