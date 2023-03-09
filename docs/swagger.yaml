@@ -205,6 +205,8 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
+        '415':
+          $ref: '#/components/responses/415UnsupportedMediaType'
         '500':
           description: Internal Server Error
       description: Returns all QR codes that matches the provided Merchant-Serial-Number.
@@ -241,6 +243,8 @@ paths:
           description: Unauthorized
         '404':
           description: Not Found
+        '415':
+          $ref: '#/components/responses/415UnsupportedMediaType'
         '500':
           description: Internal Server Error
       description: Returns the QR code represented by the merchantQrId and Merchant-Serial-Number provided in the path and header respectively. The image format and size of the QR code is defined by the Accept and Size headers respectively.
@@ -270,8 +274,6 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
-        '415':
-          $ref: '#/components/responses/415UnsupportedMediaType'
         '500':
           description: Internal Server Error
       requestBody:
@@ -293,6 +295,27 @@ paths:
         in: path
         required: true
         description: The merchant defined identifier for a QR code.
+    delete:
+      summary: ''
+      operationId: DeleteMerchantCallbackQr
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          description: Internal Server Error
+      description: Deletes the QR code that matches the provided merchantQrId and merchantSerialNumber.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+      tags:
+        - Merchant callback QR
   '/v1/merchant-callback/mobilepay/{beaconId}':
     put:
       summary: Create callback QR code
