@@ -261,7 +261,7 @@ An example body like this:
 ```json
 {
   "id": "billboard_1",
-  "redirectUrl": "https://www.example.com/myProduct"
+  "redirectUrl": "https://example.com/myProduct"
 }
 ```
 
@@ -289,7 +289,7 @@ request and with the new redirectUrl in the requestBody:
 ```json
 {
   "id": "billboard_1",
-  "redirectUrl": "https://www.example.com/completelyDifferentProductThanBefore"
+  "redirectUrl": "https://example.com/completelyDifferentProductThanBefore"
 }
 ```
 

@@ -7,10 +7,12 @@ info:
     name: Team Payment Experience
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
 servers:
-  - url: 'https://api.vipps.no/qr'
-    description: Vipps QR api
+  - url: https://api.vipps.no
+    description: Production environment (uses the production API keys, the official app and live data)
+  - url: https://apitest.vipps.no
+    description: Test environment (uses the test API keys, the test app and test data)
 paths:
-  /v1:
+  /qr/v1:
     parameters: []
     post:
       summary: Create One Time Payment QR
@@ -43,7 +45,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
       tags:
         - One time payment QR
-  /v1/merchant-redirect:
+  /qr/v1/merchant-redirect:
     post:
       summary: Create merchant redirect QR
       operationId: CreateMerchantRedirectQr
@@ -99,7 +101,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  '/v1/merchant-redirect/{id}':
+  '/qr/v1/merchant-redirect/{id}':
     put:
       summary: Update redirectUrl for merchant redirect QR
       operationId: UpdateMerchantRedirectUrl
@@ -461,7 +463,7 @@ components:
           format: uri
           description: The target url of the QR (redirect destination)
           pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
-          example: 'https://www.example.com/myProduct'
+          example: 'https://example.com/myProduct'
           nullable: true
         ttl:
           type: integer
@@ -493,7 +495,7 @@ components:
           format: uri
           description: The target url of the QR (redirect destination)
           pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
-          example: 'https://www.example.com/myProduct'
+          example: 'https://example.com/myProduct'
         expiresIn:
           type: integer
           description: Time in seconds until expiration. -1 means no expiration (infinite QR code)
@@ -584,14 +586,14 @@ components:
       required: false
       schema:
         type: string
-      description: 'The merchant serial number (MSN) for the sale unit. Partners and PSP merchants must always send the Merchant-Serial-Number header, and we recommend that everyone sends it, also when using the merchant''s own API keys. The Merchant-Serial-Number header can be used with all API keys, and can speed up any trouble-shooting of API problems quite a bit.'
+      description: 'The merchant serial number (MSN) for the sales unit. Partners and PSP merchants must always send the Merchant-Serial-Number header, and we recommend that everyone sends it, also when using the merchant''s own API keys. The Merchant-Serial-Number header can be used with all API keys, and can speed up any trouble-shooting of API problems quite a bit.'
     Merchant-Serial-Number-Required:
       name: Merchant-Serial-Number
       in: header
       required: true
       schema:
         type: string
-      description: The merchant serial number (MSN) for the sale unit.
+      description: The merchant serial number (MSN) for the sales unit.
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
