@@ -1,20 +1,22 @@
 <!-- START_METADATA
 ---
-title: FAQ
+title: QR API Frequently Asked Questions
+sidebar_label: FAQ
 sidebar_position: 45
+description: Frequently asked questions for the QR API.
 pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
-# Vipps QR API FAQ
+# QR API FAQ
 
-Here are the QR API FAQs. See the
-[Vipps QR API guide](vipps-qr-api.md)
-for all the details.
+Here are the QR API Frequently Asked Questions (FAQ).
+See the [QR API guide](vipps-qr-api.md) for all the technical details.
 
-For more common Vipps questions, see:
+For more common questions, see:
 
-* [Vipps API General FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
+* [Common API FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs)
 
 API version: 1.1.1.
 
@@ -23,15 +25,9 @@ API version: 1.1.1.
 ℹ️ Please use the website:
 [Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
 
-## Table of Contents
-
-* [See the Vipps FAQs](#see-the-vipps-faqs)
-* [Can we make our own QRs for payment and redirects?](#can-we-make-our-own-qrs-for-payment-and-redirects)
-* [Why are there extra API calls to retrieve the QR code?](#why-are-there-extra-api-calls-to-retrieve-the-qr-code)
-
 <!-- END_COMMENT -->
 
-## See the Vipps FAQs
+## See the common FAQ
 
 It contains answers to all(?) common questions about Vipps payments:
 [Vipps FAQ](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/faqs).

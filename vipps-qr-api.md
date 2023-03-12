@@ -1,13 +1,17 @@
 <!-- START_METADATA
 ---
-title: API guide
+title: QR API guide
+sidebar_label: API guide
 sidebar_position: 30
+description: Find technical details about integrating with the QR API.
+pagination_prev: Null
+pagination_next: Null
 ---
 END_METADATA -->
 
 # API guide
 
-The Vipps QR API provides you with tools for generating these types of QR codes:
+The QR API provides you with tools for generating these types of QR codes:
 
 * Merchant redirect - Generate QR codes that redirect the user to your website.
 * One-time payment - Generate QR codes that open the user's Vipps app on their phone and provides the payment suggestion for approval.
@@ -26,13 +30,13 @@ API version: 1.2.0.
 
 ## Before you begin
 
-This document assumes you have signed up as a organisation with Vipps and have
+This document assumes you have signed up as a organisation with Vipps MobilePay and have
 retrieved your API credentials for
-[the Vipps test environment](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/test-environment)
+[the test environment](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/test-environment)
 from
 [portal.vipps.no](https://portal.vipps.no).
 
-### Vipps HTTP headers
+### HTTP headers
 
 We strongly recommend using the standard
 [Vipps HTTP headers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers)
@@ -40,7 +44,7 @@ for all requests.
 
 ### Authentication
 
-All Vipps API calls are authenticated with an access token and an API subscription key.
+All API calls are authenticated with an access token and an API subscription key.
 See
 [Get an access token](https://vippsas.github.io/vipps-developer-docs/docs/APIs/access-token-api#get-an-access-token), for details.
 

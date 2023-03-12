@@ -1,7 +1,11 @@
 <!-- START_METADATA
 ---
-title: Quick start
+title: Quick start for the QR API
+sidebar_label: Quick start
 sidebar_position: 20
+description: Quick start guide for the using the QR API with Postman.
+pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
@@ -15,19 +19,6 @@ If needed, you can update the redirect URL at a later time.
 
 ℹ️ Please use the website:
 [Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
-
-## Table of contents
-
-- [Quick start](#quick-start)
-  - [Table of Contents](#table-of-contents)
-  - [Postman](#postman)
-    - [Prerequisites](#prerequisites)
-    - [Step 1: Get the Vipps Postman collection and environment](#step-1-get-the-postman-collection-and-environment)
-    - [Step 2: Import the Vipps Postman files](#step-2-import-the-postman-files)
-    - [Step 3: Set up Postman environment](#step-3-set-up-postman-environment)
-  - [Make API calls](#make-api-calls)
-    - [A Merchant redirect QR](#a-merchant-redirect-qr)
-    - [One-Time Payments](#one-time-payments)
 
 <!-- END_COMMENT -->
 
@@ -43,8 +34,8 @@ for information about getting your test environment set up.
 
 Save the following files to your computer:
 
-* [Vipps QR API Postman collection](tools/vipps-qr-api-postman-collection.json)
-* [Vipps API Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
+* [QR API Postman collection](tools/vipps-qr-api-postman-collection.json)
+* [Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Postman files
 
