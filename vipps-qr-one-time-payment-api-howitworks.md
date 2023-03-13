@@ -1,16 +1,20 @@
 <!-- START_METADATA
 ---
-title: How it works with one-time payment
+title: How the QR API works with one-time payment
+sidebar_label: How it works with one-time payment
 sidebar_position: 15
+description: How the QR API works with one-time payment
+pagination_next: null
+pagination_prev: null
 ---
 END_METADATA -->
 
-# How it works with one-time payment
+# How the QR API works with one-time payment
 
 <!-- START_COMMENT -->
 
-ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
+ℹ️ Please use the website:
+[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
 
 <!-- END_COMMENT -->
 
