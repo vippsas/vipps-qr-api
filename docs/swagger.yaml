@@ -298,7 +298,7 @@ paths:
         required: true
         description: The merchant defined identifier for a QR code.
     delete:
-      summary: ''
+      summary: Delete callback QR
       operationId: DeleteMerchantCallbackQr
       responses:
         '200':
