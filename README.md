@@ -13,7 +13,7 @@ END_METADATA -->
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
+[Vipps Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
 
 <!-- END_COMMENT -->
 
@@ -22,7 +22,7 @@ The QR API can generate QR codes that redirect the user to a website or to the V
 ## Getting started
 
 See the
-[Vipps Getting started guide](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/vipps-getting-started)
+[Vipps Getting started guide](https://developer.vippsmobilepay.com/docs/vipps-developers/vipps-getting-started)
 for information about API keys, product activation, how to make API calls, etc.
 
 Get an overview with:
@@ -34,4 +34,4 @@ Review detailed documentation:
 
 * [API Quick Start](vipps-qr-api-quick-start.md): Quick Start.
 * [API Guide](vipps-qr-api.md): Developer guide for the Vipps QR API.
-* [API Reference](https://vippsas.github.io/vipps-developer-docs/api/qr): QR API Reference Specifications.
+* [API Reference](https://developer.vippsmobilepay.com/api/qr): QR API Reference Specifications.

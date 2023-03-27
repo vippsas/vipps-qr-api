@@ -10,7 +10,7 @@ END_METADATA -->
 <!-- START_COMMENT -->
 
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
+[Vipps Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
 
 <!-- END_COMMENT -->
 
