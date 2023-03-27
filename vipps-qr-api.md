@@ -81,7 +81,7 @@ Below is an example merchant redirect QR:
 The `qrContent` that points to `https://qr.vipps.no` is a shortened URL
 that will be recognized and opened in the Vipps app when scanned from native camera.
 
-**Please note:** It is possible to create your own QR code with the qrContent if you need to. This will require an approval from Vipps before it is used, so we can validate
+**Please note:** It is possible to create your own QR code with the `qrContent`. This will require an approval from Vipps before use, so we can validate
 the styling and design of the QR.
 
 If you want to create the QR code on your own, see the
