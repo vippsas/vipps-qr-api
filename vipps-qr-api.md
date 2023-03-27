@@ -383,7 +383,7 @@ Now the QR code image can be printed or accessed directly from the device that f
 
 To fetch all QR codes belonging to a `merchantSerialNumber`, the merchant needs to call the endpoint: [`GET:/qr/v1/merchant-callback`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackQrs).
 
-The only difference is the absent of the `merchantQrId` path parameter.
+The only difference is the absence of the `merchantQrId` path parameter.
 
 An example of a response from this endpoint is the same as the previous, except it returns a list:
 
