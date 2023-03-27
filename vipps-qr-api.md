@@ -363,7 +363,7 @@ To delete a QR code the merchant will simply have to call the endpoint [`DELETE:
 
 There are two endpoints for fetching created QR codes. One for getting one specific QR code and one for fetching all QR codes belonging to a `merchantSerialNumber`.
 
-Common for both endpoints is the possibility to choose the format of the image returned, as well at the size of the QR code. These properties are defined by an `Accept` and `Size` header respectively. These are described [here](#accept-headers)
+Common for both endpoints is the possibility to choose the format of the image returned, as well at the size of the QR code. These properties are defined by an `Accept` and `Size` header respectively. These are described [here](#accept-headers).
 
 To fetch a single QR code the merchant has to call the endpoint: [`GET:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackById).
 
