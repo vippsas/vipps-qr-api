@@ -331,7 +331,7 @@ Here is an overview of the parameters that are specific to the Merchant Callback
 
 ### How to create a Merchant Callback QR code
 
-To create a Merchant Callback QR code the merchant needs to call the following endpoint [`PUT:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/PutMerchantCallbackQr)
+To create a Merchant Callback QR code, the merchant must call the following endpoint [`PUT:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/PutMerchantCallbackQr).
 
 The endpoint takes the `merchantQrId` as a path parameter and requires a requestbody containing the `locationDescription` parameter.
 
