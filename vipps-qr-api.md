@@ -316,7 +316,7 @@ Tip: If you want the same QR in different formats, perform `GET` calls on the sa
 
 ## Merchant Callback QR codes
 
-Merchant callback QR's makes it possible for users to notify merchants that they want to pay with Vipps. It is the right solution for self-checkout, vending machines or similar situations where there is no casheer or buttons or other ways of letting the user communicate that they want to pay with Vipps.
+Merchant callback QRs makes it possible for users to notify merchants that they want to pay with Vipps. It is the right solution for self-checkout, vending machines, or similar situations where there is no cashier, buttons, or other ways of letting the user communicate that they want to pay with Vipps.
 
 A Merchant callback QR is given a `merchantQrId` that the merchant is choosing upon creation. Then when the user scans the QR a callback is sent to the merchant containing this `merchantQrId`, so the merchant knows which QR code has been scanned and then can act accordingly. Most likely starting a payment towards the user.
 
