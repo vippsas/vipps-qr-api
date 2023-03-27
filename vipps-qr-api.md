@@ -354,7 +354,7 @@ The QR code is based on the `merchantQrId` and `merchantSerialNumber`. These pro
 So the only property that can be updated on a QR code is the `locationDescription`. To update that property the merchant simply has to call the same endpoint used for creating the QR code with the new `locationDescription` and then the QR code will be updated accordingly.
 
 If a QR code is not needed anymore it is best practice to delete it. There are at least two reasons for that:
-* In case a user scans the QR code it will give an error to the user that says the QR code is not found. That is better than a user waiting not knowing that the QR code is not used anymore.
+* If a user scans the QR code, they will be informed that the QR code is not found. This is preferred to having the user waiting with no knowledge the QR code is no longer in use.
 * When the Merchant needs to print all QR codes for a particular `merchantSerialNumber` then QR codes that are not in use will not be printed
 
 To delete a QR code the merchant will simply have to call the endpoint [`DELETE:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/DeleteMerchantCallbackQr).
