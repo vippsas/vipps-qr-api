@@ -379,7 +379,7 @@ An example of the response from the GET endpoint looks like this:
 }
 ```
 
-Now the QR code image can be printed, or accessed directly from the device that faces the customer. The image is located at the `qrImageUrl`.
+Now the QR code image can be printed or accessed directly from the device that faces the customer. The image is located at the `qrImageUrl`.
 
 To fetch all QR codes belonging to a `merchantSerialNumber` the merchant needs to call the endpoint: [`GET:/qr/v1/merchant-callback`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackQrs)
 
