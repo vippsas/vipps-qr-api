@@ -349,7 +349,7 @@ If the endpoint succeeds, the QR code has been created.
 
 ### How to update or delete a Merchant Callback QR code
 
-The QR code when is based on the `merchantQrId` and `merchantSerialNumber`. These properties will never change. 
+The QR code is based on the `merchantQrId` and `merchantSerialNumber`. These properties will never change. 
 
 So the only property that can be updated on a QR code is the `locationDescription`. To update that property the merchant simply has to call the same endpoint used for creating the QR code with the new `locationDescription` and then the QR code will be updated accordingly.
 
