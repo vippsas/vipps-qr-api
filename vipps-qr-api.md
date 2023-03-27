@@ -355,7 +355,8 @@ The QR code is based on the `merchantQrId` and `merchantSerialNumber`. These pro
 
 So the only property that can be updated on a QR code is the `locationDescription`. To update that property the merchant simply has to call the same endpoint used for creating the QR code with the new `locationDescription` and then the QR code will be updated accordingly.
 
-If a QR code is not needed anymore it is best practice to delete it. There are at least two reasons for that:
+If a QR code is not needed any more it is best practice to delete it. There are at least two reasons for that:
+
 * If a user scans the QR code, they will be informed that the QR code is not found. This is preferred to having the user waiting with no knowledge the QR code is no longer in use.
 * When the merchant needs to print all QR codes for a particular `merchantSerialNumber`, then QR codes that are not in use will not be printed.
 
