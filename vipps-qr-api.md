@@ -365,7 +365,7 @@ There are two endpoints for fetching created QR codes. One for getting one speci
 
 Common for both endpoints is the possibility to choose the format of the image returned, as well at the size of the QR code. These properties are defined by an `Accept` and `Size` header respectively. These are described [here](#accept-headers).
 
-To fetch a single QR code the merchant has to call the endpoint: [`GET:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackById).
+To fetch a single QR code, the merchant has to call the endpoint: [`GET:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackById).
 
 An example of the response from the GET endpoint looks like this:
 
