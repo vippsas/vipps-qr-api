@@ -1,14 +1,16 @@
 <!-- START_METADATA
 ---
-title: Introduction
+title: Introduction to the QR API
+sidebar_label: Introduction
 sidebar_position: 1
 hide_table_of_contents: true
+description: Use the QR API generate QR codes that redirect the user to a website or app.
 pagination_next: null
 pagination_prev: null
 ---
 END_METADATA -->
 
-# Vipps QR API
+# QR API
 
 <!-- START_COMMENT -->
 

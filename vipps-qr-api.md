@@ -1,38 +1,44 @@
 <!-- START_METADATA
 ---
-title: API guide
+title: QR API guide
+sidebar_label: API guide
 sidebar_position: 30
+description: Find technical details about integrating with the QR API.
+pagination_prev: Null
+pagination_next: Null
 ---
 END_METADATA -->
 
 # API guide
 
-The Vipps QR API provides you with tools for generating these types of QR codes:
+The QR API provides you with tools for generating these types of QR codes:
 
 * Merchant redirect - Generate QR codes that redirect the user to your website.
 * One-time payment - Generate QR codes that open the user's Vipps app on their phone and provides the payment suggestion for approval.
   This allows you to initiate a Vipps payment without needing to ask for the customer's telephone number.
+* Merchant callback - Generate QR codes that will result in a callback to the merchant when scanned by the user. Typically used to let the merchant know that a user is ready to pay.
 
-Both types of QR codes share the same authentication and overall design, but have slight difference in behavior and how they are made.
+All types of QR codes share the same authentication and overall design, but have slight difference in behavior and how they are made.
 
 API version: 1.2.0.
 
 <!-- START_COMMENT -->
 
+
 ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
 
 <!-- END_COMMENT -->
 
 ## Before you begin
 
-This document assumes you have signed up as a organisation with Vipps and have
+This document assumes you have signed up as a organisation with Vipps MobilePay and have
 retrieved your API credentials for
-[the Vipps test environment](https://developer.vippsmobilepay.com/docs/vipps-developers/test-environment)
+[the test environment](https://developer.vippsmobilepay.com/docs/vipps-developers/test-environment)
 from
 [portal.vipps.no](https://portal.vipps.no).
 
-### Vipps HTTP headers
+### HTTP headers
 
 We strongly recommend using the standard
 [Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
@@ -40,7 +46,7 @@ for all requests.
 
 ### Authentication
 
-All Vipps API calls are authenticated with an access token and an API subscription key.
+All API calls are authenticated with an access token and an API subscription key.
 See
 [Get an access token](https://developer.vippsmobilepay.com/docs/APIs/access-token-api#get-an-access-token), for details.
 
@@ -73,11 +79,10 @@ Below is an example merchant redirect QR:
 | `Accept` | `image/png` | Returns a URL pointing to a png image with 800x800 size |
 | `Accept` | `text/targetUrl` | Returns the target URL of the QR *|
 
-The `targetUrl` that points to `https://qr.vipps.no` is a shortened URL
+The `qrContent` that points to `https://qr.vipps.no` is a shortened URL
 that will be recognized and opened in the Vipps app when scanned from native camera.
 
-**Please note:** It is possible to get the `targetUrl` of the QR code if you need to
-generate the QR code yourselves. This will require an approval from Vipps before it is used, so we can validate
+**Please note:** It is possible to create your own QR code with the `qrContent`. This will require an approval from Vipps before use, so we can validate
 the styling and design of the QR.
 
 If you want to create the QR code on your own, see the
@@ -261,7 +266,7 @@ An example body like this:
 ```json
 {
   "id": "billboard_1",
-  "redirectUrl": "https://www.example.com/myProduct"
+  "redirectUrl": "https://example.com/myProduct"
 }
 ```
 
@@ -289,7 +294,7 @@ request and with the new redirectUrl in the requestBody:
 ```json
 {
   "id": "billboard_1",
-  "redirectUrl": "https://www.example.com/completelyDifferentProductThanBefore"
+  "redirectUrl": "https://example.com/completelyDifferentProductThanBefore"
 }
 ```
 
@@ -309,3 +314,106 @@ does what one might expect, it deletes the QR. Once deleted, merchants can gener
 In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribute in the original `POST`-request. This attribute sets how many seconds the QR will live, before it is deleted permanently.
 
 Tip: If you want the same QR in different formats, perform `GET` calls on the same `id` with different `accept` headers and test what works best.
+
+## Merchant Callback QR codes
+**Please note: Feature is under construction and not in production yet. Estimated release is Q2 2023.**
+
+Merchant callback QRs makes it possible for users to notify merchants that they want to pay with Vipps. It is the right solution for self-checkout, vending machines, or similar situations where there is no cashier, buttons, or other ways of letting the user communicate that they want to pay with Vipps.
+
+A merchant callback QR is given a `merchantQrId` that the merchant selects upon creation. Then, when the user scans the QR, a callback is sent to the merchant containing this `merchantQrId`. Thus, the merchant knows which QR code has been scanned and they can act accordingly, such as starting a payment towards the user.
+
+Here is an overview of the parameters that are specific to the Merchant Callback QR API.
+
+| Parameter | Description |
+| ----------- | ----------- |
+| `merchantQrId` | Merchant defined parameter. Together with MerchantSerialNumber it uniquely identifies the QR code |
+| `locationDescription` | A description of where the QR code will be used. It will be shown in the app when the user has scanned the QR code. |
+| `qrImageUrl` | A link to the image containing the QR code |
+| `qrContent` | The content of the QR code. It is the link that is embedded in the QR code. |
+
+### How to create a Merchant Callback QR code
+
+To create a Merchant Callback QR code, the merchant must call the following endpoint [`PUT:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/PutMerchantCallbackQr).
+
+The endpoint takes the `merchantQrId` as a path parameter and requires a requestbody containing the `locationDescription` parameter.
+
+An example body looks like this:
+
+```json
+{
+  "locationDescription": "Kiosk"
+}
+```
+
+If the endpoint succeeds, the QR code has been created.
+
+**Please note:** The QR code will not be returned from the endpoint. Instead the merchant needs to call the dedicated [GET endpoints](#fetching-the-merchant-qr-codes) described below.
+
+### How to update or delete a Merchant Callback QR code
+
+The QR code is based on the `merchantQrId` and `merchantSerialNumber`. These properties will never change. 
+
+So the only property that can be updated on a QR code is the `locationDescription`. To update that property the merchant simply has to call the same endpoint used for creating the QR code with the new `locationDescription` and then the QR code will be updated accordingly.
+
+If a QR code is not needed anymore it is best practice to delete it. There are at least two reasons for that:
+* If a user scans the QR code, they will be informed that the QR code is not found. This is preferred to having the user waiting with no knowledge the QR code is no longer in use.
+* When the merchant needs to print all QR codes for a particular `merchantSerialNumber`, then QR codes that are not in use will not be printed.
+
+To delete a QR code the merchant will simply have to call the endpoint [`DELETE:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/DeleteMerchantCallbackQr).
+
+### Fetching the Merchant QR codes
+
+There are two endpoints for fetching created QR codes. One for getting one specific QR code and one for fetching all QR codes belonging to a `merchantSerialNumber`.
+
+Common for both endpoints is the possibility to choose the format of the image returned, as well at the size of the QR code. These properties are defined by an `Accept` and `Size` header respectively. These are described [here](#accept-headers).
+
+To fetch a single QR code, the merchant has to call the endpoint: [`GET:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackById).
+
+An example of the response from the GET endpoint looks like this:
+
+```json
+{
+  "merchantSerialNumber": "12345",
+  "merchantQrId": "27072f82-c4b6-49cd-9838-10f21d87496e",
+  "locationDescription": "Kiosk",
+  "qrImageUrl": "https://qr.vipps.no/generate/qr.png?...",
+  "qrContent": "https://qr.vipps.no/..."
+}
+```
+
+Now the QR code image can be printed or accessed directly from the device that faces the customer. The image is located at the `qrImageUrl`.
+
+To fetch all QR codes belonging to a `merchantSerialNumber`, the merchant needs to call the endpoint: [`GET:/qr/v1/merchant-callback`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackQrs).
+
+The only difference is the absence of the `merchantQrId` path parameter.
+
+An example of a response from this endpoint is the same as the previous, except it returns a list:
+
+```json
+{
+  [
+    {
+      "merchantSerialNumber": "12345",
+      "merchantQrId": "27072f82-c4b6-49cd-9838-10f21d87496e",
+      "locationDescription": "Kiosk",
+      "qrImageUrl": "https://qr.vipps.no/generate/qr.png?...",
+      "qrContent": "https://qr.vipps.no/..."
+    },
+    {
+      "merchantSerialNumber": "12345",
+      "merchantQrId": "b1482233-17a1-434d-bcd1-6ea38b15eddb",
+      "locationDescription": "Bakery",
+      "qrImageUrl": "https://qr.vipps.no/generate/qr.png?...",
+      "qrContent": "https://qr.vipps.no/..."
+    }
+  ]
+}
+```
+
+The endpoint that returns a list is nice to have if the merchant has many QR codes in the same location. It will make printing easier.
+
+**Please note:** Before the merchant will receive any callbacks, they need to subscribe to the [QRScannedEvent Webhook](https://vippsas.github.io/vipps-developer-docs/docs/APIs/webhooks-api/events).
+
+Here is a sequence diagram that showcases how to use the Merchant callback QR:
+
+![MerchantCallbackQrDiagram](images/callbackQrDiagram.png)
