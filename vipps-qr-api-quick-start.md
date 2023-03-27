@@ -17,8 +17,8 @@ If needed, you can update the redirect URL at a later time.
 
 <!-- START_COMMENT -->
 
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
+ℹ️ Please use the new documentation:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
 
 <!-- END_COMMENT -->
 
@@ -27,7 +27,7 @@ If needed, you can update the redirect URL at a later time.
 ### Prerequisites
 
 Review
-[Vipps quick start guides](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/quick-start-guides)
+[Vipps quick start guides](https://developer.vippsmobilepay.com/docs/vipps-developers/quick-start-guides)
 for information about getting your test environment set up.
 
 ### Step 1: Get the Postman collection and environment
@@ -62,7 +62,7 @@ This provides you with access to the API.
 The access token is valid for 1 hour in the test environment
 and 24 hours in the production environment.
 See the
-[API reference](https://vippsas.github.io/vipps-developer-docs/api/qr)
+[API reference](https://developer.vippsmobilepay.com/api/qr)
 for details about the calls.
 
 ### A Merchant redirect QR
@@ -71,7 +71,7 @@ Under the *Merchant Redirect QR* folder:
 
 1. Send request `Generate QR`.
 
-   This creates a QR that works as a redirect back to the merchant. The website is specified as the `redirectUrl` in the [`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-redirect-QR/operation/CreateMerchantRedirectQr) request.
+   This creates a QR that works as a redirect back to the merchant. The website is specified as the `redirectUrl` in the [`POST:/qr/v1/merchant-redirect`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/CreateMerchantRedirectQr) request.
 
    The `qr-id` variable is now set in the environment for use with subsequent calls.
 
@@ -82,25 +82,25 @@ Under the *Merchant Redirect QR* folder:
 2. Send request `Get QR by id`.
 
    This gets the QR for the specified `qr-id` in
-[`GET:/qr/v1/merchant-redirect/{{qr-id}}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-redirect-QR/operation/GetMerchantRedirectQrById).
+[`GET:/qr/v1/merchant-redirect/{{qr-id}}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/GetMerchantRedirectQrById).
 
    Ctrl+click the link to see the QR code. When you scan it, it will take you to the specified URL.
 
 3. Send request `Update redirectUrl by id`.
 
    This changes the URL for the QR code with the specified `qr-id` in
-[`PUT:/qr/v1/merchant-redirect/{{qr-id}}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-redirect-QR/operation/UpdateMerchantRedirectUrl).
+[`PUT:/qr/v1/merchant-redirect/{{qr-id}}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/UpdateMerchantRedirectUrl).
 
 4. Send request `Delete QR by id`.
 
    This deletes the QR code with the specified `qr-id` in
-[`DEL:/qr/v1/merchant-redirect/{{qr-id}}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-redirect-QR/operation/DeleteMerchantRedirectQr).
+[`DEL:/qr/v1/merchant-redirect/{{qr-id}}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/DeleteMerchantRedirectQr).
 
 5. Send request `Get all QRs`.
 
-   This gets all the QRs by calling [`GET:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-redirect-QR/operation/GetAllMerchantRedirectQrs) request.
+   This gets all the QRs by calling [`GET:/qr/v1/merchant-redirect`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/GetAllMerchantRedirectQrs) request.
 
-See the [QR API Specifications](https://vippsas.github.io/vipps-developer-docs/api/qr) for details about the calls.
+See the [QR API Specifications](https://developer.vippsmobilepay.com/api/qr) for details about the calls.
 
 ### One-Time Payments
 
@@ -108,12 +108,12 @@ Under the *One-Time Payment QR* folder:
 
 1. Send request `Initiate Payment`.
 
-   This uses [`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/vipps-ecom-api#initiate) or [`POST:/v3/psppayments/init/`](https://vippsas.github.io/vipps-developer-docs/docs/APIs/psp-api/vipps-psp-api#initiate-payment)
-   from the [Vipps eComm API](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api).
+   This uses [`POST:/ecomm/v2/payments`](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api#initiate) or [`POST:/v3/psppayments/init/`](https://developer.vippsmobilepay.com/docs/APIs/psp-api/vipps-psp-api#initiate-payment)
+   from the [Vipps eComm API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api).
 
    The `orderId` and `vippsLandingPageUrl` variables are now in the environment of this Postman example
 
 1. Send request `Generate OTP QR`. This supplies `vippsLandingPageUrl` to
- [`POST:/qr/v1`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/One-time-payment-QR/operation/generateOtpQr) to provide a url that can be used to show a QR code.
+ [`POST:/qr/v1`](https://developer.vippsmobilepay.com/api/qr#tag/One-time-payment-QR/operation/generateOtpQr) to provide a url that can be used to show a QR code.
 
    Ctrl+click the link to see the QR code. Scanning the QR should open the test app on your phone and allow you to complete the one-time purchase.

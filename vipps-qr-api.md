@@ -24,8 +24,9 @@ API version: 1.2.0.
 
 <!-- START_COMMENT -->
 
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
+
+ℹ️ Please use the new documentation:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
 
 <!-- END_COMMENT -->
 
@@ -33,21 +34,21 @@ API version: 1.2.0.
 
 This document assumes you have signed up as a organisation with Vipps MobilePay and have
 retrieved your API credentials for
-[the test environment](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/test-environment)
+[the test environment](https://developer.vippsmobilepay.com/docs/vipps-developers/test-environment)
 from
 [portal.vipps.no](https://portal.vipps.no).
 
 ### HTTP headers
 
 We strongly recommend using the standard
-[Vipps HTTP headers](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/http-headers)
+[Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/http-headers)
 for all requests.
 
 ### Authentication
 
 All API calls are authenticated with an access token and an API subscription key.
 See
-[Get an access token](https://vippsas.github.io/vipps-developer-docs/docs/APIs/access-token-api#get-an-access-token), for details.
+[Get an access token](https://developer.vippsmobilepay.com/docs/APIs/access-token-api#get-an-access-token), for details.
 
 ### QR code formats
 
@@ -103,13 +104,13 @@ payment can be completed. See a detailed example of
 [how it works](vipps-qr-one-time-payment-api-howitworks.md).
 
 Every Vipps payment needs a unique `orderId`. See
-[orderId recommendations](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/orderid).
+[orderId recommendations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/orderid).
 
 The purchase will time out after 5 minutes, so it's not possible to print these
 QR codes. The QR code must be scanned within 5 minutes, and the user will then
 have 5 minutes to complete the payment once opened in the app.
 See
-[Timeouts](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/timeouts).
+[Timeouts](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/timeouts).
 
 ### Basic flow for One-Time Payment QR code
 
@@ -123,10 +124,10 @@ See the [Quick start guide](vipps-qr-api-quick-start.md) for examples of generat
 #### Initiate a payment with the Vipps eCom API
 
 Before creating the QR code you must initiate a payment with the Vipps eCom API as is described in depth in the
-[eCom API guide](https://vippsas.github.io/vipps-developer-docs/docs/APIs/ecom-api/vipps-ecom-api#initiate-payment-flow-phone-and-browser).
+[eCom API guide](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api#initiate-payment-flow-phone-and-browser).
 
 The request to the eCom initiate endpoint
-[`POST:/ecomm/v2/payments`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST)
+[`POST:/ecomm/v2/payments`](https://developer.vippsmobilepay.com/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST)
  will return a response like this (the `url` is truncated, but the format is correct):
 
 ```json
@@ -137,7 +138,7 @@ The request to the eCom initiate endpoint
 ```
 
 Be aware that the URL is only valid for 5 minutes. See
-[Timeouts](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/timeouts)
+[Timeouts](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/timeouts)
 for details.
 
 #### Creation of One-Time Payment QR code
@@ -145,7 +146,7 @@ for details.
 Now that you have the `url` from the Vipps eCom API you can create a QR code
 using the following endpoint:
 
-[`POST:qr​/v1/`](https://vippsas.github.io/vipps-developer-docs/api/qr#operation/generateOtpQr)
+[`POST:qr​/v1/`](https://developer.vippsmobilepay.com/api/qr#operation/generateOtpQr)
 
 Example of a request for a QR code image using `Accept: image/png`:
 
@@ -184,7 +185,7 @@ The response will be similar to this, where the URL in the responseBody will be 
 ### Polling
 
 On one-time payment QR codes, merchants will need to
-[poll](https://vippsas.github.io/vipps-developer-docs/docs/vipps-developers/common-topics/polling-guidelines)
+[poll](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/polling-guidelines)
 to get the result of the payment.
 
 In a physical context, we recommend a polling interval of one second. Once a
@@ -195,7 +196,7 @@ feel comforting for the user as they will get feedback that the payment is under
 Redirect from the QR-image to a "waiting/spinner"-page has to be done by the
 merchant and does not happen automatically. Merchants must check the status of
 the QR code scan by polling
-[`GET:/ecomm/v2/payments/{orderId}/details`](https://vippsas.github.io/vipps-developer-docs/api/ecom#tag/Vipps-eCom-API/operation/getPaymentDetailsUsingGET).
+[`GET:/ecomm/v2/payments/{orderId}/details`](https://developer.vippsmobilepay.com/api/ecom#tag/Vipps-eCom-API/operation/getPaymentDetailsUsingGET).
 
 Once the QR code has been opened in the app, the `transactionId`
 field in `transactionLogHistory` will be set (it will not exist before the
@@ -258,7 +259,7 @@ See the [quick start guide](vipps-qr-api-quick-start.md) for examples of generat
 #### Creation of Merchant Redirect QR
 
 To create a merchant redirect QR, make a HTTPS POST to:
-[`POST:/qr/v1/merchant-redirect`](https://vippsas.github.io/vipps-developer-docs/api/qr#operation/CreateMerchantRedirectQr)
+[`POST:/qr/v1/merchant-redirect`](https://developer.vippsmobilepay.com/api/qr#operation/CreateMerchantRedirectQr)
 
 An example body like this:
 
@@ -287,7 +288,7 @@ Updating QR codes is a very similar procedure to creating them. When a QR code
 is updated, nothing happens to the QR itself. But, when the QR is scanned, the
 user will be redirected to the new URL. The change is instantaneous. To update
 the QR code, make
-[`PUT:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-developer-docs/api/qr#operation/UpdateMerchantRedirectUrl)
+[`PUT:/qr/v1/merchant-redirect/{id}`](https://developer.vippsmobilepay.com/api/qr#operation/UpdateMerchantRedirectUrl)
 request and with the new redirectUrl in the requestBody:
 
 ```json
@@ -307,7 +308,7 @@ And the response will be exactly the same as for generating the QR the first tim
 ```
 
 The
-[`DELETE:/qr/v1/merchant-redirect/{id}`](https://vippsas.github.io/vipps-developer-docs/api/qr#operation/DeleteMerchantRedirectQr)
+[`DELETE:/qr/v1/merchant-redirect/{id}`](https://developer.vippsmobilepay.com/api/qr#operation/DeleteMerchantRedirectQr)
 does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same id but the already-printed-QR will never work again.
 
 In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribute in the original `POST`-request. This attribute sets how many seconds the QR will live, before it is deleted permanently.
