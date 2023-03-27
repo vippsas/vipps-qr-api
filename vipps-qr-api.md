@@ -86,7 +86,7 @@ that will be recognized and opened in the Vipps app when scanned from native cam
 the styling and design of the QR.
 
 If you want to create the QR code on your own, see the
-[design guidelines](https://github.com/vippsas/vipps-design-guidelines#vipps-custom-qr-code)
+[design guidelines](https://developer.vippsmobilepay.com/docs/vipps-design-guidelines#vipps-custom-qr-code)
 for more details about the QR format and design.
 
 ## One-Time Payment QR codes
