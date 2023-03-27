@@ -343,7 +343,7 @@ An example body looks like this:
 }
 ```
 
-If the endpoint succeeds the QR code has been created.
+If the endpoint succeeds, the QR code has been created.
 
 **Please note:** The QR code will not be returned from the endpoint. Instead the merchant needs to call the dedicated [GET endpoints](#fetching-the-merchant-qr-codes) described below.
 
