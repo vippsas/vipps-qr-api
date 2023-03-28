@@ -86,7 +86,7 @@ that will be recognized and opened in the Vipps app when scanned from native cam
 the styling and design of the QR.
 
 If you want to create the QR code on your own, see the
-[design guidelines](https://github.com/vippsas/vipps-design-guidelines#vipps-custom-qr-code)
+[design guidelines](https://developer.vippsmobilepay.com/docs/vipps-design-guidelines#vipps-custom-qr-code)
 for more details about the QR format and design.
 
 ## One-Time Payment QR codes
@@ -333,9 +333,9 @@ Here is an overview of the parameters that are specific to the Merchant Callback
 
 ### How to create a Merchant Callback QR code
 
-To create a Merchant Callback QR code, the merchant must call the following endpoint [`PUT:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/PutMerchantCallbackQr).
+To create a Merchant Callback QR code, the merchant must call the following endpoint [`PUT:/qr/v1/merchant-callback/{merchantQrId}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/PutMerchantCallbackQr).
 
-The endpoint takes the `merchantQrId` as a path parameter and requires a requestbody containing the `locationDescription` parameter.
+The endpoint takes the `merchantQrId` as a path parameter and requires a request body containing the `locationDescription` parameter.
 
 An example body looks like this:
 
@@ -355,11 +355,12 @@ The QR code is based on the `merchantQrId` and `merchantSerialNumber`. These pro
 
 So the only property that can be updated on a QR code is the `locationDescription`. To update that property the merchant simply has to call the same endpoint used for creating the QR code with the new `locationDescription` and then the QR code will be updated accordingly.
 
-If a QR code is not needed anymore it is best practice to delete it. There are at least two reasons for that:
+If a QR code is not needed any more it is best practice to delete it. There are at least two reasons for that:
+
 * If a user scans the QR code, they will be informed that the QR code is not found. This is preferred to having the user waiting with no knowledge the QR code is no longer in use.
 * When the merchant needs to print all QR codes for a particular `merchantSerialNumber`, then QR codes that are not in use will not be printed.
 
-To delete a QR code the merchant will simply have to call the endpoint [`DELETE:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/DeleteMerchantCallbackQr).
+To delete a QR code the merchant will simply have to call the endpoint [`DELETE:/qr/v1/merchant-callback/{merchantQrId}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/DeleteMerchantCallbackQr).
 
 ### Fetching the Merchant QR codes
 
@@ -367,7 +368,7 @@ There are two endpoints for fetching created QR codes. One for getting one speci
 
 Common for both endpoints is the possibility to choose the format of the image returned, as well at the size of the QR code. These properties are defined by an `Accept` and `Size` header respectively. These are described [here](#accept-headers).
 
-To fetch a single QR code, the merchant has to call the endpoint: [`GET:/qr/v1/merchant-callback/{merchantQrId}`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackById).
+To fetch a single QR code, the merchant has to call the endpoint: [`GET:/qr/v1/merchant-callback/{merchantQrId}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackById).
 
 An example of the response from the GET endpoint looks like this:
 
@@ -383,7 +384,7 @@ An example of the response from the GET endpoint looks like this:
 
 Now the QR code image can be printed or accessed directly from the device that faces the customer. The image is located at the `qrImageUrl`.
 
-To fetch all QR codes belonging to a `merchantSerialNumber`, the merchant needs to call the endpoint: [`GET:/qr/v1/merchant-callback`](https://vippsas.github.io/vipps-developer-docs/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackQrs).
+To fetch all QR codes belonging to a `merchantSerialNumber`, the merchant needs to call the endpoint: [`GET:/qr/v1/merchant-callback`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackQrs).
 
 The only difference is the absence of the `merchantQrId` path parameter.
 
@@ -412,7 +413,7 @@ An example of a response from this endpoint is the same as the previous, except 
 
 The endpoint that returns a list is nice to have if the merchant has many QR codes in the same location. It will make printing easier.
 
-**Please note:** Before the merchant will receive any callbacks, they need to subscribe to the [QRScannedEvent Webhook](https://vippsas.github.io/vipps-developer-docs/docs/APIs/webhooks-api/events).
+**Please note:** Before the merchant will receive any callbacks, they need to subscribe to the [QRScannedEvent Webhook](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api/events).
 
 Here is a sequence diagram that showcases how to use the Merchant callback QR:
 

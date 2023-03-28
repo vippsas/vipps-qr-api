@@ -24,7 +24,7 @@ API version: 1.1.1.
 <!-- START_COMMENT -->
 
 ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://vippsas.github.io/vipps-developer-docs/docs/APIs/qr-api).
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
 
 <!-- END_COMMENT -->
 
