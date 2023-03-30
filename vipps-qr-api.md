@@ -316,7 +316,8 @@ In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribu
 Tip: If you want the same QR in different formats, perform `GET` calls on the same `id` with different `accept` headers and test what works best.
 
 ## Merchant Callback QR codes
-**Please note: Feature is under construction and not in production yet. Estimated release is Q2 2023.**
+
+💥 **Please note: This feature is being implemented, and is not yet available. Planned release is Q2 2023.** 💥
 
 Merchant callback QRs makes it possible for users to notify merchants that they want to pay with Vipps. It is the right solution for self-checkout, vending machines, or similar situations where there is no cashier, buttons, or other ways of letting the user communicate that they want to pay with Vipps.
 
@@ -351,7 +352,7 @@ If the endpoint succeeds, the QR code has been created.
 
 ### How to update or delete a Merchant Callback QR code
 
-The QR code is based on the `merchantQrId` and `merchantSerialNumber`. These properties will never change. 
+The QR code is based on the `merchantQrId` and `merchantSerialNumber`. These properties will never change.
 
 So the only property that can be updated on a QR code is the `locationDescription`. To update that property the merchant simply has to call the same endpoint used for creating the QR code with the new `locationDescription` and then the QR code will be updated accordingly.
 
