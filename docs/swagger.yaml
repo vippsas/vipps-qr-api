@@ -183,6 +183,7 @@ paths:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
   /v1/merchant-callback:
+  '/qr/v1/merchant-callback':
     get:
       summary: Get all merchant callback QR's
       operationId: GetMerchantCallbackQrs
@@ -220,7 +221,7 @@ paths:
         - $ref: '#/components/parameters/Size'
       tags:
         - Merchant callback QR
-  '/v1/merchant-callback/{merchantQrId}':
+  '/qr/v1/merchant-callback/{merchantQrId}':
     get:
       summary: Get callback QR by id
       operationId: GetMerchantCallbackById
@@ -318,7 +319,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
       tags:
         - Merchant callback QR
-  '/v1/merchant-callback/mobilepay/{beaconId}':
+  '/qr/v1/merchant-callback/mobilepay/{beaconId}':
     put:
       summary: Create callback QR code
       operationId: PutMerchantCallbackMobilePayQr
