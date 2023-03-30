@@ -182,7 +182,6 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  /v1/merchant-callback:
   '/qr/v1/merchant-callback':
     get:
       summary: Get all merchant callback QR's
