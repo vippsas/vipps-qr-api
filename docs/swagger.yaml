@@ -7,12 +7,12 @@ info:
     name: Team Payment Experience
     url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
 servers:
-  - url: https://api.vipps.no
-    description: Production environment (uses the production API keys, the official app and live data)
-  - url: https://apitest.vipps.no
-    description: Test environment (uses the test API keys, the test app and test data)
+  - url: 'https://api.vipps.no/qr'
+    description: 'Production environment (uses the production API keys, the official app and live data)'
+  - url: 'https://apitest.vipps.no/qr'
+    description: 'Test environment (uses the test API keys, the test app and test data)'
 paths:
-  /qr/v1:
+  /v1:
     parameters: []
     post:
       summary: Create One Time Payment QR
@@ -45,7 +45,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
       tags:
         - One time payment QR
-  /qr/v1/merchant-redirect:
+  /v1/merchant-redirect:
     post:
       summary: Create merchant redirect QR
       operationId: CreateMerchantRedirectQr
@@ -101,7 +101,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  '/qr/v1/merchant-redirect/{id}':
+  '/v1/merchant-redirect/{id}':
     put:
       summary: Update redirectUrl for merchant redirect QR
       operationId: UpdateMerchantRedirectUrl
@@ -182,7 +182,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  '/qr/v1/merchant-callback':
+  /v1/merchant-callback:
     get:
       summary: Get all merchant callback QR's
       operationId: GetMerchantCallbackQrs
@@ -220,7 +220,8 @@ paths:
         - $ref: '#/components/parameters/Size'
       tags:
         - Merchant callback QR
-  '/qr/v1/merchant-callback/{merchantQrId}':
+    parameters: []
+  '/v1/merchant-callback/{merchantQrId}':
     get:
       summary: Get callback QR by id
       operationId: GetMerchantCallbackById
@@ -318,7 +319,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
       tags:
         - Merchant callback QR
-  '/qr/v1/merchant-callback/mobilepay/{beaconId}':
+  '/v1/merchant-callback/mobilepay/{beaconId}':
     put:
       summary: Create callback QR code
       operationId: PutMerchantCallbackMobilePayQr
