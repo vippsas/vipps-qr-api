@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Quick start for the QR API
 sidebar_label: Quick start
@@ -7,20 +6,12 @@ description: Quick start guide for the using the QR API with Postman.
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # Quick start
 
 Use the QR API to generate QR codes that redirect the user back to a URL.
 You can get a list of all QR codes or delete a QR.
 If needed, you can update the redirect URL at a later time.
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
-
-<!-- END_COMMENT -->
 
 ## Postman
 

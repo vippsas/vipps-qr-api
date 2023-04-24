@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: QR API Frequently Asked Questions
 sidebar_label: FAQ
@@ -7,7 +6,6 @@ description: Frequently asked questions for the QR API.
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # QR API FAQ
 
@@ -18,15 +16,7 @@ For more common questions, see:
 
 * [Vipps API General FAQ](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs)
 
-
 API version: 1.1.1.
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
-
-<!-- END_COMMENT -->
 
 ## See the common FAQ
 

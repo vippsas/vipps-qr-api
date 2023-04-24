@@ -1,4 +1,3 @@
-<!-- START_METADATA
 ---
 title: Introduction to the QR API
 sidebar_label: Introduction
@@ -8,16 +7,8 @@ description: Use the QR API generate QR codes that redirect the user to a websit
 pagination_next: null
 pagination_prev: null
 ---
-END_METADATA -->
 
 # QR API
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the new documentation:
-[Vipps Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
-
-<!-- END_COMMENT -->
 
 The QR API can generate QR codes that redirect the user to a website or to the Vipps app on their phone where the payment suggestion is presented for approval.
 
