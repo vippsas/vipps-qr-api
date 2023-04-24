@@ -34,7 +34,7 @@ for information about getting your test environment set up.
 
 Save the following files to your computer:
 
-* [QR API Postman collection](tools/vipps-qr-api-postman-collection.json)
+* [QR API Postman collection](/tools/vipps-qr-api-postman-collection.json)
 * [Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
 ### Step 2: Import the Postman files
