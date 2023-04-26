@@ -32,7 +32,7 @@ API version: 1.2.0.
 
 ## Before you begin
 
-This document assumes you have signed up as a organisation with Vipps MobilePay and have
+This document assumes you have signed up as an organization with Vipps MobilePay and have
 retrieved your API credentials for
 [the test environment](https://developer.vippsmobilepay.com/docs/vipps-developers/test-environment)
 from
@@ -171,7 +171,7 @@ Body:
 }
 ```
 
-The response will be similar to this, where the URL in the responseBody will be a link to the image as defined in the accept header:
+The response will be similar to this, where the URL in the body of the response will be a link to the image as defined in the accept header:
 
 ```json
 {
@@ -203,7 +203,7 @@ field in `transactionLogHistory` will be set (it will not exist before the
 QR code has been scanned). Once this field is set, you can safely show a
 "waiting for user" message on your POS screen while the user finishes the payment.
 
-### Body once the QR has been opened by a user:
+### Body once the QR has been opened by a user
 
 ```json
 {
@@ -227,7 +227,7 @@ QR code has been scanned). Once this field is set, you can safely show a
 
 Merchant redirect QR codes allows you to make printable QR
 codes that redirect the user to your webpage. This can be used for one-offs,
-such as tv-commercials; as well as for permanent use cases, such as stickers,
+such as TV commercials; as well as for permanent use cases, such as stickers,
 billboards, and magazine ads.
 
 !["MerchantRedirect QR Flow"](images/merchant-redirect-qr-flow.svg)
@@ -237,7 +237,7 @@ take the customer straight to the web page.
 See a detailed example of [How it works](vipps-qr-merchant-redirect-api-howitworks.md)
 with examples of what the user will encounter.
 
-Merchant redirect QR codes do not time out and they don't require the Vipps app to be installed.
+Merchant redirect QR codes do not time out, and they don't require the Vipps app to be installed.
 
 The QR API allows for creating, updating, getting and deleting of merchant redirect QR codes.
 You can later change the URL through the API without generating a new QR code.
