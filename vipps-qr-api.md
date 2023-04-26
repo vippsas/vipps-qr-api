@@ -171,7 +171,7 @@ Body:
 }
 ```
 
-The response will be similar to this, where the URL in the `responseBody` will be a link to the image as defined in the accept header:
+The response will be similar to this, where the URL in the body of the response will be a link to the image as defined in the accept header:
 
 ```json
 {
