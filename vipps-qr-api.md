@@ -227,7 +227,7 @@ QR code has been scanned). Once this field is set, you can safely show a
 
 Merchant redirect QR codes allows you to make printable QR
 codes that redirect the user to your webpage. This can be used for one-offs,
-such as tv commercials; as well as for permanent use cases, such as stickers,
+such as TV commercials; as well as for permanent use cases, such as stickers,
 billboards, and magazine ads.
 
 !["MerchantRedirect QR Flow"](images/merchant-redirect-qr-flow.svg)
