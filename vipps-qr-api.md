@@ -317,7 +317,7 @@ Tip: If you want the same QR in different formats, perform `GET` calls on the sa
 
 ## Merchant Callback QR codes
 
-💥 **Please note: Feature is under construction and not in production yet. Estimated release is Q2 2023.** 💥
+💥 **Please note: Feature is under development and not in production yet. Estimated release is Q2 2023.** 💥
 
 Merchant callback QRs makes it possible for users to notify merchants that they want to pay with Vipps. It is the right solution for self-checkout, vending machines, or similar situations where there is no cashier, buttons, or other ways of letting the user communicate that they want to pay with Vipps.
 
