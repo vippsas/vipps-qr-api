@@ -207,8 +207,8 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
-        '415':
-          $ref: '#/components/responses/415UnsupportedMediaType'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
         '500':
           description: Internal Server Error
       description: Returns all QR codes that matches the provided Merchant-Serial-Number.
@@ -244,10 +244,10 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
         '404':
           description: Not Found
-        '415':
-          $ref: '#/components/responses/415UnsupportedMediaType'
         '500':
           description: Internal Server Error
       description: Returns the QR code represented by the merchantQrId and Merchant-Serial-Number provided in the path and header respectively. The image format and size of the QR code is defined by the Accept and Size headers respectively.
@@ -277,6 +277,8 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
         '500':
           description: Internal Server Error
       requestBody:
@@ -308,6 +310,8 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
         '404':
           $ref: '#/components/responses/404NotFound'
         '500':
@@ -341,6 +345,8 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
         '500':
           description: Internal Server Error
       tags:
@@ -646,6 +652,12 @@ components:
             $ref: '#/components/schemas/QrErrorResponse'
     400BadRequest:
       description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrErrorResponse'
+    403Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:
