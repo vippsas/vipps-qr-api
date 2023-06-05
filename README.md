@@ -24,7 +24,7 @@ The QR API can generate QR codes that redirect the user to a website or to the V
 ## Getting started
 
 See the
-[Vipps Getting started guide](https://developer.vippsmobilepay.com/docs/vipps-developers/vipps-getting-started)
+[Vipps Getting started guide](https://developer.vippsmobilepay.com/docs/vipps-developers/getting-started/)
 for information about API keys, product activation, how to make API calls, etc.
 
 Get an overview with:
