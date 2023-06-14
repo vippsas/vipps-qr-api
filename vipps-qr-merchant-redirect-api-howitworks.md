@@ -11,12 +11,4 @@ END_METADATA -->
 
 # How the QR API works with merchant redirect
 
-<!-- START_COMMENT -->
-
-
-ℹ️ Please use the new documentation:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
-
-<!-- END_COMMENT -->
-
-![MerchantRedirect QR how it works](images/merchant-redirect-qr-how-it-works.png)
+![Merchant-Redirect QR how it works](images/merchant-redirect-qr-how-it-works.png)
