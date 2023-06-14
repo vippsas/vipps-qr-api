@@ -11,6 +11,11 @@ END_METADATA -->
 
 # API guide
 
+<!-- START_COMMENT -->
+ℹ️ Please use the new documentation:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
+<!-- END_COMMENT -->
+
 The QR API provides you with tools for generating these types of QR codes:
 
 * Merchant redirect - Generate QR codes that redirect the user to your website.
@@ -21,14 +26,6 @@ The QR API provides you with tools for generating these types of QR codes:
 All types of QR codes share the same authentication and overall design, but have slight difference in behavior and how they are made.
 
 API version: 1.2.0.
-
-<!-- START_COMMENT -->
-
-
-ℹ️ Please use the new documentation:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
-
-<!-- END_COMMENT -->
 
 ## Before you begin
 
@@ -74,10 +71,10 @@ Below is an example merchant redirect QR:
 
 | Header Name | Header Value | Description |
 | ----------- | ------------ | ----------- |
-| `Accept` | `image/*` | Returns a URL pointing to a svg+xml image |
-| `Accept` | `image/svg+xml` | Returns a URL pointing to a svg+xml image |
-| `Accept` | `image/png` | Returns a URL pointing to a png image with 800x800 size |
-| `Accept` | `text/targetUrl` | Returns the target URL of the QR *|
+| `Accept` | `image/*` | Returns a URL pointing to a `svg+xml` image |
+| `Accept` | `image/svg+xml` | Returns a URL pointing to a `svg+xml` image |
+| `Accept` | `image/png` | Returns a URL pointing to a PNG image with 800x800 size |
+| `Accept` | `text/targetUrl` | Returns the target URL of the QR |
 
 The `qrContent` that points to `https://qr.vipps.no` is a shortened URL
 that will be recognized and opened in the Vipps app when scanned from native camera.
@@ -221,8 +218,6 @@ QR code has been scanned). Once this field is set, you can safely show a
 }
 ```
 
-
-
 ## Merchant Redirect QR codes
 
 Merchant redirect QR codes allows you to make printable QR
@@ -242,13 +237,12 @@ Merchant redirect QR codes do not time out, and they don't require the Vipps app
 The QR API allows for creating, updating, getting and deleting of merchant redirect QR codes.
 You can later change the URL through the API without generating a new QR code.
 
-
 ### Basic flow for Merchant Redirect QR
 
 1. Create a merchant redirect QR
 2. Later, if needed, you can:
 
-    a. Get the QR by id
+    a. Get the QR by ID
 
     b. Update the URL to the QR
 
@@ -279,8 +273,7 @@ Will return a response like this:
 }
 ```
 
-The `id` parameter is required, and is defined by the merchant. You can later use this id to update the merchant redirect QR codes
-
+The `id` parameter is required, and is defined by the merchant. You can later use this ID to update the merchant redirect QR codes
 
 #### Updating and Deletion of QR codes
 
@@ -289,7 +282,7 @@ is updated, nothing happens to the QR itself. But, when the QR is scanned, the
 user will be redirected to the new URL. The change is instantaneous. To update
 the QR code, make
 [`PUT:/qr/v1/merchant-redirect/{id}`](https://developer.vippsmobilepay.com/api/qr#operation/UpdateMerchantRedirectUrl)
-request and with the new redirectUrl in the requestBody:
+request and with the new `redirectUrl` in the request body:
 
 ```json
 {
@@ -309,7 +302,7 @@ And the response will be exactly the same as for generating the QR the first tim
 
 The
 [`DELETE:/qr/v1/merchant-redirect/{id}`](https://developer.vippsmobilepay.com/api/qr#operation/DeleteMerchantRedirectQr)
-does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same id but the already-printed-QR will never work again.
+does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same ID but the already-printed-QR will never work again.
 
 In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribute in the original `POST`-request. This attribute sets how many seconds the QR will live, before it is deleted permanently.
 
