@@ -27,8 +27,8 @@ for information about API keys, product activation, how to make API calls, etc.
 
 Get an overview with:
 
-* [How it works with one-time payment](vipps-qr-one-time-payment-api-howitworks.md)
-* [How it works with merchant redirect](vipps-qr-merchant-redirect-api-howitworks.md)
+* [How it works with one-time payment](./how-it-works/qr-one-time-payment-api-howitworks.md)
+* [How it works with merchant redirect](./how-it-works/qr-merchant-redirect-api-howitworks.md)
 
 Review detailed documentation:
 

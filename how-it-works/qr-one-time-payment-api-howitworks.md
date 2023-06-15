@@ -1,7 +1,7 @@
 <!-- START_METADATA
 ---
 title: How the QR API works with one-time payment
-sidebar_label: How it works with one-time payment
+sidebar_label: One-time payment
 sidebar_position: 15
 description: How the QR API works with one-time payment
 pagination_next: null
