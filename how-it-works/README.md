@@ -6,6 +6,7 @@ sidebar_position: 1
 description: View the QR API how-it-works guides for illustrations of the main flows.
 pagination_next: null
 pagination_prev: null
+hide_table_of_contents: true
 ---
 END_METADATA -->
 
