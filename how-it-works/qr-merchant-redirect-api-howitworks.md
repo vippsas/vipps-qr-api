@@ -12,4 +12,4 @@ END_METADATA -->
 
 # How the QR API works with merchant redirect
 
-![Merchant-Redirect QR how it works](images/merchant-redirect-qr-how-it-works.png)
+![Merchant-Redirect QR how it works](../images/merchant-redirect-qr-how-it-works.png)

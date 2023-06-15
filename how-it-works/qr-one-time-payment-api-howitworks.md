@@ -12,4 +12,4 @@ END_METADATA -->
 
 # How the QR API works with one-time payment
 
-![One-Time Payment QR how it works](images/one-time-payment-qr-how-it-works.png)
+![One-Time Payment QR how it works](../images/one-time-payment-qr-how-it-works.png)
