@@ -19,4 +19,3 @@ View the QR API how-it-works guides for illustrations of the main flows.
 
 * [How it works with one-time payment](qr-one-time-payment-api-howitworks.md)
 * [How it works with merchant redirect](qr-merchant-redirect-api-howitworks.md)
-

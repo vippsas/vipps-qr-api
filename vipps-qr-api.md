@@ -98,7 +98,7 @@ to be generated for each unique payment.
 The QR code, when scanned from either the native camera or the Vipps app, will
 automatically open an eCom or Recurring payment in the Vipps app, where the
 payment can be completed. See a detailed example of
-[how it works](vipps-qr-one-time-payment-api-howitworks.md).
+[how it works](./how-it-works/qr-one-time-payment-api-howitworks.md).
 
 Every Vipps payment needs a unique `orderId`. See
 [orderId recommendations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/orderid).
@@ -229,7 +229,7 @@ billboards, and magazine ads.
 
 The QR code, when scanned from the native camera or the Vipps scanner, will
 take the customer straight to the web page.
-See a detailed example of [How it works](vipps-qr-merchant-redirect-api-howitworks.md)
+See a detailed example of [How it works](./how-it-works/qr-merchant-redirect-api-howitworks.md)
 with examples of what the user will encounter.
 
 Merchant redirect QR codes do not time out, and they don't require the Vipps app to be installed.
