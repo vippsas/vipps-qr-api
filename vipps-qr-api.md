@@ -181,24 +181,16 @@ The response will be similar to this, where the URL in the body of the response 
 
 ### Polling
 
-On one-time payment QR codes, merchants will need to
-[poll](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/polling-guidelines)
-to get the result of the payment.
+On one-time payment QR codes, you will need to get the result of the payment by polling with the
+[`GET:/ecomm/v2/payments/{orderId}/details`](https://developer.vippsmobilepay.com/api/ecom#tag/Vipps-eCom-API/operation/getPaymentDetailsUsingGET) request.
 
-In a physical context, we recommend a polling interval of one second. Once a
-customer has scanned the QR code, it is possible for merchants to show the
-customer a "waiting/spinner"-screen while they finish the payment. This will
-feel comforting for the user as they will get feedback that the payment is underway.
-
-Redirect from the QR-image to a "waiting/spinner"-page has to be done by the
-merchant and does not happen automatically. Merchants must check the status of
-the QR code scan by polling
-[`GET:/ecomm/v2/payments/{orderId}/details`](https://developer.vippsmobilepay.com/api/ecom#tag/Vipps-eCom-API/operation/getPaymentDetailsUsingGET).
+In a physical context, we recommend a polling interval of one second.
+See [polling guidelines](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/polling-guidelines) for information.
 
 Once the QR code has been opened in the app, the `transactionId`
 field in `transactionLogHistory` will be set (it will not exist before the
 QR code has been scanned). Once this field is set, you can safely show a
-"waiting for user" message on your POS screen while the user finishes the payment.
+*waiting for user* message on your POS screen while the user finishes the payment.
 
 ### Body once the QR has been opened by a user
 
