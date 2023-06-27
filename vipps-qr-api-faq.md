@@ -11,6 +11,11 @@ END_METADATA -->
 
 # QR API FAQ
 
+<!-- START_COMMENT -->
+ℹ️ Please use the new documentation:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
+<!-- END_COMMENT -->
+
 Here are the QR API Frequently Asked Questions (FAQ).
 See the [QR API guide](vipps-qr-api.md) for all the technical details.
 
@@ -18,15 +23,7 @@ For more common questions, see:
 
 * [Vipps API General FAQ](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs)
 
-
 API version: 1.1.1.
-
-<!-- START_COMMENT -->
-
-ℹ️ Please use the website:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
-
-<!-- END_COMMENT -->
 
 ## See the common FAQ
 
@@ -47,7 +44,7 @@ experience result in a higher completion rate. The Vipps QR codes also contain v
 
 The Vipps QR API is an addition to the
 [Vipps eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api).
-Merchants can integrate with the Vipps eCom API for many different use cases.
+Merchants can integrate with the Vipps eCom API for many use cases.
 The Vipps QR API adds "just" the QR code functionality.
 
 Yes, there is one extra API call, but the overhead is minimal.

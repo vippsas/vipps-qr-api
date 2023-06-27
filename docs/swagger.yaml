@@ -4,15 +4,15 @@ info:
   version: '1.0'
   description: 'API to generate QR codes for a Vipps payment and Merchant Redirects. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/qr-api) for more information.'
   contact:
-    name: Team Payment Experience
-    url: 'https://vipps.no/kontakt-oss/bedrift/vipps/'
+    name: Vipps MobilePay
+    url: 'https://developer.vippsmobilepay.com/docs/vipps-developers/contact/'
 servers:
-  - url: https://api.vipps.no
-    description: Production environment (uses the production API keys, the official app and live data)
-  - url: https://apitest.vipps.no
-    description: Test environment (uses the test API keys, the test app and test data)
+  - url: 'https://api.vipps.no/qr'
+    description: 'Production environment (uses the production API keys, the official app and live data)'
+  - url: 'https://apitest.vipps.no/qr'
+    description: 'Test environment (uses the test API keys, the test app and test data)'
 paths:
-  /qr/v1:
+  /v1:
     parameters: []
     post:
       summary: Create One Time Payment QR
@@ -45,7 +45,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
       tags:
         - One time payment QR
-  /qr/v1/merchant-redirect:
+  /v1/merchant-redirect:
     post:
       summary: Create merchant redirect QR
       operationId: CreateMerchantRedirectQr
@@ -101,7 +101,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  '/qr/v1/merchant-redirect/{id}':
+  '/v1/merchant-redirect/{id}':
     put:
       summary: Update redirectUrl for merchant redirect QR
       operationId: UpdateMerchantRedirectUrl
@@ -182,7 +182,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  '/qr/v1/merchant-callback':
+  /v1/merchant-callback:
     get:
       summary: Get all merchant callback QR's
       operationId: GetMerchantCallbackQrs
@@ -207,8 +207,8 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
-        '415':
-          $ref: '#/components/responses/415UnsupportedMediaType'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
         '500':
           description: Internal Server Error
       description: Returns all QR codes that matches the provided Merchant-Serial-Number.
@@ -220,7 +220,8 @@ paths:
         - $ref: '#/components/parameters/Size'
       tags:
         - Merchant callback QR
-  '/qr/v1/merchant-callback/{merchantQrId}':
+    parameters: []
+  '/v1/merchant-callback/{merchantQrId}':
     get:
       summary: Get callback QR by id
       operationId: GetMerchantCallbackById
@@ -243,10 +244,10 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
         '404':
           description: Not Found
-        '415':
-          $ref: '#/components/responses/415UnsupportedMediaType'
         '500':
           description: Internal Server Error
       description: Returns the QR code represented by the merchantQrId and Merchant-Serial-Number provided in the path and header respectively. The image format and size of the QR code is defined by the Accept and Size headers respectively.
@@ -276,6 +277,8 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
         '500':
           description: Internal Server Error
       requestBody:
@@ -307,6 +310,8 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
         '404':
           $ref: '#/components/responses/404NotFound'
         '500':
@@ -318,7 +323,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
       tags:
         - Merchant callback QR
-  '/qr/v1/merchant-callback/mobilepay/{beaconId}':
+  '/v1/merchant-callback/mobilepay/{beaconId}':
     put:
       summary: Create callback QR code
       operationId: PutMerchantCallbackMobilePayQr
@@ -340,6 +345,8 @@ paths:
           $ref: '#/components/responses/400BadRequest'
         '401':
           description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
         '500':
           description: Internal Server Error
       tags:
@@ -645,6 +652,12 @@ components:
             $ref: '#/components/schemas/QrErrorResponse'
     400BadRequest:
       description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrErrorResponse'
+    403Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:

@@ -11,28 +11,25 @@ END_METADATA -->
 
 # API guide
 
+<!-- START_COMMENT -->
+ℹ️ Please use the new documentation:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
+<!-- END_COMMENT -->
+
 The QR API provides you with tools for generating these types of QR codes:
 
 * Merchant redirect - Generate QR codes that redirect the user to your website.
 * One-time payment - Generate QR codes that open the user's Vipps app on their phone and provides the payment suggestion for approval.
   This allows you to initiate a Vipps payment without needing to ask for the customer's telephone number.
-* Merchant callback - Generate QR codes that will result in a callback to the merchant when scanned by the user. Typically used to let the merchant know that a user is ready to pay.
+* Merchant callback - Generate QR codes that will result in a callback to the merchant when scanned by the user. This is typically used to let the merchant know that a user is ready to pay.
 
 All types of QR codes share the same authentication and overall design, but have slight difference in behavior and how they are made.
 
 API version: 1.2.0.
 
-<!-- START_COMMENT -->
-
-
-ℹ️ Please use the new documentation:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
-
-<!-- END_COMMENT -->
-
 ## Before you begin
 
-This document assumes you have signed up as a organisation with Vipps MobilePay and have
+This document assumes you have signed up as an organization with Vipps MobilePay and have
 retrieved your API credentials for
 [the test environment](https://developer.vippsmobilepay.com/docs/vipps-developers/test-environment)
 from
@@ -68,16 +65,16 @@ will return a `404 Not Found` error. Merchant redirect QR codes can be opened fo
 
 Below is an example merchant redirect QR:
 
-!["Demo "](images/demo-qr.png)
+!["Demo"](images/demo-qr.png)
 
 #### Accept Headers
 
 | Header Name | Header Value | Description |
 | ----------- | ------------ | ----------- |
-| `Accept` | `image/*` | Returns a URL pointing to a svg+xml image |
-| `Accept` | `image/svg+xml` | Returns a URL pointing to a svg+xml image |
-| `Accept` | `image/png` | Returns a URL pointing to a png image with 800x800 size |
-| `Accept` | `text/targetUrl` | Returns the target URL of the QR *|
+| `Accept` | `image/*` | Returns a URL pointing to a `svg+xml` image |
+| `Accept` | `image/svg+xml` | Returns a URL pointing to a `svg+xml` image |
+| `Accept` | `image/png` | Returns a URL pointing to a PNG image with 800x800 size |
+| `Accept` | `text/targetUrl` | Returns the target URL of the QR |
 
 The `qrContent` that points to `https://qr.vipps.no` is a shortened URL
 that will be recognized and opened in the Vipps app when scanned from native camera.
@@ -101,7 +98,7 @@ to be generated for each unique payment.
 The QR code, when scanned from either the native camera or the Vipps app, will
 automatically open an eCom or Recurring payment in the Vipps app, where the
 payment can be completed. See a detailed example of
-[how it works](vipps-qr-one-time-payment-api-howitworks.md).
+[how it works](./how-it-works/qr-one-time-payment-api-howitworks.md).
 
 Every Vipps payment needs a unique `orderId`. See
 [orderId recommendations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/orderid).
@@ -157,9 +154,9 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <snip>
 Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a
 Accept: image/png
 Merchant-Serial-Number: 123456
-Vipps-System-Name: Acme Enterprises Ecommerce DeLuxe
+Vipps-System-Name: Acme Commerce
 Vipps-System-Version: 3.1.2
-Vipps-System-Plugin-Name: Point Of Sale Excellence
+Vipps-System-Plugin-Name: acme-pos
 Vipps-System-Plugin-Version 4.5.6
 ```
 
@@ -171,7 +168,7 @@ Body:
 }
 ```
 
-The response will be similar to this, where the URL in the responseBody will be a link to the image as defined in the accept header:
+The response will be similar to this, where the URL in the body of the response will be a link to the image as defined in the accept header:
 
 ```json
 {
@@ -203,7 +200,7 @@ field in `transactionLogHistory` will be set (it will not exist before the
 QR code has been scanned). Once this field is set, you can safely show a
 "waiting for user" message on your POS screen while the user finishes the payment.
 
-### Body once the QR has been opened by a user:
+### Body once the QR has been opened by a user
 
 ```json
 {
@@ -221,34 +218,31 @@ QR code has been scanned). Once this field is set, you can safely show a
 }
 ```
 
-
-
 ## Merchant Redirect QR codes
 
 Merchant redirect QR codes allows you to make printable QR
 codes that redirect the user to your webpage. This can be used for one-offs,
-such as tv-commercials; as well as for permanent use cases, such as stickers,
+such as TV commercials; as well as for permanent use cases, such as stickers,
 billboards, and magazine ads.
 
 !["MerchantRedirect QR Flow"](images/merchant-redirect-qr-flow.svg)
 
 The QR code, when scanned from the native camera or the Vipps scanner, will
 take the customer straight to the web page.
-See a detailed example of [How it works](vipps-qr-merchant-redirect-api-howitworks.md)
+See a detailed example of [How it works](./how-it-works/qr-merchant-redirect-api-howitworks.md)
 with examples of what the user will encounter.
 
-Merchant redirect QR codes do not time out and they don't require the Vipps app to be installed.
+Merchant redirect QR codes do not time out, and they don't require the Vipps app to be installed.
 
 The QR API allows for creating, updating, getting and deleting of merchant redirect QR codes.
 You can later change the URL through the API without generating a new QR code.
-
 
 ### Basic flow for Merchant Redirect QR
 
 1. Create a merchant redirect QR
 2. Later, if needed, you can:
 
-    a. Get the QR by id
+    a. Get the QR by ID
 
     b. Update the URL to the QR
 
@@ -279,8 +273,7 @@ Will return a response like this:
 }
 ```
 
-The `id` parameter is required, and is defined by the merchant. You can later use this id to update the merchant redirect QR codes
-
+The `id` parameter is required, and is defined by the merchant. You can later use this ID to update the merchant redirect QR codes
 
 #### Updating and Deletion of QR codes
 
@@ -289,7 +282,7 @@ is updated, nothing happens to the QR itself. But, when the QR is scanned, the
 user will be redirected to the new URL. The change is instantaneous. To update
 the QR code, make
 [`PUT:/qr/v1/merchant-redirect/{id}`](https://developer.vippsmobilepay.com/api/qr#operation/UpdateMerchantRedirectUrl)
-request and with the new redirectUrl in the requestBody:
+request and with the new `redirectUrl` in the request body:
 
 ```json
 {
@@ -309,7 +302,7 @@ And the response will be exactly the same as for generating the QR the first tim
 
 The
 [`DELETE:/qr/v1/merchant-redirect/{id}`](https://developer.vippsmobilepay.com/api/qr#operation/DeleteMerchantRedirectQr)
-does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same id but the already-printed-QR will never work again.
+does what one might expect, it deletes the QR. Once deleted, merchants can generate a new QR with the same ID but the already-printed-QR will never work again.
 
 In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribute in the original `POST`-request. This attribute sets how many seconds the QR will live, before it is deleted permanently.
 
@@ -321,13 +314,13 @@ Tip: If you want the same QR in different formats, perform `GET` calls on the sa
 
 Merchant callback QRs makes it possible for users to notify merchants that they want to pay with Vipps. It is the right solution for self-checkout, vending machines, or similar situations where there is no cashier, buttons, or other ways of letting the user communicate that they want to pay with Vipps.
 
-A merchant callback QR is given a `merchantQrId` that the merchant selects upon creation. Then, when the user scans the QR, a callback is sent to the merchant containing this `merchantQrId`. Thus, the merchant knows which QR code has been scanned and they can act accordingly, such as starting a payment towards the user.
+A merchant callback QR is given a `merchantQrId` that the merchant selects upon creation. Then, when the user scans the QR, a callback is sent to the merchant containing this `merchantQrId`. Thus, the merchant knows which QR code has been scanned, and they can act accordingly, such as starting a payment towards the user.
 
 Here is an overview of the parameters that are specific to the Merchant Callback QR API.
 
 | Parameter | Description |
 | ----------- | ----------- |
-| `merchantQrId` | Merchant defined parameter. Together with MerchantSerialNumber it uniquely identifies the QR code |
+| `merchantQrId` | Merchant defined parameter. Together with `MerchantSerialNumber`, it uniquely identifies the QR code |
 | `locationDescription` | A description of where the QR code will be used. It will be shown in the app when the user has scanned the QR code. |
 | `qrImageUrl` | A link to the image containing the QR code |
 | `qrContent` | The content of the QR code. It is the link that is embedded in the QR code. |
@@ -348,7 +341,7 @@ An example body looks like this:
 
 If the endpoint succeeds, the QR code has been created.
 
-**Please note:** The QR code will not be returned from the endpoint. Instead the merchant needs to call the dedicated [GET endpoints](#fetching-the-merchant-qr-codes) described below.
+**Please note:** The QR code will not be returned from the endpoint. Instead, the merchant needs to call the dedicated [GET endpoints](#fetching-the-merchant-qr-codes) described below.
 
 ### How to update or delete a Merchant Callback QR code
 
