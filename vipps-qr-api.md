@@ -101,7 +101,7 @@ payment can be completed. See a detailed example of
 [how it works](./how-it-works/qr-one-time-payment-api-howitworks.md).
 
 Every Vipps payment needs a unique `orderId`. See
-[orderId recommendations](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/orderid).
+[Recommendations for `reference` and `orderId`](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/orderid).
 
 The purchase will time out after 5 minutes, so it's not possible to print these
 QR codes. The QR code must be scanned within 5 minutes, and the user will then
