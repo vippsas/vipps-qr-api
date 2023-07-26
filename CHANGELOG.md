@@ -14,6 +14,15 @@ All notable changes to the current API will be documented in this file.
 To learn about API versioning, see
 [Common topics: API Lifecycle](https://developer.vippsmobilepay.com/docs/vipps-developers/common-topics/api-lifecycle/).
 
+## May 2022
+
+Added `redirectUrl` to all responses, so merchants can see where a QR is pointing.
+
+## April 2022
+
+Path changed from `/merchantRedirect` to `/merchant-redirect`.
+
+
 ## September 2021
 
-QR API launched.
+Early version of QR API is available.
