@@ -25,7 +25,7 @@ If needed, you can update the redirect URL at a later time.
 ### Prerequisites
 
 Review
-[Vipps quick start guides](https://developer.vippsmobilepay.com/docs/vipps-developers/quick-start-guides)
+[Vipps quick start guides](https://developer.vippsmobilepay.com/docs/quick-start-guides)
 for information about getting your test environment set up.
 
 ### Step 1: Get the Postman collection and environment

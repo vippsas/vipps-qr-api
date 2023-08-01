@@ -21,14 +21,14 @@ See the [QR API guide](vipps-qr-api.md) for all the technical details.
 
 For more common questions, see:
 
-* [Vipps API General FAQ](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs)
+* [Vipps API General FAQ](https://developer.vippsmobilepay.com/docs/faqs)
 
 API version: 1.1.1.
 
 ## See the common FAQ
 
 It contains answers to all(?) common questions about Vipps payments:
-[Vipps FAQ](https://developer.vippsmobilepay.com/docs/vipps-developers/faqs).
+[Vipps FAQ](https://developer.vippsmobilepay.com/docs/faqs).
 
 ## Can we make our own QRs for payment and redirects?
 
