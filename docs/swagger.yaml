@@ -5,7 +5,7 @@ info:
   description: 'API to generate QR codes for a Vipps payment and Merchant Redirects. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/qr-api) for more information.'
   contact:
     name: Vipps MobilePay
-    url: 'https://developer.vippsmobilepay.com/docs/vipps-developers/contact/'
+    url: 'https://developer.vippsmobilepay.com/docs/contact/'
 servers:
   - url: 'https://api.vipps.no/qr'
     description: 'Production environment (uses the production API keys, the official app and live data)'
