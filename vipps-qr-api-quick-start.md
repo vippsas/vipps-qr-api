@@ -165,7 +165,7 @@ Get a new token by calling
 </TabItem>
 </Tabs>
 
-### Relevant examples
+Relevant examples:
 
 * [Static QR directing to the merchant site for payment](https://developer.vippsmobilepay.com/docs/solutions/vending-machines/qr-to-merchant-site-payment-only/)
 * [Static QR directing to the merchant site for product selection](https://developer.vippsmobilepay.com/docs/solutions/vending-machines/qr-to-merchant-site-product-selection/)
