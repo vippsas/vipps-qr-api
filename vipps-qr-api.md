@@ -304,7 +304,7 @@ Tip: If you want the same QR in different formats, perform `GET` calls on the sa
 
 💥 **Please note: This feature is being implemented, and is not yet available. Planned release is Q2 2023.** 💥
 
-Merchant callback QRs makes it possible for users to notify merchants that they want to pay with Vipps. It is the right solution for self-checkout, vending machines, or similar situations where there is no cashier, buttons, or other ways of letting the user communicate that they want to pay with Vipps.
+Merchant callback QRs make it possible for users to notify merchants that they want to pay with Vipps. It is the right solution for self-checkout, vending machines, or similar situations where there is no cashier, buttons, or other ways of letting the user communicate that they want to pay with Vipps.
 
 A merchant callback QR is given a `merchantQrId` that the merchant selects upon creation. Then, when the user scans the QR, a callback is sent to the merchant containing this `merchantQrId`. Thus, the merchant knows which QR code has been scanned, and they can act accordingly, such as starting a payment towards the user.
 
@@ -319,7 +319,7 @@ Here is an overview of the parameters that are specific to the Merchant Callback
 
 ### How to create a Merchant Callback QR code
 
-To create a Merchant Callback QR code, the merchant must call the following endpoint [`PUT:/qr/v1/merchant-callback/{merchantQrId}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/PutMerchantCallbackQr).
+To create a Merchant Callback QR code, call the following endpoint [`PUT:/qr/v1/merchant-callback/{merchantQrId}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/PutMerchantCallbackQr).
 
 The endpoint takes the `merchantQrId` as a path parameter and requires a request body containing the `locationDescription` parameter.
 
