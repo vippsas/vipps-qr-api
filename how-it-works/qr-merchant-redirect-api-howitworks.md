@@ -16,43 +16,35 @@ Offer contactless payment to your customers by creating interactions in static p
 
 !["MerchantRedirect QR Flow"](../images/merchant-redirect-qr-flow.svg)
 
-### 1. The merchant generates a QR code  
-Generate the QR either via the QR-api or the merchant portal. The illustrations below shows how it is done in the portal.  
+## 1. The merchant generates a QR code
 
-First find "**Skann & Vipps**" in the left menu
-!["Find Skann & Vipps in the menu"](../images/skann_vipps_qr_gen_1.png)  
+Generate the QR either via the QR API or the merchant portal. The illustrations below shows how it is done in the portal.  
 
-Then select the sales unit you want to use, and click the "**Lag ny QR-kode**"-button. Now you can enter the name you want for the QR, and enter the URL.
-!["Choose a name and a URL for the QR"](../images/skann_vipps_qr_gen_2.png) Click "**Lag QR**" and the QR will be created.
+First, find *Skann & Vipps* (*Scan and Vipps*) in the left menu.
+
+![Find Scan and Vipps in the menu](../images/skann_vipps_qr_gen_1.png)
+
+Then, select the sales unit you want to use, and click the *Lag ny QR-kode* (*Create a new QR code*) button. Now, you can enter the name you want for the QR, and enter the URL.
+
+!["Choose a name and a URL for the QR"](../images/skann_vipps_qr_gen_2.png) Click *Lag QR* (*Create QR*) and the QR will be generated.
 
 The QR is now created, and you can download it in either SVG or PNG. You can also change the URL or delete the QR.
 !["Download the QR or change the URL"](../images/skann_vipps_qr_gen_3.png)
 
-### 2. The merchant places or publishes the QR code  
-This will enable the merchants desired action, in a context.  
+## 2.  The merchant places or publishes the QR code
 
-!["The merchant places the QR"](../images/skann_vipps_merchant_publish.png)
+This will enable the merchants desired action, in a context.
 
-### 3. The user is interested and scans the QR code  
+![Place or publish the QR code](../images/skann_vipps_merchant_publish.png)
+
+## 3. The user is interested and scans the QR code
   
-!["The user scans the QR"](../images/skann_vipps_user_scan.png)
+![The user scans the QR](../images/skann_vipps_user_scan.png)
 
-### 4. The user is redirected to the merchant's page  
+## 4. The user is redirected to the merchant's page
   
-!["The user is redirected"](../images/skann_vipps_user_pays.png)
+![The user is redirected](../images/skann_vipps_user_pays.png)
 
-### 5. The user performs the merchant desired action. After payment, the order is confirmed at the merchant shop.
-  
-!["The user is redirected"](../images/skann_vipps_user_pays_2.png)
+## 5. The user performs the merchant desired action. After payment, the order is confirmed at the merchant shop
 
-
-
-
-
-
-
-
-
-
-
-
+![The user is redirected](../images/skann_vipps_user_pays_2.png)
