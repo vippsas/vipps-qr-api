@@ -123,7 +123,6 @@ values={[
 ]}>
 <TabItem value="postman">
 
-
 ```bash
 Send request Merchant Redirect QR > Generate QR
 ```
@@ -197,6 +196,7 @@ values={[
 ```bash
 Send request Initiate Payment
 ```
+
 The `orderId` and `vippsLandingPageUrl` variables are now in the environment of this Postman example.
 
 </TabItem>
@@ -258,7 +258,6 @@ to provide a URL that can be used to show a QR code.
 
 *Ctrl+click* the link to see the QR code. Scanning the QR should open the test app on your phone and allow you to complete the one-time purchase.
 
-
 </TabItem>
 <TabItem value="curl">
 
@@ -283,7 +282,6 @@ curl --location 'https://apitest.vipps.no/qr/v1' \
 
 </div>
 </details>
-
 
 ## Next steps
 
