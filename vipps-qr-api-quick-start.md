@@ -3,120 +3,286 @@
 title: Quick start for the QR API
 sidebar_label: Quick start
 sidebar_position: 20
-description: Quick start guide for the using the QR API with Postman.
+description: Quick steps for getting started with the QR API.
+toc_min_heading_level: 2
+toc_max_heading_level: 5
 pagination_next: null
 pagination_prev: null
 ---
+
+import ApiSchema from '@theme/ApiSchema';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 END_METADATA -->
 
 # Quick start
 
-<!-- START_COMMENT -->
-ℹ️ Please use the new documentation:
-[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
-<!-- END_COMMENT -->
+## Before you begin
 
-Use the QR API to generate QR codes that redirect the user back to a URL.
-You can get a list of all QR codes or delete a QR.
-If needed, you can update the redirect URL at a later time.
+This document covers the quick steps for getting started with the ePayment API.
+You must have already signed up as an organization with Vipps MobilePay and have
+your test credentials from the merchant portal, as described in the
+[Getting started guide](https://developer.vippsmobilepay.com/docs/getting-started).
 
-## Postman
+**Important:** The examples use standard example values that you must change to
+use *your* values. This includes API keys, HTTP headers, reference, etc.
 
-### Prerequisites
+## Prerequisites
 
-Review
-[Vipps quick start guides](https://developer.vippsmobilepay.com/docs/quick-start-guides)
-for information about getting your test environment set up.
+### Step 1 - Setup
 
-### Step 1: Get the Postman collection and environment
+<Tabs
+defaultValue="curl"
+groupId="sdk-choice"
+values={[
+{label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
+]}>
+<TabItem value="postman">
 
-Save the following files to your computer:
+**Please note:** Postman is discontinuing their offline version. Use only your test keys and delete them after testing. Ensure that your company allows for cloud use before continuing.
+
+If you wish to use Postman, import the following files:
 
 * [QR API Postman collection](/tools/vipps-qr-api-postman-collection.json)
-* [Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
+* [API Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
-### Step 2: Import the Postman files
+In Postman, tweak the environment with your own values (see
+[API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/)):
 
-1. In Postman, click *Import* in the upper-left corner.
-1. In the dialog that opens, with *File* selected, click *Upload Files*.
-1. Select the two files you have just downloaded and click *Import*.
+* `client_id` - Merchant key required for getting the access token.
+* `client_secret` - Merchant key required for getting the access token.
+* `Ocp-Apim-Subscription-Key` - Merchant subscription key.
+* `merchantSerialNumber` - Merchant ID.
+* `MobileNumber` - The phone number for the test app profile you have received or registered. This is your test mobile number *without* country code.
 
-### Step 3: Set up Postman environment
+</TabItem>
+<TabItem value="curl">
 
-1. Click the down arrow, next to the "eye" icon in the top-right corner, and select the environment you have imported.
-2. Click the "eye" icon and, in the dropdown window, click `Edit` in the top-right corner.
-3. Fill in the `Current Value` for the following fields to get started. For the first three keys, go to *Vipps Portal* > *Utvikler* ->  *Test Keys*.
-   * `client_id` - Merchant key is required for getting the access token.
-   * `client_secret` - Merchant key is required for getting the access token.
-   * `Ocp-Apim-Subscription-Key` - Merchant subscription key.
-   * `merchantSerialNumber` - Merchant ID.
-   * `mobileNumber` - The mobile number for the test app profile you have received or registered.
+No setup needed :)
 
-## Make API calls
+</TabItem>
+</Tabs>
 
-For all the following, you will start by sending request `Get Access Token`.
-This provides you with access to the API.
+### Step 2 - Authentication
 
-The access token is valid for 1 hour in the test environment
-and 24 hours in the production environment.
-See the
-[API reference](https://developer.vippsmobilepay.com/api/qr)
-for details about the calls.
+Get an `access_token` from the
+[Access token API](https://developer.vippsmobilepay.com/docs/APIs/access-token-api):
+[`POST:/accesstoken/get`](https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost).
 
-### A Merchant redirect QR
+<Tabs
+defaultValue="curl"
+groupId="sdk-choice"
+values={[
+{label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
+]}>
+<TabItem value="postman">
 
-Under the *Merchant Redirect QR* folder:
+```bash
+Send request Get Access Token
+```
 
-1. Send request `Generate QR`.
+</TabItem>
+<TabItem value="curl">
 
-   This creates a QR that works as a redirect back to the merchant. The website is specified as the `redirectUrl` in the
-   [`POST:/qr/v1/merchant-redirect`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/CreateMerchantRedirectQr)
-   request.
+```bash
+curl https://apitest.vipps.no/accessToken/get \
+-H "client_id: YOUR-CLIENT-ID" \
+-H "client_secret: YOUR-CLIENT-SECRET" \
+-H "Ocp-Apim-Subscription-Key: YOUR-SUBSCRIPTION-KEY" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: acme" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-X POST \
+--data ''
+```
 
-   The `qr-id` variable is now set in the environment for use with subsequent calls.
+</TabItem>
+</Tabs>
 
-   Ctrl+click the link to see the QR code. Scanning the QR should open the website on your phone.
+The property `access_token` should be used for all other API requests in the `Authorization` header as the Bearer token.
 
-   **Please note:** The result from `Generate QR` provides a URL with its own JWT token. This token will expire. If so, get a new token by calling `Get QR`.
+## Merchant Redirect QR
 
-2. Send request `Get QR by id`.
+A merchant redirect QR contains a link to your webshop. When the user scans this with their phone, your website will open.
 
-   This gets the QR for the specified `qr-id` in
-[`GET:/qr/v1/merchant-redirect/{{qr-id}}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/GetMerchantRedirectQrById).
+![QR code](images/demo-qr.png)
 
-   Ctrl+click the link to see the QR code. When you scan it, it will take you to the specified URL.
+Generate a merchant redirect QR with:
+[`POST:/qr/v1/merchant-redirect`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/CreateMerchantRedirectQr).
 
-3. Send request `Update redirectUrl by id`.
+<Tabs
+defaultValue="curl"
+groupId="sdk-choice"
+values={[
+{label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
+]}>
+<TabItem value="postman">
 
-   This changes the URL for the QR code with the specified `qr-id` in
-   [`PUT:/qr/v1/merchant-redirect/{{qr-id}}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/UpdateMerchantRedirectUrl).
+```bash
+Send request Merchant Redirect QR > Generate QR
+```
 
-4. Send request `Delete QR by id`.
+The `qr-id` variable is now set in the environment for use with subsequent calls.
 
-   This deletes the QR code with the specified `qr-id` in
-   [`DEL:/qr/v1/merchant-redirect/{{qr-id}}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/DeleteMerchantRedirectQr).
+*Ctrl+click* the link to see the QR code. Scanning the QR should open the specified URL on your phone.
 
-5. Send request `Get all QRs`.
+The result from this request provides a URL with its own JWT token, which will expire.
+Get a new token by calling `Get QR by id`.
 
-   This gets all the QRs by calling
-   [`GET:/qr/v1/merchant-redirect`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/GetAllMerchantRedirectQrs) request.
+</TabItem>
+<TabItem value="curl">
 
-See the [QR API Specifications](https://developer.vippsmobilepay.com/api/qr) for details about the calls.
+```bash
+curl https://apitest.vipps.no/qr/v1/merchant-redirect \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: acme" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-H "Idempotency-Key: 49ca711a-acee-4d01-993b-9487112e1def" \
+-X POST \
+-d '{
+    "redirectUrl": "https://example.com/mywebshop",
+    "id": "UNIQUE-QR-ID"
+}'
+```
 
-### One-Time Payments
+Enter the returned link into a browser. It will show the QR code. Scanning the QR should open the specified URL on your phone.
 
-Under the *One-Time Payment QR* folder:
+The result from this request provides a URL with its own JWT token, which will expire.
+Get a new token by calling
+[`GET:/qr/v1/merchant-redirect/{qr-id}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-redirect-QR/operation/GetMerchantRedirectQrById).
 
-1. Send request `Initiate Payment`.
+</TabItem>
+</Tabs>
 
-   This uses [`POST:/ecomm/v2/payments`](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api#initiate) or
-   [`POST:/v3/psppayments/init/`](https://developer.vippsmobilepay.com/docs/APIs/psp-api/vipps-psp-api#initiate-payment)
-   from the [eCom API](https://developer.vippsmobilepay.com/docs/APIs/ecom-api).
+Relevant examples:
 
-   The `orderId` and `vippsLandingPageUrl` variables are now in the environment of this Postman example
+* [Static QR directing to the merchant site for payment](https://developer.vippsmobilepay.com/docs/solutions/vending-machines/qr-to-merchant-site-payment-only/)
+* [Static QR directing to the merchant site for product selection](https://developer.vippsmobilepay.com/docs/solutions/vending-machines/qr-to-merchant-site-product-selection/)
 
-1. Send request `Generate OTP QR`. This supplies `vippsLandingPageUrl` to
-   [`POST:/qr/v1`](https://developer.vippsmobilepay.com/api/qr#tag/One-time-payment-QR/operation/generateOtpQr)
-   to provide a URL that can be used to show a QR code.
+## One-time payment QR
 
-   Ctrl+click the link to see the QR code. Scanning the QR should open the test app on your phone and allow you to complete the one-time purchase.
+A one-time payment QR (also called dynamic QR) is connected to a payment. When the user scans this QR with their phone,
+the Vipps app will open and present them with the payment request.
+
+If you are using the ePayment API in your solution, you do not need to use the QR API.
+See
+[Dynamic QR directing to the app for payment](https://developer.vippsmobilepay.com/docs/solutions/vending-machines/one-time-payment/) for an example.
+
+<details>
+<summary>Legacy method for eCom API</summary>
+<div>
+
+Create a payment and get the unique payment reference.
+
+<Tabs
+defaultValue="curl"
+groupId="sdk-choice"
+values={[
+{label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
+]}>
+<TabItem value="postman">
+
+```bash
+Send request Initiate Payment
+```
+
+The `orderId` and `vippsLandingPageUrl` variables are now in the environment of this Postman example.
+
+</TabItem>
+<TabItem value="curl">
+
+```bash
+curl --location 'https://apitest.vipps.no/ecomm/v2/payments/' \
+-H 'Content-Type: application/json' \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: acme" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-X POST \
+-d '{
+  "customerInfo": {
+    "mobileNumber": "91234567"
+  },
+  "merchantInfo": {
+    "merchantSerialNumber": "123456",
+    "callbackPrefix":"https://example.com/vipps/callbacks-for-payment-update-from-vipps",
+    "fallBack": "https://example.com/vipps/fallback-result-page-for-both-success-and-failure/acme-shop-123-order123abc",
+  },
+  "transaction": {
+    "amount": 49900,
+    "orderId": "UNIQUE-PAYMENT-REFERENCE",
+    "transactionText": "One pair of socks.",
+}
+}'
+```
+
+Note that `orderId` must be unique for each payment you create.
+
+</TabItem>
+</Tabs>
+
+Take note of the URL that is returned in the response body and provide it in the
+[POST:/qr/v1](https://developer.vippsmobilepay.com/api/qr/#tag/One-time-payment-QR/operation/generateOtpQr)
+request to generate the one-time payment QR.
+
+<Tabs
+defaultValue="curl"
+groupId="sdk-choice"
+values={[
+{label: 'curl', value: 'curl'},
+{label: 'Postman', value: 'postman'},
+]}>
+<TabItem value="postman">
+
+```bash
+Send request Generate OTP QR
+```
+
+This supplies `vippsLandingPageUrl` to
+[`POST:/qr/v1`](https://developer.vippsmobilepay.com/api/qr#tag/One-time-payment-QR/operation/generateOtpQr)
+to provide a URL that can be used to show a QR code.
+
+*Ctrl+click* the link to see the QR code. Scanning the QR should open the test app on your phone and allow you to complete the one-time purchase.
+
+</TabItem>
+<TabItem value="curl">
+
+```bash
+curl --location 'https://apitest.vipps.no/qr/v1' \
+-H 'Content-Type: application/json' \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1Ni <truncated>" \
+-H "Ocp-Apim-Subscription-Key: 0f14ebcab0ec4b29ae0cb90d91b4a84a" \
+-H "Merchant-Serial-Number: 123456" \
+-H "Vipps-System-Name: acme" \
+-H "Vipps-System-Version: 3.1.2" \
+-H "Vipps-System-Plugin-Name: acme-webshop" \
+-H "Vipps-System-Plugin-Version: 4.5.6" \
+-X POST \
+-d '{
+    "url": "https://apitest.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiOiJqd3RrZXkiLCJhbGciOiJSUzI1NiJ<truncated>"
+}'
+```
+
+</TabItem>
+</Tabs>
+
+</div>
+</details>
+
+## Next steps
+
+See the [QR API guide](vipps-qr-api.md) to read about the concepts and details.
