@@ -38,7 +38,7 @@ from
 ### HTTP headers
 
 We strongly recommend using the standard
-[Vipps HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers)
+[HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers)
 for all requests.
 
 ### Authentication
@@ -79,7 +79,8 @@ Below is an example merchant redirect QR:
 The `qrContent` that points to `https://qr.vipps.no` is a shortened URL
 that will be recognized and opened in the Vipps app when scanned from native camera.
 
-**Please note:** It is possible to create your own QR code with the `qrContent`. This will require an approval from Vipps before use, so we can validate
+**Please note:** It is possible to create your own QR code with the `qrContent`.
+This will require an approval from Vipps MobilePay before use, so we can validate
 the styling and design of the QR.
 
 If you want to create the QR code on your own, see the
@@ -88,7 +89,7 @@ for more details about the QR format and design.
 
 ## One-Time Payment QR codes
 
-The Vipps QR API lets merchants generate Vipps QR codes that can be used to pay
+The QR API lets merchants generate Vipps QR codes that can be used to pay
 over the counter, without requiring the Vipps user to provide their telephone
 number to the merchant. These QR codes are called one-time-payment QR codes, and will need
 to be generated for each unique payment.
@@ -111,16 +112,16 @@ See
 
 ### Basic flow for One-Time Payment QR code
 
-1. Initiate a Vipps eCom or Recurring payment
+1. Initiate a eCom or Recurring payment
 2. Receive the payment URL as response
 3. Post the payment URL to the QR API
 4. Receive a URL to a QR code in desired format (PNG or SVG)
 
 See the [Quick start guide](vipps-qr-api-quick-start.md) for examples of generating QR codes.
 
-#### Initiate a payment with the Vipps eCom API
+#### Initiate a payment with the eCom API
 
-Before creating the QR code you must initiate a payment with the Vipps eCom API as is described in depth in the
+Before creating the QR code you must initiate a payment with the eCom API as is described in depth in the
 [eCom API guide](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api#initiate-payment-flow-phone-and-browser).
 
 The request to the eCom initiate endpoint
@@ -140,7 +141,7 @@ for details.
 
 #### Creation of One-Time Payment QR code
 
-Now that you have the `url` from the Vipps eCom API you can create a QR code
+Now that you have the `url` from the eCom API you can create a QR code
 using the following endpoint:
 
 [`POST:qr​/v1/`](https://developer.vippsmobilepay.com/api/qr#operation/generateOtpQr)
@@ -204,7 +205,7 @@ QR code has been scanned). Once this field is set, you can safely show a
         "operationSuccess": true
         "timeStamp": "2018-11-14T15:21:04.697Z",
         "transactionId": "5001420062",
-        "transactionText": "One pair of Vipps socks",
+        "transactionText": "One pair of socks",
       }
     ]
 }
