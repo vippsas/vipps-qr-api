@@ -40,14 +40,15 @@ values={[
 ]}>
 <TabItem value="postman">
 
-**Please note:** Postman is discontinuing their offline version. Use only your test keys and delete them after testing. Ensure that your company allows for cloud use before continuing.
+**Please note:** To prevent your sensitive data and credentials from being synced to the Postman cloud,
+store them in the *Current Value* fields of your Postman environment.
 
-If you wish to use Postman, import the following files:
+In Postman, import the following files:
 
 * [QR API Postman collection](/tools/vipps-qr-api-postman-collection.json)
 * [API Global Postman environment](https://raw.githubusercontent.com/vippsas/vipps-developers/master/tools/vipps-api-global-postman-environment.json)
 
-In Postman, tweak the environment with your own values (see
+Update the *Current Value* field the environment with your own values (see
 [API keys](https://developer.vippsmobilepay.com/docs/common-topics/api-keys/)):
 
 * `client_id` - Merchant key required for getting the access token.
