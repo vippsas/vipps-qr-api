@@ -110,7 +110,11 @@ have 5 minutes to complete the payment once opened in the app.
 See
 [Timeouts](https://developer.vippsmobilepay.com/docs/common-topics/timeouts).
 
-### Basic flow for One-Time Payment QR code
+### One-Time Payment QR code with ePayment API
+
+One-time payment QR is already included as a feature in the payment requests using [the ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments/). 
+
+### Basic flow for One-Time Payment QR code with eCom or Recurring payments
 
 1. Initiate a eCom or Recurring payment
 2. Receive the payment URL as response
