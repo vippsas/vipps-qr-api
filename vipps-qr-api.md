@@ -400,7 +400,7 @@ An example of a response from this endpoint is the same as the previous, except 
 
 The endpoint that returns a list is nice to have if the merchant has many QR codes in the same location. It will make printing easier.
 
-**Please note:** Before the merchant will receive any callbacks, they need to subscribe to the [QRScannedEvent Webhook](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api/events).
+**Please note:** Before the merchant will receive any callbacks, they need to subscribe to the [user.checkin.v1 Webhook](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api/events).
 
 Here is a sequence diagram that showcases how to use the Merchant callback QR:
 
