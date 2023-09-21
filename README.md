@@ -12,7 +12,7 @@ END_METADATA -->
 
 # QR API
 
-![Vipps](./images/vipps.png) *Available for Vipps now.*
+![Vipps](./images/vipps.png) *Available for Vipps now, unless otherwise stated.*
 
 ![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
 

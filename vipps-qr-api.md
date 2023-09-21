@@ -11,7 +11,7 @@ END_METADATA -->
 
 # API guide
 
-![Vipps](./images/vipps.png) *The features here are available for Vipps now, unless otherwise stated.*
+![Vipps](./images/vipps.png) *Available for Vipps now, unless otherwise stated.*
 
 ![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
 
