@@ -12,6 +12,11 @@ END_METADATA -->
 
 # QR API
 
+![Vipps](./images/vipps.png) *Available for Vipps now, unless otherwise stated.*
+
+![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
+
+
 <!-- START_COMMENT -->
 ℹ️ Please use the website:
 [Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
