@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: Vipps QR API
+  title: QR API
   version: '1.0'
   description: 'API to generate QR codes for a Vipps payment and Merchant Redirects. See the [API Guide](https://developer.vippsmobilepay.com/docs/APIs/qr-api) for more information.'
   contact:
