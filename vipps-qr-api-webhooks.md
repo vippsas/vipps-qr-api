@@ -22,7 +22,7 @@ Here is the payload for the *user.checkin.v1* event:
 | customerToken | base64 string | A reference to the customer. Should be used when initiating a payment through the ePayments API |
 | merchantQrId | string | The id of the QR code that has been scanned. Defined by the merchant when the QR was created |
 | merchantSerialNumber | string | A unique id of the sales unit that the scanned QR belongs to |
-| initiatedAt | Timestamp in ISO 8601 format | The timestamp of when the customer scanned the QR |
+| initiatedAt | UTC Timestamp in ISO 8601 format | The timestamp of when the customer scanned the QR |
 
 
 Example of *user.checkin.v1* payload:
