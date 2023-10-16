@@ -10,7 +10,7 @@ pagination_next: Null
 END_METADATA -->
 
 # QR Api Webhooks
-The QR solution currently has one webhook a merchant can subscribe to.
+The QR solution currently has one webhook event a merchant can subscribe to.
 
 The central part of the Merchant Callback QR flow is the callback, that will be sent to the merchant when a customer scans the QR.
 To receive these callbacks the merchant needs to register a subscription to the *user.checkin.v1* webhook event. 
