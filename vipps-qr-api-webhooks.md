@@ -3,7 +3,7 @@
 title: QR API Webhooks
 sidebar_label: Webhooks
 sidebar_position: 35
-description: Find technical details about integrating with the QR API.
+description: Find information on the use of webhooks in the QR solution
 pagination_prev: Null
 pagination_next: Null
 ---
