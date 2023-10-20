@@ -13,9 +13,9 @@ END_METADATA -->
 The QR solution currently has one webhook event a merchant can subscribe to.
 
 The central part of the Merchant Callback QR flow is the callback, that will be sent to the merchant when a customer scans the QR.
-To receive these callbacks the merchant needs to register a subscription to the *user.checkin.v1* webhook event. 
+To receive these callbacks, the merchant needs to register a subscription to the `user.checked-in.v1` webhook event. 
 
-Here is the payload for the *user.checkin.v1* event:
+Here is the payload for the `user.checked-in.v1` event:
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
@@ -25,7 +25,7 @@ Here is the payload for the *user.checkin.v1* event:
 | initiatedAt | UTC Timestamp in ISO 8601 format | The timestamp of when the customer scanned the QR |
 
 
-Example of *user.checkin.v1* payload:
+Example of `user.checked-in.v1` payload:
 ````
 {
     "customerToken": "wbA8ceVRKkoYiQAVELHeFCC3Sn5dtNCvvEtVPiOT77j6wx7uR965AG6Q+q0ATP4=",
