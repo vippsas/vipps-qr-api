@@ -15,7 +15,7 @@ The QR solution currently has one webhook event a merchant can subscribe to.
 The central part of the Merchant Callback QR flow is the callback, that will be sent to the merchant when a customer scans the QR.
 To receive these callbacks, the merchant needs to register a subscription to the `user.checked-in.v1` webhook event. 
 
-Here is the payload for the *user.checked-in.v1* event:
+Here is the payload for the `user.checked-in.v1` event:
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
