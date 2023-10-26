@@ -420,7 +420,37 @@ The endpoint that returns a list is nice to have if the merchant has many QR cod
 
 Here is a sequence diagram that showcases how to use the Merchant callback QR:
 
-![MerchantCallbackQrDiagram](images/callbackQrDiagram.png)
+``` mermaid
+sequenceDiagram
+  actor user as Vipps/MP App
+  participant qr as QR Code
+  participant Merchant
+  participant qrApi as QR API
+  participant webhook as Webhook API
+  participant ePayment as ePayments API
+
+  loop One call for each merchantQrId
+    Merchant ->> qrApi: PUT:/qr/v1/merchant-callback/{merchantQrId}
+    qrApi ->> Merchant: Reponse: 200 OK
+  end
+
+  Merchant ->> qrApi: GET:/qr/v1/merchant-callback
+  qrApi ->> Merchant: Response: List of all QR Codes
+
+  Merchant ->> Merchant: Print and put up QR codes in store
+
+  Merchant ->> webhook: Register callbackUrl for user.checked-in.v1
+
+  
+  user ->> qr: Scan QR code
+  user ->> user: Waiting for merchant
+
+  webhook ->> Merchant: Send user.checked-in.v1 callback
+
+  Merchant ->> ePayment: Trigger payment flow with customerToken from callback
+  ePayment ->> user: Push payment information
+
+```
 
 </div>
 </details>
