@@ -426,7 +426,7 @@ sequenceDiagram
   participant qr as QR Code
   participant Merchant
   participant qrApi as QR API
-  participant webhook as Webhook API
+  participant webhooks as Webhooks API
   participant ePayment as ePayments API
 
   loop One call for each merchantQrId
@@ -439,13 +439,13 @@ sequenceDiagram
 
   Merchant ->> Merchant: Print and put up QR codes in store
 
-  Merchant ->> webhook: Register callbackUrl for user.checked-in.v1
+  Merchant ->> webhooks: Register callbackUrl for user.checked-in.v1
 
   
   user ->> qr: Scan QR code
   user ->> user: Waiting for merchant
 
-  webhook ->> Merchant: Send user.checked-in.v1 callback
+  webhooks ->> Merchant: Send user.checked-in.v1 callback
 
   Merchant ->> ePayment: Trigger payment flow with customerToken from callback
   ePayment ->> user: Push payment information
