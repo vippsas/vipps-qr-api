@@ -13,7 +13,7 @@ END_METADATA -->
 
 ![Vipps](./images/vipps.png) *Available for Vipps now, unless otherwise stated.*
 
-![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
+![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/about).*
 
 <!-- START_COMMENT -->
 ℹ️ Please use the website:
@@ -315,7 +315,7 @@ Tip: If you want the same QR in different formats, perform `GET` calls on the sa
 
 ![Vipps](./images/vipps.png) *Available for Vipps by the end of 2023.*
 
-![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/#about).*
+![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/about).*
 
 <details>
 <summary>Future Merchant Callback QR codes</summary>
