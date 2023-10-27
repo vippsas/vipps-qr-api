@@ -431,7 +431,7 @@ sequenceDiagram
 
   loop One call for each merchantQrId
     Merchant ->> qrApi: PUT:/qr/v1/merchant-callback/{merchantQrId}
-    qrApi ->> Merchant: Reponse: 200 OK
+    qrApi ->> Merchant: Response: 200 OK
   end
 
   Merchant ->> qrApi: GET:/qr/v1/merchant-callback
