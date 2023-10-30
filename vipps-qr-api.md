@@ -42,7 +42,7 @@ from
 ### HTTP headers
 
 We strongly recommend using the standard
-[HTTP headers](https://developer.vippsmobilepay.com/docs/common-topics/http-headers)
+[HTTP headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers)
 for all requests.
 
 ### Authentication
@@ -106,13 +106,13 @@ payment can be completed. See a detailed example of
 [how it works](./how-it-works/qr-one-time-payment-api-howitworks.md).
 
 Every Vipps payment needs a unique `orderId`. See
-[Recommendations for `reference` and `orderId`](https://developer.vippsmobilepay.com/docs/common-topics/orderid).
+[Recommendations for `reference` and `orderId`](https://developer.vippsmobilepay.com/docs/knowledge-base/orderid).
 
 The purchase will time out after 5 minutes, so it's not possible to print these
 QR codes. The QR code must be scanned within 5 minutes, and the user will then
 have 5 minutes to complete the payment once opened in the app.
 See
-[Timeouts](https://developer.vippsmobilepay.com/docs/common-topics/timeouts).
+[Timeouts](https://developer.vippsmobilepay.com/docs/knowledge-base/timeouts).
 
 ### One-Time Payment QR code with ePayment API
 
@@ -144,7 +144,7 @@ The request to the eCom initiate endpoint
 ```
 
 Be aware that the URL is only valid for 5 minutes. See
-[Timeouts](https://developer.vippsmobilepay.com/docs/common-topics/timeouts)
+[Timeouts](https://developer.vippsmobilepay.com/docs/knowledge-base/timeouts)
 for details.
 
 #### Creation of One-Time Payment QR code
@@ -194,7 +194,7 @@ On one-time payment QR codes, you will need to get the result of the payment by 
 [`GET:/ecomm/v2/payments/{orderId}/details`](https://developer.vippsmobilepay.com/api/ecom#tag/Vipps-eCom-API/operation/getPaymentDetailsUsingGET) request.
 
 In a physical context, we recommend a polling interval of one second.
-See [polling guidelines](https://developer.vippsmobilepay.com/docs/common-topics/polling-guidelines) for information.
+See [polling guidelines](https://developer.vippsmobilepay.com/docs/knowledge-base/polling-guidelines) for information.
 
 Once the QR code has been opened in the app, the `transactionId`
 field in `transactionLogHistory` will be set (it will not exist before the
