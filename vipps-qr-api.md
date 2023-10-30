@@ -133,7 +133,7 @@ Before creating the QR code you must initiate a payment with the eCom API as is 
 [eCom API guide](https://developer.vippsmobilepay.com/docs/APIs/ecom-api/vipps-ecom-api#initiate-payment-flow-phone-and-browser).
 
 The request to the eCom initiate endpoint
-[`POST:/ecomm/v2/payments`](https://developer.vippsmobilepay.com/api/ecom#tag/Vipps-eCom-API/operation/initiatePaymentV3UsingPOST)
+[`POST:/ecomm/v2/payments`](https://developer.vippsmobilepay.com/api/ecom#tag/eCom-API/operation/initiatePaymentV3UsingPOST)
  will return a response like this (the `url` is truncated, but the format is correct):
 
 ```json
@@ -191,7 +191,7 @@ The response will be similar to this, where the URL in the body of the response 
 ### Polling
 
 On one-time payment QR codes, you will need to get the result of the payment by polling with the
-[`GET:/ecomm/v2/payments/{orderId}/details`](https://developer.vippsmobilepay.com/api/ecom#tag/Vipps-eCom-API/operation/getPaymentDetailsUsingGET) request.
+[`GET:/ecomm/v2/payments/{orderId}/details`](https://developer.vippsmobilepay.com/api/ecom#tag/eCom-API/operation/getPaymentDetailsUsingGET) request.
 
 In a physical context, we recommend a polling interval of one second.
 See [polling guidelines](https://developer.vippsmobilepay.com/docs/knowledge-base/polling-guidelines) for information.
