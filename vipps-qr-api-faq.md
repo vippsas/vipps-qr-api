@@ -19,7 +19,7 @@ END_METADATA -->
 Here are the QR API Frequently Asked Questions (FAQ).
 See the [QR API guide](vipps-qr-api.md) for all the technical details.
 For general information and questions, please check in the
-[Knowledge base](https://developer.vippsmobilepay.com/docs/common-topics/).
+[Knowledge base](https://developer.vippsmobilepay.com/docs/knowledge-base/).
 
 API version: 1.1.1.
 
