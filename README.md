@@ -31,8 +31,8 @@ Generate QR codes that redirect the user to a website or to the Vipps MobilePay 
 
 ## Next steps
 
-* [API Quick Start](vipps-qr-api-quick-start.md): Run the basic examples in curl or Postman.
-* [API Guide](vipps-qr-api.md): Learn about the QR API features.
+* [API Quick Start](qr-api-quick-start.md): Run the basic examples in curl or Postman.
+* [API Guide](qr-api-guide.md): Learn about the QR API features.
 * [API Reference](https://developer.vippsmobilepay.com/api/qr): Go straight to the endpoint specifications.
 
 If you're new to the platform, see
