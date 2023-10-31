@@ -49,7 +49,7 @@ values={[
 
 In Postman, import the following files:
 
-* [QR API Postman collection](/tools/vipps-qr-api-postman-collection.json)
+* [QR API Postman collection](/tools/qr-api-postman-collection.json)
 * [API Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
 
 🔥 **To reduce risk of exposure, never store production keys in Postman or any similar tools.** 🔥
@@ -286,4 +286,4 @@ curl --location 'https://apitest.vipps.no/qr/v1' \
 
 ## Next steps
 
-See the [QR API guide](vipps-qr-api.md) to read about the concepts and details.
+See the [QR API guide](qr-api-guide.md) to read about the concepts and details.

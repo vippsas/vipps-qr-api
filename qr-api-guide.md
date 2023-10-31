@@ -125,7 +125,7 @@ One-time payment QR is already included as a feature in the payment requests usi
 3. Post the payment URL to the QR API
 4. Receive a URL to a QR code in desired format (PNG or SVG)
 
-See the [Quick start guide](vipps-qr-api-quick-start.md) for examples of generating QR codes.
+See the [Quick start guide](qr-api-quick-start.md) for examples of generating QR codes.
 
 #### Initiate a payment with the eCom API
 
@@ -249,7 +249,7 @@ You can later change the URL through the API without generating a new QR code.
 
     c. Delete the QR
 
-See the [quick start guide](vipps-qr-api-quick-start.md) for examples of generating merchant redirect QR codes.
+See the [quick start guide](qr-api-quick-start.md) for examples of generating merchant redirect QR codes.
 
 #### Creation of Merchant Redirect QR
 
