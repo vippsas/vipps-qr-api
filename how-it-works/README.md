@@ -13,7 +13,8 @@ END_METADATA -->
 # How the QR API works
 
 <!-- START_COMMENT -->
-💥 Please use the documentation pages here: <https://developer.vippsmobilepay.com/docs/APIs/qr-api>. 💥
+ℹ️ Please use the website:
+[Vipps MobilePay Technical Documentation](https://developer.vippsmobilepay.com/docs/APIs/qr-api).
 <!-- END_COMMENT -->
 
 View the QR API how-it-works guides for illustrations of the main flows.

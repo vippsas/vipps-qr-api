@@ -50,7 +50,7 @@ values={[
 In Postman, import the following files:
 
 * [QR API Postman collection](/tools/qr-api-postman-collection.json)
-* [API Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/vipps-api-global-postman-environment.json)
+* [API Global Postman environment](https://github.com/vippsas/vipps-developers/blob/master/tools/global-postman-environment.json)
 
 🔥 **To reduce risk of exposure, never store production keys in Postman or any similar tools.** 🔥
 
