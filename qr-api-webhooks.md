@@ -9,20 +9,20 @@ pagination_next: Null
 ---
 END_METADATA -->
 
-# QR Api Webhooks
+# QR API Webhooks
 The QR solution currently has one webhook event a merchant can subscribe to.
 
-The central part of the Merchant Callback QR flow is the callback, that will be sent to the merchant when a customer scans the QR.
+The central part of the Merchant Callback QR flow is the callback that will be sent to the merchant when a customer scans the QR.
 To receive these callbacks, the merchant needs to register a subscription to the `user.checked-in.v1` webhook event. 
 
 Here is the payload for the `user.checked-in.v1` event:
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| customerToken | base64 string | A reference to the customer. Should be used when initiating a payment through the ePayments API |
-| merchantQrId | string | The id of the QR code that has been scanned. Defined by the merchant when the QR was created |
-| merchantSerialNumber | string | A unique id of the sales unit that the scanned QR belongs to |
-| initiatedAt | UTC Timestamp in ISO 8601 format | The timestamp of when the customer scanned the QR |
+| customerToken | base64 string | A reference to the customer. Should be used when initiating a payment through the ePayment API. |
+| merchantQrId | string | The ID of the QR code that has been scanned which is defined by the merchant when the QR was created. |
+| merchantSerialNumber | string | A unique ID of the sales unit to which the scanned QR belongs. |
+| initiatedAt | UTC Timestamp in ISO 8601 format | The timestamp of when the customer scanned the QR. |
 
 
 Example of `user.checked-in.v1` payload:
