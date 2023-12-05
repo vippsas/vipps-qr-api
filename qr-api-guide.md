@@ -23,7 +23,7 @@ END_METADATA -->
 The QR API provides you with tools for generating these types of QR codes:
 
 * Merchant redirect - Generate QR codes that redirect the user to your website.
-* One-time payment - Generate QR codes that open the user's Vipps or MobilePay app on their phone and provides the payment suggestion for approval.
+* One-time payment - Generate QR codes that open the user's Vipps or MobilePay app and provide the payment suggestions for approval.
   This allows you to initiate a Vipps or MobilePay payment without needing to ask for the customer's telephone number.
 * Merchant callback *(soon)* - Generate QR codes that will result in a callback to the merchant when scanned by the user. This is typically used to let the merchant know that a user is ready to pay.
 
