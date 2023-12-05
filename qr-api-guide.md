@@ -319,6 +319,10 @@ Tip: If you want the same QR in different formats, perform `GET` calls on the sa
 
 ![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/about).*
 
+<details>
+<summary>Future Merchant Callback QR codes</summary>
+<div>
+
 A merchant callback QR is a special type of QR code that sends you a message (i.e., "callback") when it is scanned in the Vipps or MobilePay app.
 The unique ID for the QR is provided in the callback message, enabling you to identify which QR code has been scanned.
 When you get the message, you know that someone is at your location and trying to pay with Vipps MobilePay.
@@ -453,3 +457,6 @@ sequenceDiagram
   ePayment ->> user: Push payment information
 
 ```
+
+</div>
+</details>
