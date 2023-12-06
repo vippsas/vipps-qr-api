@@ -23,8 +23,8 @@ END_METADATA -->
 The QR API provides you with tools for generating these types of QR codes:
 
 * Merchant redirect - Generate QR codes that redirect the user to your website.
-* One-time payment - Generate QR codes that open the user's Vipps app on their phone and provides the payment suggestion for approval.
-  This allows you to initiate a Vipps payment without needing to ask for the customer's telephone number.
+* One-time payment - Generate QR codes that open the user's Vipps or MobilePay app and provide the payment suggestions for approval.
+  This allows you to initiate a Vipps or MobilePay payment without needing to ask for the customer's telephone number.
 * Merchant callback *(soon)* - Generate QR codes that will result in a callback to the merchant when scanned by the user. This is typically used to let the merchant know that a user is ready to pay.
 
 All types of QR codes share the same authentication and overall design, but have slight difference in behavior and how they are made.
@@ -49,7 +49,7 @@ for all requests.
 
 All API calls are authenticated with an access token and an API subscription key.
 See
-[Get an access token](https://developer.vippsmobilepay.com/docs/APIs/access-token-api#get-an-access-token), for details.
+[Get an access token](https://developer.vippsmobilepay.com/docs/APIs/access-token-api#get-an-access-token) for more details.
 
 ### QR code formats
 
@@ -81,7 +81,7 @@ Below is an example merchant redirect QR:
 | `Accept` | `text/targetUrl` | Returns the target URL of the QR |
 
 The `qrContent` that points to `https://qr.vipps.no` is a shortened URL
-that will be recognized and opened in the Vipps app when scanned from native camera.
+that will be recognized and opened in the Vipps or MobilePay app when scanned from native camera.
 
 **Please note:** It is possible to create your own QR code with the `qrContent`.
 This will require an approval from Vipps MobilePay before use, so we can validate
@@ -91,21 +91,23 @@ If you want to create the QR code on your own, see the
 [design guidelines](https://developer.vippsmobilepay.com/docs/design-guidelines#vipps-custom-qr-code)
 for more details about the QR format and design.
 
-## One-Time Payment QR codes
+## One-time payment QR codes
 
-The QR API lets merchants generate Vipps QR codes that can be used to pay
-over the counter, without requiring the Vipps user to provide their telephone
-number to the merchant. These QR codes are called one-time-payment QR codes, and will need
-to be generated for each unique payment.
+You can use the QR API to generate QR codes that can be scanned by a customer in a physical store setting.
+Once the QR code is scanned, the Vipps or MobilePay app will automatically open with the payment
+ready for approval.
+This avoids them needing to provide their phone number.
+
+These QR codes are generated for each unique payment.
 
 ![One-time payment QR Flow](images/one-time-payment-qr-flow.svg)
 
-The QR code, when scanned from either the native camera or the Vipps app, will
-automatically open an eCom or Recurring payment in the Vipps app, where the
+The QR code, when scanned from either the native camera or the Vipps or MobilePay app, will
+automatically open an eCom or Recurring payment in the app, where the
 payment can be completed. See a detailed example of
 [how it works](./how-it-works/qr-one-time-payment-api-howitworks.md).
 
-Every Vipps payment needs a unique `orderId`. See
+Every payment needs a unique `orderId`. See
 [Recommendations for `reference` and `orderId`](https://developer.vippsmobilepay.com/docs/knowledge-base/orderid).
 
 The purchase will time out after 5 minutes, so it's not possible to print these
@@ -116,7 +118,7 @@ See
 
 ### One-Time Payment QR code with ePayment API
 
-One-time payment QR is already included as a feature in the payment requests using [the ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments/).
+One-time payment QR is already included as a feature in the payment requests using the [ePayment API](https://developer.vippsmobilepay.com/docs/APIs/epayment-api/features/qr-payments/).
 
 ### Basic flow for One-Time Payment QR code with eCom or Recurring payments
 
@@ -228,12 +230,12 @@ billboards, and magazine ads.
 
 !["MerchantRedirect QR Flow"](images/merchant-redirect-qr-flow.svg)
 
-The QR code, when scanned from the native camera or the Vipps scanner, will
+The QR code, when scanned from the native camera or the Vipps MobilePay scanner, will
 take the customer straight to the web page.
 See a detailed example of [How it works](./how-it-works/qr-merchant-redirect-api-howitworks.md)
 with examples of what the user will encounter.
 
-Merchant redirect QR codes do not time out, and they don't require the Vipps app to be installed.
+Merchant redirect QR codes do not time out, and they don't require the Vipps or MobilePay app to be installed.
 
 The QR API allows for creating, updating, getting and deleting of merchant redirect QR codes.
 You can later change the URL through the API without generating a new QR code.
@@ -309,7 +311,7 @@ In addition to the `DELETE`-endpoint, it is also possible to add a `ttl`-attribu
 
 Tip: If you want the same QR in different formats, perform `GET` calls on the same `id` with different `accept` headers and test what works best.
 
-## Merchant Callback QR codes
+## Merchant callback QR codes
 
 💥 **Please note: This feature is being implemented, and is not yet available. Planned release is Q4 2023.** 💥
 
@@ -321,11 +323,15 @@ Tip: If you want the same QR in different formats, perform `GET` calls on the sa
 <summary>Future Merchant Callback QR codes</summary>
 <div>
 
-Merchant callback QRs make it possible for users to notify merchants that they want to pay with Vipps. It is the right solution for self-checkout, vending machines, or similar situations where there is no cashier, buttons, or other ways of letting the user communicate that they want to pay with Vipps.
+A merchant callback QR is a special type of QR code that sends you a message (i.e., "callback") when it is scanned in the Vipps or MobilePay app.
+The unique ID for the QR is provided in the callback message, enabling you to identify which QR code has been scanned.
+When you get the message, you know that someone is at your location and trying to pay with Vipps MobilePay.
+You can then use their customer token to initiate a payment which they can approve immediately in their Vipps or MobilePay app.
 
-A merchant callback QR is given a `merchantQrId` that the merchant selects upon creation. Then, when the user scans the QR, a callback is sent to the merchant containing this `merchantQrId`. Thus, the merchant knows which QR code has been scanned, and they can act accordingly, such as starting a payment towards the user.
+Merchant callback QRs are the best solution for self-checkout, vending machines, or similar situations where there is no cashier, buttons, or other ways of letting the user communicate how they want to pay.
 
-Here is an overview of the parameters that are specific to the Merchant Callback QR API.
+You will specify a `merchantQrId` when you generate the QR.
+Here is an overview of the parameters:
 
 | Parameter | Description |
 | ----------- | ----------- |
@@ -334,9 +340,9 @@ Here is an overview of the parameters that are specific to the Merchant Callback
 | `qrImageUrl` | A link to the image containing the QR code |
 | `qrContent` | The content of the QR code. It is the link that is embedded in the QR code. |
 
-### How to create a Merchant Callback QR code
+### How to create a merchant callback QR code
 
-To create a Merchant Callback QR code, call the following endpoint [`PUT:/qr/v1/merchant-callback/{merchantQrId}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/PutMerchantCallbackQr).
+To create a merchant callback QR code, call the following endpoint [`PUT:/qr/v1/merchant-callback/{merchantQrId}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/PutMerchantCallbackQr).
 
 The endpoint takes the `merchantQrId` as a path parameter and requires a request body containing the `locationDescription` parameter.
 
@@ -352,7 +358,7 @@ If the endpoint succeeds, the QR code has been created.
 
 **Please note:** The QR code will not be returned from the endpoint. Instead, the merchant needs to call the dedicated [GET endpoints](#fetching-the-merchant-qr-codes) described below.
 
-### How to update or delete a Merchant Callback QR code
+### How to update or delete a merchant callback QR code
 
 The QR code is based on the `merchantQrId` and `merchantSerialNumber`. These properties will never change.
 
