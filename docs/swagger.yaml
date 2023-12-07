@@ -9,12 +9,12 @@ info:
     name: Vipps MobilePay
     url: 'https://developer.vippsmobilepay.com/docs/contact/'
 servers:
-  - url: 'https://api.vipps.no/qr'
+  - url: 'https://api.vipps.no'
     description: 'Production environment (uses the production API keys, the official app and live data)'
-  - url: 'https://apitest.vipps.no/qr'
+  - url: 'https://apitest.vipps.no'
     description: 'Test environment (uses the test API keys, the test app and test data)'
 paths:
-  /v1:
+  /qr/v1:
     parameters: []
     post:
       summary: Create One Time Payment QR
@@ -47,7 +47,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
       tags:
         - One time payment QR
-  /v1/merchant-redirect:
+  /qr/v1/merchant-redirect:
     post:
       summary: Create merchant redirect QR
       operationId: CreateMerchantRedirectQr
@@ -103,7 +103,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  '/v1/merchant-redirect/{id}':
+  '/qr/v1/merchant-redirect/{id}':
     put:
       summary: Update redirectUrl for merchant redirect QR
       operationId: UpdateMerchantRedirectUrl
@@ -184,7 +184,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  /v1/merchant-callback:
+  /qr/v1/merchant-callback:
     get:
       summary: Get all merchant callback QR's
       operationId: GetMerchantCallbackQrs
@@ -218,12 +218,12 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
-        - $ref: '#/components/parameters/Accept'
-        - $ref: '#/components/parameters/Size'
+        - $ref: '#/components/parameters/QrImageFormat'
+        - $ref: '#/components/parameters/QrImageSize'
       tags:
         - Merchant callback QR
     parameters: []
-  '/v1/merchant-callback/{merchantQrId}':
+  '/qr/v1/merchant-callback/{merchantQrId}':
     get:
       summary: Get callback QR by id
       operationId: GetMerchantCallbackById
@@ -257,8 +257,8 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
-        - $ref: '#/components/parameters/Accept'
-        - $ref: '#/components/parameters/Size'
+        - $ref: '#/components/parameters/QrImageFormat'
+        - $ref: '#/components/parameters/QrImageSize'
       tags:
         - Merchant callback QR
     put:
@@ -325,7 +325,7 @@ paths:
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
       tags:
         - Merchant callback QR
-  '/v1/merchant-callback/mobilepay/{beaconId}':
+  '/qr/v1/merchant-callback/mobilepay/{beaconId}':
     put:
       summary: Create or Update MobilePay QR code
       operationId: PutMerchantCallbackMobilePayQr
@@ -631,6 +631,25 @@ components:
           - image/svg+xml
           - text/targetUrl
       description: 'Requested image format. Supported values: {image/*,image/png, image/svg+xml, text/targetUrl}'
+    QrImageFormat:
+      name: QrImageFormat
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - PNG
+          - SVG
+      description: 'Requested image format. Supported values: {PNG, SVG}. If not provided, SVG is chosen'
+    QrImageSize:
+      name: QrImageSize
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 100
+        maximum: 2000
+      description: 'Eks: 200. Then 200x200 px is set at dimension for Qr. Only relevant if PNG is chosen as image format'
     Size:
       name: Size
       in: header
