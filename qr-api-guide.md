@@ -53,9 +53,9 @@ See
 
 ### QR code formats
 
-The QR code image will be returned as a URL in the response for both one-time
-payment QR codes and merchant redirect QR codes. Opening this URL will return the image
-in the format and resolution set in the accept header. The URL to the image
+The QR code image will be returned as a URL in the response for one-time
+payment, merchant redirect and merchant callback QR codes. Opening this URL will return the image
+in the format and resolution set in the request. The URL to the image
 will look like this:
 
 ```json
@@ -71,25 +71,34 @@ Below is an example merchant redirect QR:
 
 !["Demo"](images/demo-qr.png)
 
-#### Accept Headers
+#### QR Image format
+The API currently supports generating QR codes in either `PNG` or `SVG` image formats. If `PNG` is chosen, it is also possible to set the resolution of the image.
+
+For Merchant-Callback QR codes, the image format and size are set in optional query parameters. If not provided, the default is an `SVG` image.
+One-time payment and Merchant Redirect QR codes are using headers to set the image format and size. The below table describes how.
 
 | Header Name | Header Value | Description |
 | ----------- | ------------ | ----------- |
-| `Accept` | `image/*` | Returns a URL pointing to a `svg+xml` image |
-| `Accept` | `image/svg+xml` | Returns a URL pointing to a `svg+xml` image |
-| `Accept` | `image/png` | Returns a URL pointing to a PNG image with 800x800 size |
-| `Accept` | `text/targetUrl` | Returns the target URL of the QR |
+| `Accept` | `image/*` | Returns a URL pointing to a `svg` image |
+| `Accept` | `image/svg+xml` | Returns a URL pointing to a `svg` image |
+| `Accept` | `image/png` | Returns a URL pointing to a `PNG` image |
+| `Size` | [100 - 2000] | The header value is an integer between 100 and 2000. For example a value of 500 results in a `PNG` image in resolution 500x500. Only relevant when requesting a `PNG` QR code. If `PNG` is chosen, and `Size` is not set, the default resolution is 800x800 |
 
-The `qrContent` that points to `https://qr.vipps.no` is a shortened URL
-that will be recognized and opened in the Vipps or MobilePay app when scanned from native camera.
+#### Custom QR codes
+It is also possible to create a custom QR code.
+This will require an approval from Vipps MobilePay before use, so we can validate the styling and design of the QR.
 
-**Please note:** It is possible to create your own QR code with the `qrContent`.
-This will require an approval from Vipps MobilePay before use, so we can validate
-the styling and design of the QR.
-
-If you want to create the QR code on your own, see the
+If a custom QR code is desired, see the
 [design guidelines](https://developer.vippsmobilepay.com/docs/design-guidelines#vipps-custom-qr-code)
 for more details about the QR format and design.
+
+To create a custom QR code the `qrContent` is required.
+For one-time payment and Merchant-redirect QR codes, the following `Accept` header value needs to be used:
+| Header Name | Header Value | Description |
+| ----------- | ------------ | ----------- |
+| `Accept` | `text/targetUrl` | Returns the `qrContent` of the QR |
+
+For Merchant-callback QR the `qrContent` is returned for all QR codes returned, so no special request modification is needed.
 
 ## One-time payment QR codes
 
@@ -313,15 +322,9 @@ Tip: If you want the same QR in different formats, perform `GET` calls on the sa
 
 ## Merchant callback QR codes
 
-💥 **Please note: This feature is being implemented, and is not yet available. Planned release is Q4 2023.** 💥
+![Vipps](./images/vipps.png) *Available for testing in our test environment now. Coming soon to production.*
 
-![Vipps](./images/vipps.png) *Available for Vipps by the end of 2023.*
-
-![MobilePay](./images/mp.png) *Available for MobilePay in selected markets at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/about).*
-
-<details>
-<summary>Future Merchant Callback QR codes</summary>
-<div>
+![MobilePay](./images/mp.png) *Available for testing in our test environment now. Available in production at the [Vipps MobilePay joint platform launch](https://www.vippsmobilepay.com/about).*
 
 A merchant callback QR is a special type of QR code that sends you a message (i.e., "callback") when it is scanned in the Vipps or MobilePay app.
 The unique ID for the QR is provided in the callback message, enabling you to identify which QR code has been scanned.
@@ -331,14 +334,23 @@ You can then use their customer token to initiate a payment which they can appro
 Merchant callback QRs are the best solution for self-checkout, vending machines, or similar situations where there is no cashier, buttons, or other ways of letting the user communicate how they want to pay.
 
 You will specify a `merchantQrId` when you generate the QR.
-Here is an overview of the parameters:
+Here is an overview of the different properties used in the Merchant Callback API:
+
+### API inputs
 
 | Parameter | Description |
 | ----------- | ----------- |
 | `merchantQrId` | Merchant defined parameter. Together with `MerchantSerialNumber`, it uniquely identifies the QR code |
 | `locationDescription` | A description of where the QR code will be used. It will be shown in the app when the user has scanned the QR code. |
+| `qrImageFormat` | The image format of the QR code returned by the API. Can be either `PNG` or `SVG`. Default is `SVG`. |
+| `qrImageSize` | The resolution of the QR code returned. Only relevant in conjunction with `qrImageFormat` set to `PNG`. Default is 800 which results in a `PNG` image in 800x800 resolution. |
+
+### API outputs
+Here is described only those parameters that are not described in the input section already.
+| Parameter | Description |
+| ----------- | ----------- |
 | `qrImageUrl` | A link to the image containing the QR code |
-| `qrContent` | The content of the QR code. It is the link that is embedded in the QR code. |
+| `qrContent` | The content of the QR code. It is the text that is embedded in the QR code which is scanned by the Vipps or MobilePay app |
 
 ### How to create a merchant callback QR code
 
@@ -375,9 +387,9 @@ To delete a QR code the merchant will simply have to call the endpoint [`DELETE:
 
 There are two endpoints for fetching created QR codes. One for getting one specific QR code and one for fetching all QR codes belonging to a `merchantSerialNumber`.
 
-Common for both endpoints is the possibility to choose the format of the image returned, as well at the size of the QR code. These properties are defined by an `Accept` and `Size` header respectively. These are described [here](#accept-headers).
+Common for both endpoints is the possibility to choose the format of the image returned, as well at the size of the QR code. These properties are defined as optional query parameters called `qrImageFormat` and `qrImageSize` respectively.
 
-To fetch a single QR code, the merchant has to call the endpoint: [`GET:/qr/v1/merchant-callback/{merchantQrId}`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackById).
+To fetch a single QR code, the merchant has to call the endpoint: [`GET:/qr/v1/merchant-callback/{merchantQrId}?qrImageFormat=PNG&qrImageSize=500`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackById).
 
 An example of the response from the GET endpoint looks like this:
 
@@ -393,7 +405,7 @@ An example of the response from the GET endpoint looks like this:
 
 Now the QR code image can be printed or accessed directly from the device that faces the customer. The image is located at the `qrImageUrl`.
 
-To fetch all QR codes belonging to a `merchantSerialNumber`, the merchant needs to call the endpoint: [`GET:/qr/v1/merchant-callback`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackQrs).
+To fetch all QR codes belonging to a `merchantSerialNumber`, the merchant needs to call the endpoint: [`GET:/qr/v1/merchant-callback?qrImageFormat=PNG&qrImageSize=500`](https://developer.vippsmobilepay.com/api/qr#tag/Merchant-callback-QR/operation/GetMerchantCallbackQrs).
 
 The only difference is the absence of the `merchantQrId` path parameter.
 
@@ -457,6 +469,3 @@ sequenceDiagram
   ePayment ->> user: Push payment information
 
 ```
-
-</div>
-</details>
