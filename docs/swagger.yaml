@@ -1,0 +1,700 @@
+openapi: 3.0.0
+info:
+  title: QR API
+  version: '1.0'
+  description: |-
+    The QR API enables you to generate Vipps and MobilePay QR codes and merchant redirects for a Vipps MobilePay payment.
+    See the [QR API Guide](https://developer.vippsmobilepay.com/docs/APIs/qr-api/qr-api-guide/) for more details.
+  contact:
+    name: Vipps MobilePay
+    url: 'https://developer.vippsmobilepay.com/docs/contact/'
+servers:
+  - url: 'https://api.vipps.no'
+    description: 'Production environment (uses the production API keys, the official app and live data)'
+  - url: 'https://apitest.vipps.no'
+    description: 'Test environment (uses the test API keys, the test app and test data)'
+paths:
+  /qr/v1:
+    parameters: []
+    post:
+      summary: Create One Time Payment QR
+      operationId: generateOtpQr
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OneTimePaymentQrResponse'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '415':
+          $ref: '#/components/responses/415UnsupportedMediaType'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OneTimePaymentQrRequest'
+        description: ''
+      description: Endpoint for generating a Vipps QR for a merchant payment. Given a valid vippsLandingPageUrl this endpoint will return a QR for that payment.
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Size'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+      tags:
+        - One time payment QR
+  /qr/v1/merchant-redirect:
+    post:
+      summary: Create merchant redirect QR
+      operationId: CreateMerchantRedirectQr
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponse'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '415':
+          $ref: '#/components/responses/415UnsupportedMediaType'
+      description: Generate a QR that works as a redirect back to the merchant
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Size'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantRedirectQrRequest'
+        description: ''
+      tags:
+        - Merchant redirect QR
+    parameters: []
+    get:
+      summary: Get all merchant redirect QRs
+      operationId: GetAllMerchantRedirectQrs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponseGetAll'
+        '401':
+          description: Unauthorized
+      description: Get all merchant redirect QRs for this saleunit
+      tags:
+        - Merchant redirect QR
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Size'
+  '/qr/v1/merchant-redirect/{id}':
+    put:
+      summary: Update redirectUrl for merchant redirect QR
+      operationId: UpdateMerchantRedirectUrl
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponse'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '415':
+          $ref: '#/components/responses/415UnsupportedMediaType'
+      description: Update the redirect url (target destination) of the QR
+      tags:
+        - Merchant redirect QR
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantRedirectQrUpdateRequest'
+      parameters:
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Size'
+    delete:
+      summary: Delete merchant redirect QR
+      operationId: DeleteMerchantRedirectQr
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      description: Delete merchant redirect QR
+      tags:
+        - Merchant redirect QR
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Size'
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: id for QR
+    get:
+      summary: Get merchant redirect QR by id
+      operationId: GetMerchantRedirectQrById
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantRedirectQrResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          $ref: '#/components/responses/404NotFound'
+      description: Get merchant redirect QR by id
+      tags:
+        - Merchant redirect QR
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Accept'
+        - $ref: '#/components/parameters/Size'
+  /qr/v1/merchant-callback:
+    get:
+      summary: Get all merchant callback QR's
+      operationId: GetMerchantCallbackQrs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MerchantCallbackQr'
+              examples:
+                Example 1:
+                  value:
+                    - merchantSerialNumber: '12345'
+                      merchantQrId: 27072f82-c4b6-49cd-9838-10f21d87496e
+                      locationDescription: Kasse 1
+                      qrImageUrl: 'https://qr.vipps.no/generate/qr.png?...'
+                      qrContent: 'https://qr.vipps.no/...'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '500':
+          description: Internal Server Error
+      description: Returns all QR codes that matches the provided Merchant-Serial-Number.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+        - $ref: '#/components/parameters/QrImageFormat'
+        - $ref: '#/components/parameters/QrImageSize'
+      tags:
+        - Merchant callback QR
+    parameters: []
+  '/qr/v1/merchant-callback/{merchantQrId}':
+    get:
+      summary: Get callback QR by id
+      operationId: GetMerchantCallbackById
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchantCallbackQr'
+              examples:
+                Example 1:
+                  value:
+                    merchantSerialNumber: '12345'
+                    merchantQrId: 27072f82-c4b6-49cd-9838-10f21d87496e
+                    locationDescription: Kasse 1
+                    qrImageUrl: 'https://qr.vipps.no/generate/qr.png?...'
+                    qrContent: 'https://qr.vipps.no/...'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+      description: Returns the QR code represented by the merchantQrId and Merchant-Serial-Number provided in the path and header respectively. The image format and size of the QR code is defined by the Accept and Size headers respectively.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+        - $ref: '#/components/parameters/QrImageFormat'
+        - $ref: '#/components/parameters/QrImageSize'
+      tags:
+        - Merchant callback QR
+    put:
+      summary: Create or update callback QR
+      operationId: PutMerchantCallbackQr
+      description: |-
+        Creates or updates the QR code that encapsulates the provided merchantSerialNumber and merchantQrId. See [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api) to create a webhook that will send callbacks when this QR code is scanned by a Vipps user.
+
+        If the endpoint is called with the same merchantQrId twice or more, it is the last call that defines the location property. The actual QR code image will not be updated on consecutive calls.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '500':
+          description: Internal Server Error
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantCallbackPutRequest'
+            examples:
+              Example 1:
+                value:
+                  locationDescription: Kasse 1
+        description: ''
+      tags:
+        - Merchant callback QR
+    parameters:
+      - schema:
+          type: string
+        name: merchantQrId
+        in: path
+        required: true
+        description: The merchant defined identifier for a QR code.
+    delete:
+      summary: Delete callback QR
+      operationId: DeleteMerchantCallbackQr
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          description: Internal Server Error
+      description: Deletes the QR code that matches the provided merchantQrId and merchantSerialNumber.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+      tags:
+        - Merchant callback QR
+  '/qr/v1/merchant-callback/mobilepay/{beaconId}':
+    put:
+      summary: Create or Update MobilePay QR code
+      operationId: PutMerchantCallbackMobilePayQr
+      description: |-
+        **NOTE: This endpoint is only intended for MobilePay PoS customers. It will be removed as soon as migration is completed.**
+
+        This endpoint is for migrating existing MobilePay PoS QR codes from the current solution that will end its lifetime. It is meant for merchants that have printed QR codes and want them to stay functional for the new product offering that will replace the now deprecated solution.
+
+        This endpoint will not create a new QR code but rather map the provided beaconId with the Merchant-Serial-Number, to make sure the already printed QR code can be re-used.
+        When the QR code is scanned by MobilePay users, it will result in a callback being sent to the merchant if the merchant has registered a [webhook](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api) for the `user.checked-in.v1` event.
+
+        The callback will include a MerchantQrId which in this scenario will equal the beaconId.
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+      responses:
+        '200':
+          description: OK
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          description: Unauthorized
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '500':
+          description: Internal Server Error
+      tags:
+        - Merchant callback QR
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MerchantCallbackMobilePayPutRequest'
+            examples:
+              Example 1:
+                value:
+                  locationDescription: Kasse 1
+        description: ''
+    parameters:
+      - schema:
+          type: string
+        name: beaconId
+        in: path
+        required: true
+        description: The MobilePay PoS BeaconId
+components:
+  schemas:
+    OneTimePaymentQrRequest:
+      title: OneTimePaymentQrRequest
+      type: object
+      description: ''
+      x-examples:
+        example-1:
+          url: 'https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'
+      properties:
+        url:
+          type: string
+          description: 'Url to the Vipps landing page, obtained from ecom/recurring apis'
+          example: '   https://api.vipps.no/dwo-api-application/v1/deeplink/vippsgateway?v=2&token=eyJraWQiO....'
+      required:
+        - url
+    OneTimePaymentQrResponse:
+      title: OneTimePaymentQrResponse
+      type: object
+      x-examples: {}
+      description: ''
+      properties:
+        url:
+          type: string
+          description: Link to QR image
+          example: 'https://qr.vipps.no/generate/qr.png?...'
+        expiresIn:
+          type: integer
+          description: How many seconds more this QR will be active
+          example: 544
+      required:
+        - url
+        - expiresIn
+    QrErrorResponse:
+      title: QrErrorResponse
+      type: object
+      x-examples:
+        example-1:
+          title: Order timeout
+          detail: Payment has already timed out
+          instance: 3cff3564-4a14-4481-8dbb-431087753eed
+        example-2:
+          title: Validation error
+          detail: Supplied landing page token is not valid
+          instance: 3cff3564-4a14-4481-8dbb-431087753eed
+        Validation error:
+          type: 'https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1'
+          title: One or more validation errors occurred.
+          detail: BadRequest
+          instance: 00-616e415f5af7584eb4d9369d0fe8d7cc-48b90041faff204c-00
+          invalidParams:
+            - name: RedirectUrl
+              reason: 'The field RedirectUrl must match the regular expression ''^https://[\w\.]+([\w#!:.?+=&%@\-/]+)?$''.'
+      properties:
+        type:
+          type: string
+          minLength: 1
+        title:
+          type: string
+          minLength: 1
+        detail:
+          type: string
+          minLength: 1
+        instance:
+          type: string
+          minLength: 1
+        invalidParams:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                minLength: 1
+              reason:
+                type: string
+                minLength: 1
+            required:
+              - name
+              - reason
+      required:
+        - title
+        - detail
+        - instance
+    MerchantRedirectQrRequest:
+      title: MerchantRedirectQrRequest
+      type: object
+      x-examples: {}
+      properties:
+        id:
+          type: string
+          description: Merchant supplied Id for QR
+          example: billboard_1
+          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
+          maxLength: 128
+          minLength: 1
+          nullable: true
+        redirectUrl:
+          type: string
+          format: uri
+          description: The target url of the QR (redirect destination)
+          pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
+          example: 'https://example.com/myProduct'
+          nullable: true
+        ttl:
+          type: integer
+          description: 'Optional time-to-live field, given in seconds'
+          example: 600
+          minimum: 300
+          maximum: 2147483647
+          nullable: true
+      required:
+        - id
+        - redirectUrl
+    MerchantRedirectQrResponse:
+      title: MerchantRedirectQrResponse
+      type: object
+      x-examples: {}
+      properties:
+        id:
+          type: string
+          description: Merchant supplied Id for QR
+          example: billboard_1
+          pattern: '^[-_+%æøåÆØÅ\w\s]*$'
+        url:
+          type: string
+          format: uri
+          description: Link to QR image
+          example: 'https://qr.vipps.no/generate/qr.png?...'
+        redirectUrl:
+          type: string
+          format: uri
+          description: The target url of the QR (redirect destination)
+          pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
+          example: 'https://example.com/myProduct'
+        expiresIn:
+          type: integer
+          description: Time in seconds until expiration. -1 means no expiration (infinite QR code)
+          example: 598
+      required:
+        - id
+        - url
+        - redirectUrl
+    MerchantRedirectQrResponseGetAll:
+      title: MerchantRedirectQrResponseGetAll
+      x-examples: {}
+      type: array
+      items:
+        $ref: '#/components/schemas/MerchantRedirectQrResponse'
+    MerchantRedirectQrUpdateRequest:
+      title: MerchantRedirectQrUpdateRequest
+      type: object
+      description: Model for put-requests
+      properties:
+        redirectUrl:
+          type: string
+          format: uri
+          pattern: '^https:\/\/[\w\.]+([\w#!:.?+=&%@\-\/]+)?$'
+          example: 'https://example.com/myProduct'
+      required:
+        - redirectUrl
+    MerchantCallbackPutRequest:
+      title: MerchantCallbackPutRequest
+      type: object
+      x-examples:
+        Example 1:
+          locationDescription: Kasse 1
+      properties:
+        locationDescription:
+          type: string
+          description: 'A description of where the QR code will be located. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
+      required:
+        - locationDescription
+    MerchantCallbackMobilePayPutRequest:
+      title: MerchantCallbackMobilePayPutRequest
+      type: object
+      x-examples:
+        Example 1:
+          locationDescription: Kasse 1
+      properties:
+        locationDescription:
+          type: string
+          description: 'A description of where the QR code will be located. This corresponds to the PoS name field from the old MobilePay V10 API. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
+      required:
+        - locationDescription
+    MerchantCallbackQr:
+      title: MerchantCallbackQr
+      type: object
+      description: 'A representation of a QR code. It contains all the three properties that was provided when creating the QR code, in addition to a link pointing to the actual QR code itself.'
+      x-examples:
+        Example 1:
+          merchantSerialNumber: '12345'
+          merchantQrId: 27072f82-c4b6-49cd-9838-10f21d87496e
+          locationDescription: Kasse 1
+          qrImageUrl: 'https://qr.vipps.no/generate/qr.png?...'
+          qrContent: 'https://qr.vipps.no/...'
+      properties:
+        merchantSerialNumber:
+          type: string
+          description: The merchant serial number (MSN) for the sale unit
+        merchantQrId:
+          type: string
+          description: The merchant defined identifier for a QR code. It will be provided in the callback to the merchant when the QR code has been scanned.
+        locationDescription:
+          type: string
+          description: 'A description of where the QR code will be located. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
+        qrImageUrl:
+          type: string
+          description: The link to the actual QR code.
+          format: uri
+          example: 'https://qr.vipps.no/generate/qr.png?...'
+        qrContent:
+          type: string
+          description: The text that is being encoded by the QR code. This is the actual content of the QR code.
+  securitySchemes:
+    BearerToken:
+      type: http
+      scheme: bearer
+  parameters:
+    Merchant-Serial-Number:
+      name: Merchant-Serial-Number
+      in: header
+      required: false
+      schema:
+        type: string
+      description: 'The merchant serial number (MSN) for the sales unit. Partners and PSP merchants must always send the Merchant-Serial-Number header, and we recommend that everyone sends it, also when using the merchant''s own API keys. The Merchant-Serial-Number header can be used with all API keys, and can speed up any trouble-shooting of API problems quite a bit.'
+    Merchant-Serial-Number-Required:
+      name: Merchant-Serial-Number
+      in: header
+      required: true
+      schema:
+        type: string
+      description: The merchant serial number (MSN) for the sales unit.
+    Ocp-Apim-Subscription-Key:
+      name: Ocp-Apim-Subscription-Key
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Subscription Key
+    Authorization:
+      name: Authorization
+      in: header
+      required: true
+      schema:
+        type: string
+      description: 'The access token is a base64-encoded string that is required for all API calls. It is a JWT (JSON Web Token). The access token is fetched from the [`POST:/accesstoken/get`](https://developer.vippsmobilepay.com/api/access-token#tag/Authorization-Service/operation/fetchAuthorizationTokenUsingPost) endpoint. It is valid for 1 hour in the test environment and 24 hours in the production environment.'
+    Accept:
+      name: Accept
+      in: header
+      required: true
+      schema:
+        type: string
+        enum:
+          - image/*
+          - image/png
+          - image/svg+xml
+          - text/targetUrl
+      description: 'Requested image format. Supported values: {image/*,image/png, image/svg+xml, text/targetUrl}'
+    QrImageFormat:
+      name: QrImageFormat
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - PNG
+          - SVG
+      description: 'Requested image format. Supported values: {PNG, SVG}. If not provided, SVG is chosen'
+    QrImageSize:
+      name: QrImageSize
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 100
+        maximum: 2000
+      description: 'Eks: 200. Then 200x200 px is set at dimension for Qr. Only relevant if PNG is chosen as image format'
+    Size:
+      name: Size
+      in: header
+      required: false
+      schema:
+        type: integer
+        minimum: 100
+        maximum: 2000
+      description: 'Eks: 200. Then 200x200 px is set at dimension for Qr'
+  responses:
+    415UnsupportedMediaType:
+      description: Unsupported Media Type
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrErrorResponse'
+    400BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrErrorResponse'
+    403Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrErrorResponse'
+    409Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    404NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrErrorResponse'
+tags:
+  - name: Merchant redirect QR
+  - name: One time payment QR
+  - name: Merchant callback QR
+security:
+  - BearerToken: []
