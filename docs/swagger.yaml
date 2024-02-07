@@ -542,6 +542,7 @@ components:
       properties:
         locationDescription:
           type: string
+          maxLength: 36
           description: 'A description of where the QR code will be located. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
       required:
         - locationDescription
@@ -554,6 +555,7 @@ components:
       properties:
         locationDescription:
           type: string
+          maxLength: 36
           description: 'A description of where the QR code will be located. This corresponds to the PoS name field from the old MobilePay V10 API. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
       required:
         - locationDescription
