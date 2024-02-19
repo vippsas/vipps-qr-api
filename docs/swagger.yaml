@@ -374,7 +374,7 @@ paths:
         description: The MobilePay PoS BeaconId
   '/qr/v1/exchange':
     post:
-      summary: Exchange user presented QR code for information about the user
+      summary: Exchange user presented QR code for user data
       operationId: exchangeQr
       tags:
         - QR Exchange
@@ -633,6 +633,15 @@ components:
       properties:
         msisdn:
           type: string
+        timestamp:
+          type: integer
+          description: 'The UTC timestamp in seconds when the QR code was generated.'
+        secure:
+          type: boolean
+          description: 'Legacy QR codes are less secure than the new ones.'
+      required:
+        - msisdn
+        - secure
     Intent:
       type: string
       enum:
