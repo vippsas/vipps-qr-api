@@ -372,6 +372,29 @@ paths:
         in: path
         required: true
         description: The MobilePay PoS BeaconId
+  '/qr/v1/exchange':
+    post:
+      summary: Exchange user presented QR code for information about the user
+      operationId: exchangeQr
+      tags:
+        - QR Exchange
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QrExchangeRequest'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QrExchangeResponse'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
 components:
   schemas:
     OneTimePaymentQrRequest:
@@ -588,6 +611,38 @@ components:
         qrContent:
           type: string
           description: The text that is being encoded by the QR code. This is the actual content of the QR code.
+    QrExchangeRequest:
+      type: object
+      description: 'The request body for the QR exchange endpoint. This endpoint is used to exchange information about a QR code that has been scanned by a Vipps user.'
+      required:
+        - qrCode
+        - intent
+        - requestedData
+      properties:
+        qrCode:
+          type: string
+        intent:
+          $ref: '#/components/schemas/Intent'
+        requestedData:
+          type: array
+          items:
+            $ref: '#/components/schemas/RequestedData'
+          default: [ MSISDN ]
+    QrExchangeResponse:
+      type: object
+      properties:
+        msisdn:
+          type: string
+    Intent:
+      type: string
+      enum:
+        - LOGIN
+        - PAYMENT
+        - OTHER
+    RequestedData:
+      type: string
+      enum:
+        - MSISDN
   securitySchemes:
     BearerToken:
       type: http
