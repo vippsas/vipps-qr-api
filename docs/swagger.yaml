@@ -647,7 +647,6 @@ components:
       enum:
         - LOGIN
         - PAYMENT
-        - OTHER
     RequestedData:
       type: string
       enum:
