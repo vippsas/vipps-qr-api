@@ -15,7 +15,7 @@ servers:
     description: 'Test environment (uses the test API keys, the test app and test data)'
 paths:
   /qr/v1:
-    parameters: [ ]
+    parameters: []
     post:
       summary: Create One Time Payment QR
       operationId: generateOtpQr
@@ -81,7 +81,7 @@ paths:
         description: ''
       tags:
         - Merchant redirect QR
-    parameters: [ ]
+    parameters: []
     get:
       summary: Get all merchant redirect QRs
       operationId: GetAllMerchantRedirectQrs
@@ -222,7 +222,7 @@ paths:
         - $ref: '#/components/parameters/QrImageSize'
       tags:
         - Merchant callback QR
-    parameters: [ ]
+    parameters: []
   '/qr/v1/merchant-callback/{merchantQrId}':
     get:
       summary: Get callback QR by id
@@ -868,4 +868,4 @@ tags:
   - name: One time payment QR
   - name: Merchant callback QR
 security:
-  - BearerToken: [ ]
+  - BearerToken: []
