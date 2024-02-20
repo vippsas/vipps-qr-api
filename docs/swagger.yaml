@@ -15,7 +15,7 @@ servers:
     description: 'Test environment (uses the test API keys, the test app and test data)'
 paths:
   /qr/v1:
-    parameters: []
+    parameters: [ ]
     post:
       summary: Create One Time Payment QR
       operationId: generateOtpQr
@@ -81,7 +81,7 @@ paths:
         description: ''
       tags:
         - Merchant redirect QR
-    parameters: []
+    parameters: [ ]
     get:
       summary: Get all merchant redirect QRs
       operationId: GetAllMerchantRedirectQrs
@@ -222,7 +222,7 @@ paths:
         - $ref: '#/components/parameters/QrImageSize'
       tags:
         - Merchant callback QR
-    parameters: []
+    parameters: [ ]
   '/qr/v1/merchant-callback/{merchantQrId}':
     get:
       summary: Get callback QR by id
@@ -374,16 +374,31 @@ paths:
         description: The MobilePay PoS BeaconId
   '/qr/v1/exchange':
     post:
-      summary: Exchange user presented QR code for user data
+      summary: Exchange user presented QR code for data
       operationId: exchangeQr
       tags:
         - QR Exchange
+      parameters:
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
+        - $ref: '#/components/parameters/Merchant-Serial-Number'
       requestBody:
         required: true
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/QrExchangeRequest'
+            examples:
+              Simple example:
+                value:
+                  qrCode: 'https://qr.vipps.no/p/qwjhewqhueheuqwhuqwhe'
+                  intent: LOGIN
+              Example 1:
+                value:
+                  qrCode: 'https://qr.vipps.no/p/qwjhewqhueheuqwhuqwhe'
+                  intent: CUSTOMER_CLUB_SIGNUP
+                  requestedData:
+                    - MSISDN
       responses:
         '200':
           description: Successful operation
@@ -391,8 +406,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/QrExchangeResponse'
+              examples:
+                Version 2.0 example:
+                  value:
+                    msisdn: '4798765432'
+                    timestamp: 1634025600
+                    version: '2.0'
+                Version 1.0 example:
+                    value:
+                        msisdn: '4798765432'
+                        version: '1.0'
         '400':
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QrExchangeErrorResponse'
+              examples:
+                Example 1:
+                  value:
+                    title: "Bad request"
+                    status: 400
+                    detail: "The request body contains one or more invalid parameters."
+                    extraDetails:
+                      - name: "intent"
+                        reason: "The intent must be one of LOGIN, CUSTOMER_CLUB_SIGNUP, IDENTIFICATION, PAYMENT"
+                Example 2:
+                  value:
+                    title: "Bad request"
+                    status: 400
+                    detail: "The request body contains one or more invalid parameters."
+                    extraDetails:
+                      - name: "qrCode"
+                        reason: "The complete data contained in the QR code is required."
+        '401':
+          description: Unauthorized
         '500':
           description: Internal Server Error
 components:
@@ -414,7 +462,7 @@ components:
     OneTimePaymentQrResponse:
       title: OneTimePaymentQrResponse
       type: object
-      x-examples: {}
+      x-examples: { }
       description: ''
       properties:
         url:
@@ -482,7 +530,7 @@ components:
     MerchantRedirectQrRequest:
       title: MerchantRedirectQrRequest
       type: object
-      x-examples: {}
+      x-examples: { }
       properties:
         id:
           type: string
@@ -512,7 +560,7 @@ components:
     MerchantRedirectQrResponse:
       title: MerchantRedirectQrResponse
       type: object
-      x-examples: {}
+      x-examples: { }
       properties:
         id:
           type: string
@@ -540,7 +588,7 @@ components:
         - redirectUrl
     MerchantRedirectQrResponseGetAll:
       title: MerchantRedirectQrResponseGetAll
-      x-examples: {}
+      x-examples: { }
       type: array
       items:
         $ref: '#/components/schemas/MerchantRedirectQrResponse'
@@ -621,6 +669,7 @@ components:
       properties:
         qrCode:
           type: string
+          description: 'The complete content of the QR code.'
         intent:
           $ref: '#/components/schemas/Intent'
         requestedData:
@@ -633,24 +682,75 @@ components:
       properties:
         msisdn:
           type: string
+          description: 'The MSISDN of the user presenting the QR code.'
         timestamp:
           type: integer
-          description: 'The UTC timestamp in seconds when the QR code was generated.'
-        secure:
-          type: boolean
-          description: 'Legacy QR codes are less secure than the new ones.'
+          description: 'The UTC timestamp in seconds when the QR code was generated. Only available for version 2.0 QR codes.'
+        version:
+          type: string
+          description: 'Version of the QR code format. There are two versions: 1.0 and 2.0. Version 1.0 is the old format, and version 2.0 is the new format.'
       required:
         - msisdn
-        - secure
+        - version
     Intent:
       type: string
+      description: 'The intended use of the data returned from the QR exchange'
       enum:
         - LOGIN
+        - CUSTOMER_CLUB_SIGNUP
+        - IDENTIFICATION
         - PAYMENT
     RequestedData:
       type: string
+      description: 'Which data fields the merchant wants to receive from the QR exchange. Currently only MSISDN is supported.'
       enum:
         - MSISDN
+    QrExchangeErrorResponse:
+      type: object
+      required:
+        - title
+        - status
+        - detail
+      properties:
+        title:
+          type: string
+          description: A short, human-readable summary of the problem type.
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code associated with the error.
+        detail:
+          type: string
+          description: A human-readable explanation of the specific problem.
+        extraDetails:
+          type: array
+          items:
+            type: object
+            required:
+              - name
+              - reason
+            properties:
+              name:
+                type: string
+                description: The name of the invalid parameter.
+              reason:
+                type: string
+                description: The reason why the parameter is invalid.
+      x-examples:
+        example-1:
+          title: "Bad request"
+          status: 400
+          detail: "The request body contains one or more invalid parameters."
+          extraDetails:
+            - name: "intent"
+              reason: "The intent must be one of LOGIN, CUSTOMER_CLUB_SIGNUP, IDENTIFICATION, PAYMENT"
+        example-2:
+          title: "Bad request"
+          status: 400
+          detail: "The request body contains one or more invalid parameters."
+          extraDetails:
+            - name: "qrCode"
+              reason: "The complete data contained in the QR code is required."
   securitySchemes:
     BearerToken:
       type: http
@@ -757,9 +857,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/QrErrorResponse'
+    exchange400BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/QrExchangeErrorResponse'
 tags:
   - name: Merchant redirect QR
   - name: One time payment QR
   - name: Merchant callback QR
 security:
-  - BearerToken: []
+  - BearerToken: [ ]
