@@ -38,13 +38,17 @@ paths:
             schema:
               $ref: '#/components/schemas/OneTimePaymentQrRequest'
         description: ''
-      description: Endpoint for generating a Vipps QR for a merchant payment. Given a valid vippsLandingPageUrl this endpoint will return a QR for that payment.
+      description: Endpoint for generating a Vipps MobilePay QR for a merchant payment. Given a valid `vippsLandingPageUrl`, this endpoint will return a QR for that payment.
       parameters:
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
         - One time payment QR
   /qr/v1/merchant-redirect:
@@ -72,6 +76,10 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
         - $ref: '#/components/parameters/Size'
       requestBody:
         content:
@@ -101,6 +109,10 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
   '/qr/v1/merchant-redirect/{id}':
@@ -135,6 +147,10 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
         - $ref: '#/components/parameters/Size'
     delete:
       summary: Delete merchant redirect QR
@@ -153,6 +169,10 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
         - $ref: '#/components/parameters/Size'
     parameters:
       - schema:
@@ -160,9 +180,9 @@ paths:
         name: id
         in: path
         required: true
-        description: id for QR
+        description: The unique ID for QR
     get:
-      summary: Get merchant redirect QR by id
+      summary: Get merchant redirect QR by ID
       operationId: GetMerchantRedirectQrById
       responses:
         '200':
@@ -175,18 +195,22 @@ paths:
           description: Unauthorized
         '404':
           $ref: '#/components/responses/404NotFound'
-      description: Get merchant redirect QR by id
+      description: Get merchant redirect QR by ID
       tags:
         - Merchant redirect QR
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
   /qr/v1/merchant-callback:
     get:
-      summary: Get all merchant callback QR's
+      summary: Get all merchant callback QRs
       operationId: GetMerchantCallbackQrs
       responses:
         '200':
@@ -218,6 +242,10 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
         - $ref: '#/components/parameters/QrImageFormat'
         - $ref: '#/components/parameters/QrImageSize'
       tags:
@@ -225,7 +253,7 @@ paths:
     parameters: []
   '/qr/v1/merchant-callback/{merchantQrId}':
     get:
-      summary: Get callback QR by id
+      summary: Get callback QR by ID
       operationId: GetMerchantCallbackById
       responses:
         '200':
@@ -257,6 +285,10 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
         - $ref: '#/components/parameters/QrImageFormat'
         - $ref: '#/components/parameters/QrImageSize'
       tags:
@@ -265,13 +297,21 @@ paths:
       summary: Create or update callback QR
       operationId: PutMerchantCallbackQr
       description: |-
-        Creates or updates the QR code that encapsulates the provided merchantSerialNumber and merchantQrId. See [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api) to create a webhook that will send callbacks when this QR code is scanned by a Vipps user.
+        **NOTE: MobilePay integrators that needs to migrate existing QRs cannot use this endpoint. They must use the dedicated endpoint: PUT /qr/v1/merchant-callback/mobilepay/{beaconId} **
 
-        If the endpoint is called with the same merchantQrId twice or more, it is the last call that defines the location property. The actual QR code image will not be updated on consecutive calls.
+        Creates or updates the QR code that encapsulates the provided `merchantSerialNumber` and `merchantQrId`.
+        See [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api) to create a webhook that will send callbacks when this QR code is scanned by a Vipps or MobilePay user.
+
+        If the endpoint is called with the same `merchantQrId` twice or more, it is the last call that defines the location property.
+        The actual QR code image will not be updated on consecutive calls.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       responses:
         '200':
           description: OK
@@ -323,25 +363,36 @@ paths:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
         - Merchant callback QR
   '/qr/v1/merchant-callback/mobilepay/{beaconId}':
     put:
-      summary: Create or Update MobilePay QR code
+      summary: Create or update MobilePay QR code
       operationId: PutMerchantCallbackMobilePayQr
       description: |-
-        **NOTE: This endpoint is only intended for MobilePay PoS customers. It will be removed as soon as migration is completed.**
+        This endpoint is for migrating existing MobilePay PoS QR codes from the current solution that will end its lifetime.
+        It is meant for merchants that have printed QR codes and want them to stay functional for the new product offering
+        that will replace the now deprecated solution.
 
-        This endpoint is for migrating existing MobilePay PoS QR codes from the current solution that will end its lifetime. It is meant for merchants that have printed QR codes and want them to stay functional for the new product offering that will replace the now deprecated solution.
+        This endpoint will not create a new QR code but rather map the provided `beaconId` with the Merchant-Serial-Number,
+        to make sure the already printed QR code can be re-used.
+        When the QR code is scanned by MobilePay users, it will result in a callback being sent to the merchant
+        if the merchant has registered a [webhook](/docs/APIs/webhooks-api)
+        for the `user.checked-in.v1` event.
 
-        This endpoint will not create a new QR code but rather map the provided beaconId with the Merchant-Serial-Number, to make sure the already printed QR code can be re-used.
-        When the QR code is scanned by MobilePay users, it will result in a callback being sent to the merchant if the merchant has registered a [webhook](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api) for the `user.checked-in.v1` event.
-
-        The callback will include a MerchantQrId which in this scenario will equal the beaconId.
+        The callback will include a `MerchantQrId` which in this scenario will equal the beaconId.
       parameters:
         - $ref: '#/components/parameters/Authorization'
         - $ref: '#/components/parameters/Ocp-Apim-Subscription-Key'
         - $ref: '#/components/parameters/Merchant-Serial-Number-Required'
+        - $ref: '#/components/parameters/Vipps-System-Name'
+        - $ref: '#/components/parameters/Vipps-System-Version'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Name'
+        - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       responses:
         '200':
           description: OK
@@ -613,8 +664,8 @@ components:
       properties:
         locationDescription:
           type: string
-          maxLength: 36
           description: 'A description of where the QR code will be located. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
+          maxLength: 36
       required:
         - locationDescription
     MerchantCallbackMobilePayPutRequest:
@@ -626,8 +677,8 @@ components:
       properties:
         locationDescription:
           type: string
-          maxLength: 36
           description: 'A description of where the QR code will be located. This corresponds to the PoS name field from the old MobilePay V10 API. It will be shown in the app when a user scans the QR code. Examples could be ‘Kasse 1’ , ‘Kiosk’ or ‘Platform 3’.'
+          maxLength: 36
       required:
         - locationDescription
     MerchantCallbackQr:
@@ -769,14 +820,14 @@ components:
       required: true
       schema:
         type: string
-      description: The merchant serial number (MSN) for the sales unit.
+      description: The merchant serial number (MSN) for the sales unit. See [API keys](https://developer.vippsmobilepay.com/docs/knowledge-base/api-keys/).
     Ocp-Apim-Subscription-Key:
       name: Ocp-Apim-Subscription-Key
       in: header
       required: true
       schema:
         type: string
-      description: Subscription Key
+      description: The subscription key for a sales unit. See [API keys](https://developer.vippsmobilepay.com/docs/knowledge-base/api-keys/).
     Authorization:
       name: Authorization
       in: header
@@ -805,7 +856,7 @@ components:
         enum:
           - PNG
           - SVG
-      description: 'Requested image format. Supported values: {PNG, SVG}. If not provided, SVG is chosen'
+      description: 'Requested image format. Supported values: {PNG, SVG}. If not provided, SVG is chosen.'
     QrImageSize:
       name: QrImageSize
       in: query
@@ -814,7 +865,7 @@ components:
         type: integer
         minimum: 100
         maximum: 2000
-      description: 'Eks: 200. Then 200x200 px is set at dimension for Qr. Only relevant if PNG is chosen as image format'
+      description: 'Eks: 200. Then 200x200 px is set at dimension for the QR. Only relevant if PNG is chosen as image format.'
     Size:
       name: Size
       in: header
@@ -823,7 +874,49 @@ components:
         type: integer
         minimum: 100
         maximum: 2000
-      description: 'Eks: 200. Then 200x200 px is set at dimension for Qr'
+      description: 'Eks: 200. Then 200x200 px is set at dimension for the QR'
+    Vipps-System-Name:
+      name: Vipps-System-Name
+      in: header
+      description: |-
+        The name of the ecommerce solution.
+        One word in lowercase letters is good.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
+      schema:
+        type: string
+        maxLength: 30
+        example: WooCommerce
+    Vipps-System-Version:
+      name: Vipps-System-Version
+      in: header
+      description: |-
+        The version number of the ecommerce solution.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
+      schema:
+        type: string
+        maxLength: 30
+        example: 5.4.0
+    Vipps-System-Plugin-Name:
+      name: Vipps-System-Plugin-Name
+      in: header
+      description: |-
+        The name of the ecommerce plugin (if applicable).
+        One word in lowercase letters is good.
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
+      schema:
+        type: string
+        maxLength: 30
+        example: woocommerce-payment
+    Vipps-System-Plugin-Version:
+      name: Vipps-System-Plugin-Version
+      in: header
+      description: |-
+        The version number of the ecommerce plugin (if applicable).
+        See [http-headers](https://developer.vippsmobilepay.com/docs/knowledge-base/http-headers).
+      schema:
+        type: string
+        maxLength: 30
+        example: 1.2.1
   responses:
     415UnsupportedMediaType:
       description: Unsupported Media Type
