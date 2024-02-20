@@ -11,7 +11,7 @@ info:
 servers:
   - url: 'https://api.vipps.no/qr'
     description: 'Production environment (uses the production API keys, the official app and live data)'
-  - url: 'https://apitest.vipps.no'
+  - url: 'https://apitest.vipps.no/qr'
     description: 'Test environment (uses the test API keys, the test app and test data)'
 paths:
   /v1:
