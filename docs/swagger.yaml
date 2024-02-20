@@ -462,7 +462,7 @@ components:
     OneTimePaymentQrResponse:
       title: OneTimePaymentQrResponse
       type: object
-      x-examples: { }
+      x-examples: {}
       description: ''
       properties:
         url:
@@ -530,7 +530,7 @@ components:
     MerchantRedirectQrRequest:
       title: MerchantRedirectQrRequest
       type: object
-      x-examples: { }
+      x-examples: {}
       properties:
         id:
           type: string
@@ -560,7 +560,7 @@ components:
     MerchantRedirectQrResponse:
       title: MerchantRedirectQrResponse
       type: object
-      x-examples: { }
+      x-examples: {}
       properties:
         id:
           type: string
@@ -588,7 +588,7 @@ components:
         - redirectUrl
     MerchantRedirectQrResponseGetAll:
       title: MerchantRedirectQrResponseGetAll
-      x-examples: { }
+      x-examples: {}
       type: array
       items:
         $ref: '#/components/schemas/MerchantRedirectQrResponse'
