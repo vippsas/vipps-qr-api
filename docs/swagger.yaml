@@ -9,12 +9,12 @@ info:
     name: Vipps MobilePay
     url: 'https://developer.vippsmobilepay.com/docs/contact/'
 servers:
-  - url: 'https://api.vipps.no'
+  - url: 'https://api.vipps.no/qr'
     description: 'Production environment (uses the production API keys, the official app and live data)'
   - url: 'https://apitest.vipps.no'
     description: 'Test environment (uses the test API keys, the test app and test data)'
 paths:
-  /qr/v1:
+  /v1:
     parameters: []
     post:
       summary: Create One Time Payment QR
@@ -51,7 +51,7 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
         - One time payment QR
-  /qr/v1/merchant-redirect:
+  /v1/merchant-redirect:
     post:
       summary: Create merchant redirect QR
       operationId: CreateMerchantRedirectQr
@@ -115,7 +115,7 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  '/qr/v1/merchant-redirect/{id}':
+  '/v1/merchant-redirect/{id}':
     put:
       summary: Update redirectUrl for merchant redirect QR
       operationId: UpdateMerchantRedirectUrl
@@ -208,7 +208,7 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
         - $ref: '#/components/parameters/Accept'
         - $ref: '#/components/parameters/Size'
-  /qr/v1/merchant-callback:
+  /v1/merchant-callback:
     get:
       summary: Get all merchant callback QRs
       operationId: GetMerchantCallbackQrs
@@ -251,7 +251,7 @@ paths:
       tags:
         - Merchant callback QR
     parameters: []
-  '/qr/v1/merchant-callback/{merchantQrId}':
+  '/v1/merchant-callback/{merchantQrId}':
     get:
       summary: Get callback QR by ID
       operationId: GetMerchantCallbackById
@@ -297,7 +297,7 @@ paths:
       summary: Create or update callback QR
       operationId: PutMerchantCallbackQr
       description: |-
-        **NOTE: MobilePay integrators that needs to migrate existing QRs cannot use this endpoint. They must use the dedicated endpoint: PUT /qr/v1/merchant-callback/mobilepay/{beaconId} **
+        **NOTE: MobilePay integrators that needs to migrate existing QRs cannot use this endpoint. They must use the dedicated endpoint: PUT /v1/merchant-callback/mobilepay/{beaconId} **
 
         Creates or updates the QR code that encapsulates the provided `merchantSerialNumber` and `merchantQrId`.
         See [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api) to create a webhook that will send callbacks when this QR code is scanned by a Vipps or MobilePay user.
@@ -369,7 +369,7 @@ paths:
         - $ref: '#/components/parameters/Vipps-System-Plugin-Version'
       tags:
         - Merchant callback QR
-  '/qr/v1/merchant-callback/mobilepay/{beaconId}':
+  '/v1/merchant-callback/mobilepay/{beaconId}':
     put:
       summary: Create or update MobilePay QR code
       operationId: PutMerchantCallbackMobilePayQr
@@ -423,7 +423,7 @@ paths:
         in: path
         required: true
         description: The MobilePay PoS BeaconId
-  '/qr/v1/exchange':
+  '/v1/exchange':
     post:
       summary: Exchange user presented QR code for data
       operationId: exchangeQr
