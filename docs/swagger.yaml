@@ -694,7 +694,7 @@ components:
         - version
     Intent:
       type: string
-      description: 'The intended use of the data returned from the QR exchange'
+      description: 'The intended use of the data returned from the QR exchange.'
       enum:
         - LOGIN
         - CUSTOMER_CLUB_SIGNUP
