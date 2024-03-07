@@ -297,7 +297,7 @@ paths:
       summary: Create or update callback QR
       operationId: PutMerchantCallbackQr
       description: |-
-        **NOTE: MobilePay integrators that needs to migrate existing QRs cannot use this endpoint. They must use the dedicated endpoint: PUT /v1/merchant-callback/mobilepay/{beaconId} **
+        Note: MobilePay integrators that needs to migrate existing QRs cannot use this endpoint. They must use the dedicated endpoint: [PUT /v1/merchant-callback/mobilepay/{beaconId}](https://developer.vippsmobilepay.com/api/qr/#tag/Merchant-callback-QR/operation/PutMerchantCallbackMobilePayQr)
 
         Creates or updates the QR code that encapsulates the provided `merchantSerialNumber` and `merchantQrId`.
         See [Webhooks API](https://developer.vippsmobilepay.com/docs/APIs/webhooks-api) to create a webhook that will send callbacks when this QR code is scanned by a Vipps or MobilePay user.
