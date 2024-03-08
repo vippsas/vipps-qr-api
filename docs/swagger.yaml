@@ -443,11 +443,9 @@ paths:
               Simple example:
                 value:
                   qrCode: 'https://qr.vipps.no/p/qwjhewqhueheuqwhuqwhe'
-                  intent: LOGIN
               Example 1:
                 value:
                   qrCode: 'https://qr.vipps.no/p/qwjhewqhueheuqwhuqwhe'
-                  intent: CUSTOMER_CLUB_SIGNUP
                   requestedData:
                     - MSISDN
       responses:
@@ -475,14 +473,6 @@ paths:
                 $ref: '#/components/schemas/QrExchangeErrorResponse'
               examples:
                 Example 1:
-                  value:
-                    title: "Bad request"
-                    status: 400
-                    detail: "The request body contains one or more invalid parameters."
-                    extraDetails:
-                      - name: "intent"
-                        reason: "The intent must be one of LOGIN, CUSTOMER_CLUB_SIGNUP, IDENTIFICATION, PAYMENT"
-                Example 2:
                   value:
                     title: "Bad request"
                     status: 400
@@ -715,14 +705,11 @@ components:
       description: 'The request body for the QR exchange endpoint. This endpoint is used to exchange information about a QR code that has been scanned by a Vipps user.'
       required:
         - qrCode
-        - intent
         - requestedData
       properties:
         qrCode:
           type: string
           description: 'The complete content of the QR code.'
-        intent:
-          $ref: '#/components/schemas/Intent'
         requestedData:
           type: array
           items:
@@ -743,14 +730,6 @@ components:
       required:
         - msisdn
         - version
-    Intent:
-      type: string
-      description: 'The intended use of the data returned from the QR exchange.'
-      enum:
-        - LOGIN
-        - CUSTOMER_CLUB_SIGNUP
-        - IDENTIFICATION
-        - PAYMENT
     RequestedData:
       type: string
       description: 'Which data fields the merchant wants to receive from the QR exchange. Currently only MSISDN is supported.'
@@ -789,13 +768,6 @@ components:
                 description: The reason why the parameter is invalid.
       x-examples:
         example-1:
-          title: "Bad request"
-          status: 400
-          detail: "The request body contains one or more invalid parameters."
-          extraDetails:
-            - name: "intent"
-              reason: "The intent must be one of LOGIN, CUSTOMER_CLUB_SIGNUP, IDENTIFICATION, PAYMENT"
-        example-2:
           title: "Bad request"
           status: 400
           detail: "The request body contains one or more invalid parameters."
