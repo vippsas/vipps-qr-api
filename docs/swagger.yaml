@@ -472,7 +472,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExchangeErrorResponse'
+                $ref: '#/components/schemas/QrExchangeErrorResponse'
               examples:
                 Example 1:
                   value:
@@ -526,7 +526,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExchangeErrorResponse'
+                $ref: '#/components/schemas/CustomerExchangeErrorResponse'
               examples:
                 Example missing customer object:
                   value:
@@ -822,7 +822,38 @@ components:
       description: Which data fields the merchant wants to receive from the QR exchange. Currently only MSISDN is supported.
       enum:
         - MSISDN
-    ExchangeErrorResponse:
+    QrExchangeErrorResponse:
+      type: object
+      required:
+        - title
+        - status
+        - detail
+      properties:
+        title:
+          type: string
+          description: 'A short, human-readable summary of the problem type.'
+        status:
+          type: integer
+          format: int32
+          description: The HTTP status code associated with the error.
+        detail:
+          type: string
+          description: A human-readable explanation of the specific problem.
+        extraDetails:
+          type: array
+          items:
+            type: object
+            required:
+              - name
+              - reason
+            properties:
+              name:
+                type: string
+                description: The name of the invalid parameter.
+              reason:
+                type: string
+                description: The reason why the parameter is invalid.
+    CustomerExchangeErrorResponse:
       type: object
       required:
         - title
@@ -1014,7 +1045,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/ExchangeErrorResponse'
+            $ref: '#/components/schemas/QrExchangeErrorResponse'
 tags:
   - name: Merchant redirect QR
   - name: One time payment QR
