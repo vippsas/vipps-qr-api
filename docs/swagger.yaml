@@ -442,10 +442,10 @@ paths:
             schema:
               $ref: '#/components/schemas/QrExchangeRequest'
             examples:
-              Simple example:
+              Example 1:
                 value:
                   qrCode: 'https://qr.vipps.no/p/qwjhewqhueheuqwhuqwhe'
-              Example 1:
+              Example 2:
                 value:
                   qrCode: 'https://qr.vipps.no/p/qwjhewqhueheuqwhuqwhe'
                   requestedData:
@@ -761,7 +761,6 @@ components:
       description: The request body for the QR exchange endpoint. This endpoint is used to exchange information about a QR code that has been scanned by a Vipps user.
       required:
         - qrCode
-        - requestedData
       properties:
         qrCode:
           type: string
@@ -1040,12 +1039,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/QrErrorResponse'
-    exchange400BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/QrExchangeErrorResponse'
 tags:
   - name: Merchant redirect QR
   - name: One time payment QR
